@@ -1,11 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://yoursite-url/cn/Hexo-Theme-LiveMyLife/</loc>
-    <lastmod>2020-04-16</lastmod>
+    <loc>http://yoursite-url/Java/%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6%E8%AF%AD%E5%8F%A5/</loc>
+    <lastmod>2023-06-25</lastmod>
   </url>
   <url>
-    <loc>http://yoursite-url/en/Hexo-Theme-LiveMyLife/</loc>
-    <lastmod>2020-04-16</lastmod>
+    <loc>http://yoursite-url/Java/%E5%8F%98%E9%87%8F%E4%B8%8E%E8%BF%90%E7%AE%97%E7%AC%A6/</loc>
+    <lastmod>2023-06-25</lastmod>
+  </url>
+  <url>
+    <loc>http://yoursite-url/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</loc>
+    <lastmod>2023-06-25</lastmod>
+  </url>
+  <url>
+    <loc>http://yoursite-url/Java/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/</loc>
+    <lastmod>2023-06-25</lastmod>
+  </url>
+  <url>
+    <loc>http://yoursite-url/Java/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B%EF%BC%88%E9%AB%98%E7%BA%A7%EF%BC%89/</loc>
+    <lastmod>2023-06-25</lastmod>
+  </url>
+  <url>
+    <loc>http://yoursite-url/Java/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B%EF%BC%88%E8%BF%9B%E9%98%B6%EF%BC%89/</loc>
+    <lastmod>2023-06-25</lastmod>
+  </url>
+  <url>
+    <loc>http://yoursite-url/Java/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B%EF%BC%88%E5%9F%BA%E7%A1%80%EF%BC%89/</loc>
+    <lastmod>2023-06-25</lastmod>
+  </url>
+  <url>
+    <loc>http://yoursite-url/Java/%E6%95%B0%E7%BB%84/</loc>
+    <lastmod>2023-06-25</lastmod>
+  </url>
+  <url>
+    <loc>http://yoursite-url/Java/Java%E6%A6%82%E8%BF%B0/</loc>
+    <lastmod>2023-06-25</lastmod>
   </url>
 </urlset> 
