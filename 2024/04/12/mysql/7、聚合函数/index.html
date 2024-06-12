@@ -1,0 +1,823 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="glasss">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="1、聚合函数介绍 什么是聚合函数  聚合函数作用于一组数据，并对一组数据返回一个值。    聚合函数类型  AVG() SUM() MAX() MIN() COUNT()   聚合函数语法      聚合函数不能嵌套调用。比如不能出现类似“AVG(SUM(字段名称))”形式的调用。  1.1 AVG和SUM函数可以对数值型数据使用AVG 和 SUM 函数。 123SELECT AVG(salary">
+<meta property="og:type" content="article">
+<meta property="og:title" content="单行函数">
+<meta property="og:url" content="https://glassless.github.io/2024/04/12/mysql/7%E3%80%81%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0/index.html">
+<meta property="og:site_name" content="Glass的博客">
+<meta property="og:description" content="1、聚合函数介绍 什么是聚合函数  聚合函数作用于一组数据，并对一组数据返回一个值。    聚合函数类型  AVG() SUM() MAX() MIN() COUNT()   聚合函数语法      聚合函数不能嵌套调用。比如不能出现类似“AVG(SUM(字段名称))”形式的调用。  1.1 AVG和SUM函数可以对数值型数据使用AVG 和 SUM 函数。 123SELECT AVG(salary">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/MySQL/202404111726403.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/MySQL/202404111727964.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/MySQL/202404111729430.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/MySQL/202404111730744.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/MySQL/202404111731077.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/MySQL/202404121113683.png">
+<meta property="og:image" content="c:\Users\hangw\AppData\Roaming\Typora\typora-user-images\image-20240412112802636.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/MySQL/202404121416503.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/MySQL/202404121417034.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/MySQL/202404121418463.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/MySQL/202404121419274.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/MySQL/202404121420561.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/MySQL/202404121422911.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/MySQL/202404121422175.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/MySQL/202404121423687.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/MySQL/202404121428812.png">
+<meta property="article:published_time" content="2024-04-12T06:39:19.000Z">
+<meta property="article:modified_time" content="2024-04-12T06:40:25.348Z">
+<meta property="article:author" content="glasss">
+<meta property="article:tag" content="MySQL">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/MySQL/202404111726403.png">
+  
+  
+  
+  <title>单行函数 - Glass的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"glassless.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"Java"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Glass</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="单行函数"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-04-12 14:39" pubdate>
+          2024年4月12日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          18 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">单行函数</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="1、聚合函数介绍"><a href="#1、聚合函数介绍" class="headerlink" title="1、聚合函数介绍"></a>1、聚合函数介绍</h2><ul>
+<li>什么是聚合函数</li>
+</ul>
+<p>聚合函数作用于一组数据，并对一组数据返回一个值。</p>
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/MySQL/202404111726403.png" srcset="/img/loading.gif" lazyload alt="image-20240411172633281" style="zoom:50%;" />
+
+<ul>
+<li><p>聚合函数类型</p>
+<ul>
+<li>AVG()</li>
+<li>SUM()</li>
+<li>MAX()</li>
+<li>MIN()</li>
+<li>COUNT()</li>
+</ul>
+</li>
+<li><p>聚合函数语法</p>
+</li>
+</ul>
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/MySQL/202404111727964.png" srcset="/img/loading.gif" lazyload alt="image-20240411172733930" style="zoom:50%;" />
+
+<ul>
+<li>聚合函数不能嵌套调用。比如不能出现类似“AVG(SUM(字段名称))”形式的调用。</li>
+</ul>
+<h3 id="1-1-AVG和SUM函数"><a href="#1-1-AVG和SUM函数" class="headerlink" title="1.1 AVG和SUM函数"></a>1.1 AVG和SUM函数</h3><p>可以对<strong>数值型数据</strong>使用AVG 和 SUM 函数。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT AVG(salary), MAX(salary),MIN(salary), SUM(salary)<br>FROM   employees<br>WHERE  job_id LIKE &#x27;%REP%&#x27;;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/MySQL/202404111729430.png" srcset="/img/loading.gif" lazyload alt="image-20240411172928407"></p>
+<h3 id="1-2-MIN和MAX函数"><a href="#1-2-MIN和MAX函数" class="headerlink" title="1.2 MIN和MAX函数"></a>1.2 MIN和MAX函数</h3><p>可以对<strong>任意数据类型</strong>的数据使用 MIN 和 MAX 函数。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT MIN(hire_date), MAX(hire_date)<br>FROM     employees;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/MySQL/202404111730744.png" srcset="/img/loading.gif" lazyload alt="image-20240411173013725"></p>
+<h3 id="1-3-COUNT函数"><a href="#1-3-COUNT函数" class="headerlink" title="1.3 COUNT函数"></a>1.3 COUNT函数</h3><ul>
+<li>COUNT(*)返回表中记录总数，适用于<strong>任意数据类型</strong>。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs MySQL">SELECT COUNT(*)<br>FROM      employees<br>WHERE  department_id = 50;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/MySQL/202404111731077.png" srcset="/img/loading.gif" lazyload alt="image-20240411173126058"></p>
+<ul>
+<li>COUNT(expr) 返回<strong>expr不为空</strong>的记录总数</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT COUNT(commission_pct)<br>FROM   employees<br>WHERE  department_id = 50;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/MySQL/202404121113683.png" srcset="/img/loading.gif" lazyload alt="image-20240412111315633"></p>
+<ul>
+<li><p><strong>问题：用count(*)，count(1)，count(列名)谁好呢?</strong></p>
+<p>其实，对于MyISAM引擎的表是没有区别的。</p>
+<p>这种引擎内部有一计数器在维护着行数。 Innodb引擎的表用count(*),count(1)直接读行数，复杂度是O(n)，因为innodb真的要去数一遍。但好 于具体的count(列名)。</p>
+</li>
+<li><p><strong>问题：能不能使用count(列名)替换count(*)?</strong></p>
+<p>不要使用 count(列名)来替代  <code>count(*)</code> ， <code>count(*)</code> 是 SQL92 定义的标准统计行数的语法，跟数据库无关，跟 NULL 和非 NULL 无关。</p>
+<p>说明：count(*)会统计值为 NULL 的行，而 count(列名)不会统计此列为 NULL 值的行。</p>
+</li>
+</ul>
+<h2 id="2、-GROUP-BY"><a href="#2、-GROUP-BY" class="headerlink" title="2、 GROUP BY"></a>2、 GROUP BY</h2><h3 id="2-1-基本使用"><a href="#2-1-基本使用" class="headerlink" title="2.1 基本使用"></a>2.1 基本使用</h3><img src="C:\Users\hangw\AppData\Roaming\Typora\typora-user-images\image-20240412112802636.png" srcset="/img/loading.gif" lazyload alt="image-20240412112802636" style="zoom:50%;" />
+
+<p><strong>可以使用GROUP BY子句将表中的数据分成若干组</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs MySQL">SELECT column, group_function(column)<br>FROM table<br>[WHERE  condition]<br>[GROUP BY   group_by_expression]<br>[ORDER BY   column];<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>明确：WHERE一定放在FROM后面</strong></p>
+</blockquote>
+<p><strong>在SELECT列表中所有未包含在组函数中的列都应该包含在 GROUP BY子句中</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs MySQL">SELECT   department_id, AVG(salary)<br>FROM     employees<br>GROUP BY department_id ;<br></code></pre></td></tr></table></figure>
+
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/MySQL/202404121416503.png" srcset="/img/loading.gif" lazyload alt="image-20240412141645469" style="zoom: 67%;" />
+
+<p>包含在 GROUP BY 子句中的列不必包含在SELECT 列表中</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT   AVG(salary)<br>FROM     employees<br>GROUP BY department_id ;<br></code></pre></td></tr></table></figure>
+
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/MySQL/202404121417034.png" srcset="/img/loading.gif" lazyload alt="image-20240412141734001" style="zoom:67%;" />
+
+<h3 id="2-2-使用多个列分组"><a href="#2-2-使用多个列分组" class="headerlink" title="2.2 使用多个列分组"></a>2.2 使用多个列分组</h3><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/MySQL/202404121418463.png" srcset="/img/loading.gif" lazyload alt="image-20240412141817405" style="zoom:67%;" />
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs MySQL">SELECT   department_id dept_id, job_id, SUM(salary)<br>FROM     employees<br>GROUP BY department_id, job_id <br></code></pre></td></tr></table></figure>
+
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/MySQL/202404121419274.png" srcset="/img/loading.gif" lazyload alt="image-20240412141928239" style="zoom:67%;" />
+
+<h3 id="2-3-GROUP-BY中使用WITH-ROLLUP"><a href="#2-3-GROUP-BY中使用WITH-ROLLUP" class="headerlink" title="2.3 GROUP BY中使用WITH ROLLUP"></a>2.3 GROUP BY中使用WITH ROLLUP</h3><p>使用 <code>WITH ROLLUP</code> 关键字之后，在所有查询出的分组记录之后增加一条记录，该记录计算查询出的所 有记录的总和，即统计记录数量。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT department_id,AVG(salary)<br>FROM employees<br>WHERE department_id &gt; 80<br>GROUP BY department_id WITH ROLLUP;<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意： </p>
+<p>当使用ROLLUP时，不能同时使用ORDER BY子句进行结果排序，即ROLLUP和ORDER BY是互相排斥 的。</p>
+</blockquote>
+<h2 id="3、-HAVING"><a href="#3、-HAVING" class="headerlink" title="3、 HAVING"></a>3、 HAVING</h2><h3 id="3-1-基本使用"><a href="#3-1-基本使用" class="headerlink" title="3.1 基本使用"></a>3.1 基本使用</h3><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/MySQL/202404121420561.png" srcset="/img/loading.gif" lazyload alt="image-20240412142059511" style="zoom: 67%;" />
+
+<p><strong>过滤分组：HAVING子句</strong></p>
+<ol>
+<li>行已经被分组。 </li>
+<li>使用了聚合函数。 </li>
+<li>满足HAVING 子句中条件的分组将被显示。 </li>
+<li>HAVING 不能单独使用，必须要跟 GROUP BY 一起使用</li>
+</ol>
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/MySQL/202404121422911.png" srcset="/img/loading.gif" lazyload alt="image-20240412142211874" style="zoom:67%;" />
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs MySQL">SELECT   department_id, MAX(salary)<br>FROM     employees<br>GROUP BY department_id<br>HAVING   MAX(salary)&gt;10000 ;<br></code></pre></td></tr></table></figure>
+
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/MySQL/202404121422175.png" srcset="/img/loading.gif" lazyload alt="image-20240412142238148" style="zoom: 67%;" />
+
+<ul>
+<li><strong>非法使用聚合函数 ： 不能在 WHERE 子句中使用聚合函数</strong>。如下：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs MySQL">SELECT   department_id, AVG(salary)<br>FROM     employees<br>WHERE    AVG(salary) &gt; 8000<br>GROUP BY department_id;<br></code></pre></td></tr></table></figure>
+
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/MySQL/202404121423687.png" srcset="/img/loading.gif" lazyload alt="image-20240412142337653" style="zoom:67%;" />
+
+<h3 id="3-2-WHERE和HAVING的对比"><a href="#3-2-WHERE和HAVING的对比" class="headerlink" title="3.2 WHERE和HAVING的对比"></a>3.2 WHERE和HAVING的对比</h3><p><strong>区别1：WHERE 可以直接使用表中的字段作为筛选条件，但不能使用分组中的计算函数作为筛选条件； HAVING 必须要与 GROUP BY 配合使用，可以把分组计算的函数和分组字段作为筛选条件。</strong></p>
+<p>这决定了，在需要对数据进行分组统计的时候，HAVING 可以完成 WHERE 不能完成的任务。这是因为， 在查询语法结构中，WHERE 在 GROUP BY 之前，所以无法对分组结果进行筛选。HAVING 在 GROUP BY 之 后，可以使用分组字段和分组中的计算函数，对分组的结果集进行筛选，这个功能是 WHERE 无法完成 的。另外，WHERE排除的记录不再包括在分组中。</p>
+<p><strong>区别2：如果需要通过连接从关联表中获取需要的数据，WHERE 是先筛选后连接，而 HAVING 是先连接 后筛选。</strong>这一点，就决定了在关联查询中，WHERE 比 HAVING 更高效。因为 WHERE 可以先筛选，用一 个筛选后的较小数据集和关联表进行连接，这样占用的资源比较少，执行效率也比较高。HAVING 则需要 先把结果集准备好，也就是用未被筛选的数据集进行关联，然后对这个大的数据集进行筛选，这样占用 的资源就比较多，执行效率也较低。</p>
+<p>小结如下：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>WHERE</td>
+<td>先筛选数据再关联，执行效率高</td>
+<td>不能使用分组中的计算函数进行筛选</td>
+</tr>
+<tr>
+<td>HAVING</td>
+<td>可以使用分组中的计算函数</td>
+<td>在最后的结果集中进行筛选，执行效率较低</td>
+</tr>
+</tbody></table>
+<p><strong>开发中的选择：</strong></p>
+<p>WHERE 和 HAVING 也不是互相排斥的，我们可以在一个查询里面同时使用 WHERE 和 HAVING。包含分组 统计函数的条件用 HAVING，普通条件用 WHERE。这样，我们就既利用了 WHERE 条件的高效快速，又发 挥了 HAVING 可以使用包含分组统计函数的查询条件的优点。当数据量特别大的时候，运行效率会有很 大的差别。</p>
+<h2 id="4、SELECT的执行过程"><a href="#4、SELECT的执行过程" class="headerlink" title="4、SELECT的执行过程"></a>4、SELECT的执行过程</h2><h3 id="4-1-查询的结构"><a href="#4-1-查询的结构" class="headerlink" title="4.1 查询的结构"></a>4.1 查询的结构</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs mysql">#方式1：<br>SELECT ...,....,...<br>FROM ...,...,....<br>WHERE 多表的连接条件<br>AND 不包含组函数的过滤条件<br>GROUP BY ...,...<br>HAVING 包含组函数的过滤条件<br>ORDER BY ... ASC/DESC<br>LIMIT ...,...<br><br>#方式2：<br>SELECT ...,....,...<br>FROM ... JOIN ... <br>ON 多表的连接条件<br>JOIN ...<br>ON ...<br>WHERE 不包含组函数的过滤条件<br>AND/OR 不包含组函数的过滤条件<br>GROUP BY ...,...<br>HAVING 包含组函数的过滤条件<br>ORDER BY ... ASC/DESC<br>LIMIT ...,...<br><br>#其中：<br>#（1）from：从哪些表中筛选<br>#（2）on：关联多表查询时，去除笛卡尔积<br>#（3）where：从表中筛选的条件<br>#（4）group by：分组依据<br>#（5）having：在统计结果中再次筛选<br>#（6）order by：排序<br>#（7）limit：分页<br></code></pre></td></tr></table></figure>
+
+<h3 id="4-2-SELECT执行顺序"><a href="#4-2-SELECT执行顺序" class="headerlink" title="4.2 SELECT执行顺序"></a>4.2 SELECT执行顺序</h3><p>你需要记住 SELECT 查询时的两个顺序：</p>
+<p><strong>1. 关键字的顺序是不能颠倒的：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT ... FROM ... WHERE ... GROUP BY ... HAVING ... ORDER BY ... LIMIT...<br></code></pre></td></tr></table></figure>
+
+<p><strong>2. SELECT 语句的执行顺序</strong>（在 MySQL 和 Oracle 中，SELECT 执行顺序基本相同）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">FROM -&gt; WHERE -&gt; GROUP BY -&gt; HAVING -&gt; SELECT 的字段 -&gt; DISTINCT -&gt; ORDER BY -&gt; LIMIT<br></code></pre></td></tr></table></figure>
+
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/MySQL/202404121428812.png" srcset="/img/loading.gif" lazyload alt="image-20240412142826764" style="zoom:50%;" />
+
+<p>比如你写了一个 SQL 语句，那么它的关键字顺序和执行顺序是下面这样的：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT DISTINCT player_id, player_name, count(*) as num # 顺序 5<br>FROM player JOIN team ON player.team_id = team.team_id # 顺序 1<br>WHERE height &gt; 1.80 # 顺序 2<br>GROUP BY player.team_id # 顺序 3<br>HAVING num &gt; 2 # 顺序 4<br>ORDER BY num DESC # 顺序 6<br>LIMIT 2 # 顺序 7<br></code></pre></td></tr></table></figure>
+
+<p>在 SELECT 语句执行这些步骤的时候，每个步骤都会产生一个 <code>虚拟表</code>，然后将这个虚拟表传入下一个步 骤中作为输入。需要注意的是，这些步骤隐含在 SQL 的执行过程中，对于我们来说是不可见的。</p>
+<h3 id="4-3-SQL-的执行原理"><a href="#4-3-SQL-的执行原理" class="headerlink" title="4.3 SQL 的执行原理"></a>4.3 SQL 的执行原理</h3><p>SELECT 是先执行 FROM 这一步的。在这个阶段，如果是多张表联查，还会经历下面的几个步骤：</p>
+<ol>
+<li>首先先通过 CROSS JOIN 求笛卡尔积，相当于得到虚拟表 vt（virtual table）1-1；</li>
+<li>通过 ON 进行筛选，在虚拟表 vt1-1 的基础上进行筛选，得到虚拟表 vt1-2；</li>
+<li>添加外部行。如果我们使用的是左连接、右链接或者全连接，就会涉及到外部行，也就是在虚拟 表 vt1-2 的基础上增加外部行，得到虚拟表 vt1-3。</li>
+</ol>
+<p>当然如果我们操作的是两张以上的表，还会重复上面的步骤，直到所有表都被处理完为止。这个过程得 到是我们的原始数据。</p>
+<p>当我们拿到了查询数据表的原始数据，也就是最终的虚拟表  <code>vt1</code> ，就可以在此基础上再进行 <code>WHERE 阶段</code>。在这个阶段中，会根据 vt1 表的结果进行筛选过滤，得到虚拟表 <code>vt2</code>。</p>
+<p>然后进入第三步和第四步，也就是 <code>GROUP 和 HAVING 阶段 </code>。在这个阶段中，实际上是在虚拟表 vt2 的基础上进行分组和分组过滤，得到中间的虚拟表  <code>vt3</code> 和  <code>vt4</code> 。</p>
+<p>当我们完成了条件筛选部分之后，就可以筛选表中提取的字段，也就是进入到 <code>SELECT 和 DISTINCT阶段</code>。</p>
+<p>首先在 SELECT 阶段会提取想要的字段，然后在 DISTINCT 阶段过滤掉重复的行，分别得到中间的虚拟表<code>vt5-1</code> 和 <code>vt5-2</code> 。</p>
+<p>当我们提取了想要的字段数据之后，就可以按照指定的字段进行排序，也就是 <code>ORDER BY 阶段</code>  ，得到虚拟表 <code>vt6</code>。</p>
+<p>最后在 vt6 的基础上，取出指定行的记录，也就是 <code>LIMIT 阶段 </code> ，得到最终的结果，对应的是虚拟表<code>vt7 </code>。</p>
+<p>当然我们在写 SELECT 语句的时候，不一定存在所有的关键字，相应的阶段就会省略。 同时因为 SQL 是一门类似英语的结构化查询语言，所以我们在写 SELECT 语句的时候，还要注意相应的 关键字顺序，<strong>所谓底层运行的原理，就是我们刚才讲到的执行顺序</strong>。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/MySQL/" class="category-chain-item">MySQL</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/MySQL/" class="print-no-link">#MySQL</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>单行函数</div>
+      <div>https://glassless.github.io/2024/04/12/mysql/7、聚合函数/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>glasss</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年4月12日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/04/12/mysql/10%E3%80%81%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E4%B9%8B%E5%A2%9E%E5%88%A0%E6%94%B9/" title="数据处理之增删改">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">数据处理之增删改</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/04/11/mysql/6%E3%80%81%E5%8D%95%E8%A1%8C%E5%87%BD%E6%95%B0/" title="单行函数">
+                        <span class="hidden-mobile">单行函数</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
