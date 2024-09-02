@@ -16,12 +16,12 @@
   <meta name="author" content="glasss">
   <meta name="keywords" content="">
   
-    <meta name="description" content="1234title: Servletdate: 2024&#x2F;8&#x2F;31 15:07:43tag: java webcategories: java web  第五章 Servlet一 Servlet简介1.1 动态资源和静态资源 静态资源   无需在程序运行时通过代码运行生成的资源,在程序运行之前就写好的资源. 例如:html css js img ,音频文件和视频文件   动态资源    需要在程序">
+    <meta name="description" content="第五章 Servlet一 Servlet简介1.1 动态资源和静态资源 静态资源   无需在程序运行时通过代码运行生成的资源,在程序运行之前就写好的资源. 例如:html css js img ,音频文件和视频文件   动态资源    需要在程序运行时通过代码运行生成的资源,在程序运行之前无法确定的数据,运行时动态生成,例如Servlet,Thymeleaf … … 动态资源指的不是视图上的动画效">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Glass的博客">
+<meta property="og:title" content="Servlet">
 <meta property="og:url" content="https://glassless.github.io/2024/08/31/JavaWeb/5.Servlet/index.html">
 <meta property="og:site_name" content="Glass的博客">
-<meta property="og:description" content="1234title: Servletdate: 2024&#x2F;8&#x2F;31 15:07:43tag: java webcategories: java web  第五章 Servlet一 Servlet简介1.1 动态资源和静态资源 静态资源   无需在程序运行时通过代码运行生成的资源,在程序运行之前就写好的资源. 例如:html css js img ,音频文件和视频文件   动态资源    需要在程序">
+<meta property="og:description" content="第五章 Servlet一 Servlet简介1.1 动态资源和静态资源 静态资源   无需在程序运行时通过代码运行生成的资源,在程序运行之前就写好的资源. 例如:html css js img ,音频文件和视频文件   动态资源    需要在程序运行时通过代码运行生成的资源,在程序运行之前无法确定的数据,运行时动态生成,例如Servlet,Thymeleaf … … 动态资源指的不是视图上的动画效">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311506155.png">
 <meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311506189.png">
@@ -71,15 +71,16 @@
 <meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311507884.png">
 <meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311507211.png">
 <meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311507575.png">
-<meta property="article:published_time" content="2024-08-31T07:05:25.882Z">
-<meta property="article:modified_time" content="2024-08-31T07:07:50.975Z">
+<meta property="article:published_time" content="2024-08-31T07:07:43.000Z">
+<meta property="article:modified_time" content="2024-09-02T06:08:57.418Z">
 <meta property="article:author" content="glasss">
+<meta property="article:tag" content="java web">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311506155.png">
   
   
   
-  <title>Glass的博客</title>
+  <title>Servlet - Glass的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -245,7 +246,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text=""></span>
+            <span id="subtitle" data-typed-text="Servlet"></span>
           
         </div>
 
@@ -256,7 +257,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-08-31 15:05" pubdate>
+        <time datetime="2024-08-31 15:07" pubdate>
           2024年8月31日 下午
         </time>
       </span>
@@ -316,14 +317,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header"></h1>
+            <h1 id="seo-header">Servlet</h1>
             
             
               <div class="markdown-body">
                 
-                <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">title</span>: Servlet<br><span class="hljs-attribute">date</span>: <span class="hljs-number">2024</span>/<span class="hljs-number">8</span>/<span class="hljs-number">31</span> <span class="hljs-number">15</span>:<span class="hljs-number">07</span>:<span class="hljs-number">43</span><br><span class="hljs-attribute">tag</span>: java web<br><span class="hljs-attribute">categories</span>: java web<br></code></pre></td></tr></table></figure>
-
-<h1 id="第五章-Servlet"><a href="#第五章-Servlet" class="headerlink" title="第五章 Servlet"></a>第五章 Servlet</h1><h1 id="一-Servlet简介"><a href="#一-Servlet简介" class="headerlink" title="一 Servlet简介"></a>一 Servlet简介</h1><h2 id="1-1-动态资源和静态资源"><a href="#1-1-动态资源和静态资源" class="headerlink" title="1.1 动态资源和静态资源"></a>1.1 动态资源和静态资源</h2><blockquote>
+                <h1 id="第五章-Servlet"><a href="#第五章-Servlet" class="headerlink" title="第五章 Servlet"></a>第五章 Servlet</h1><h1 id="一-Servlet简介"><a href="#一-Servlet简介" class="headerlink" title="一 Servlet简介"></a>一 Servlet简介</h1><h2 id="1-1-动态资源和静态资源"><a href="#1-1-动态资源和静态资源" class="headerlink" title="1.1 动态资源和静态资源"></a>1.1 动态资源和静态资源</h2><blockquote>
 <p>静态资源</p>
 </blockquote>
 <ul>
@@ -1794,6 +1793,34 @@
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/java-web/" class="category-chain-item">java web</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/java-web/" class="print-no-link">#java web</a>
+      
+    </div>
   
 </div>
 
@@ -1803,7 +1830,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div></div>
+      <div>Servlet</div>
       <div>https://glassless.github.io/2024/08/31/JavaWeb/5.Servlet/</div>
     </div>
     <div class="license-meta">
@@ -1848,9 +1875,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/08/31/JavaWeb/6.%E4%BC%9A%E8%AF%9D_%E8%BF%87%E6%BB%A4%E5%99%A8_%E7%9B%91%E5%90%AC%E5%99%A8/" title="">
+                      <a href="/2024/08/31/JavaWeb/6.%E4%BC%9A%E8%AF%9D_%E8%BF%87%E6%BB%A4%E5%99%A8_%E7%9B%91%E5%90%AC%E5%99%A8/" title="会话_过滤器_监听器">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile"></span>
+                        <span class="hidden-mobile">会话_过滤器_监听器</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -1858,8 +1885,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/08/31/JavaWeb/4.XML_Tomcat_HTTP/" title="">
-                        <span class="hidden-mobile"></span>
+                      <a href="/2024/08/31/JavaWeb/4.XML_Tomcat_HTTP/" title="XML_Tomcat10_HTTP">
+                        <span class="hidden-mobile">XML_Tomcat10_HTTP</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

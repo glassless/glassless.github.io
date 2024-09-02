@@ -16,12 +16,12 @@
   <meta name="author" content="glasss">
   <meta name="keywords" content="">
   
-    <meta name="description" content="1234title: 微头条项目开发date: 2024&#x2F;8&#x2F;31 15:12:56tag: java webcategories: java web  第八章 微头条项目开发一 项目简介1.1 微头条业务简介 微头条新闻发布和浏览平台,主要包含业务如下   用户功能 注册功能 登录功能   头条新闻 新闻的分页浏览 通过标题关键字搜索新闻 查看新闻详情 新闻的修改和删除   权限控制 用户只能修">
+    <meta name="description" content="第七章 前端工程化第八章 微头条项目开发一 项目简介1.1 微头条业务简介 微头条新闻发布和浏览平台,主要包含业务如下   用户功能 注册功能 登录功能   头条新闻 新闻的分页浏览 通过标题关键字搜索新闻 查看新闻详情 新闻的修改和删除   权限控制 用户只能修改和自己发布的头条新闻    1.2 技术栈介绍 前端技术栈   ES6作为基础JS语法 nodejs用于运行环境 npm用于项目依赖管">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Glass的博客">
+<meta property="og:title" content="微头条项目开发">
 <meta property="og:url" content="https://glassless.github.io/2024/08/31/JavaWeb/8.%E5%BE%AE%E5%A4%B4%E6%9D%A1%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91/index.html">
 <meta property="og:site_name" content="Glass的博客">
-<meta property="og:description" content="1234title: 微头条项目开发date: 2024&#x2F;8&#x2F;31 15:12:56tag: java webcategories: java web  第八章 微头条项目开发一 项目简介1.1 微头条业务简介 微头条新闻发布和浏览平台,主要包含业务如下   用户功能 注册功能 登录功能   头条新闻 新闻的分页浏览 通过标题关键字搜索新闻 查看新闻详情 新闻的修改和删除   权限控制 用户只能修">
+<meta property="og:description" content="第七章 前端工程化第八章 微头条项目开发一 项目简介1.1 微头条业务简介 微头条新闻发布和浏览平台,主要包含业务如下   用户功能 注册功能 登录功能   头条新闻 新闻的分页浏览 通过标题关键字搜索新闻 查看新闻详情 新闻的修改和删除   权限控制 用户只能修改和自己发布的头条新闻    1.2 技术栈介绍 前端技术栈   ES6作为基础JS语法 nodejs用于运行环境 npm用于项目依赖管">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311511893.png">
 <meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311511819.png">
@@ -61,15 +61,16 @@
 <meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311511926.png">
 <meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311511966.png">
 <meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311511884.png">
-<meta property="article:published_time" content="2024-08-31T07:11:20.969Z">
-<meta property="article:modified_time" content="2024-08-31T07:13:01.023Z">
+<meta property="article:published_time" content="2024-08-31T07:12:56.000Z">
+<meta property="article:modified_time" content="2024-09-02T06:10:28.148Z">
 <meta property="article:author" content="glasss">
+<meta property="article:tag" content="java web">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311511893.png">
   
   
   
-  <title>Glass的博客</title>
+  <title>微头条项目开发 - Glass的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -235,7 +236,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text=""></span>
+            <span id="subtitle" data-typed-text="微头条项目开发"></span>
           
         </div>
 
@@ -246,7 +247,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-08-31 15:11" pubdate>
+        <time datetime="2024-08-31 15:12" pubdate>
           2024年8月31日 下午
         </time>
       </span>
@@ -269,7 +270,7 @@
         
         
         
-          90 分钟
+          89 分钟
         
       </span>
     
@@ -306,14 +307,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header"></h1>
+            <h1 id="seo-header">微头条项目开发</h1>
             
             
               <div class="markdown-body">
                 
-                <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">title</span>: 微头条项目开发<br><span class="hljs-attribute">date</span>: <span class="hljs-number">2024</span>/<span class="hljs-number">8</span>/<span class="hljs-number">31</span> <span class="hljs-number">15</span>:<span class="hljs-number">12</span>:<span class="hljs-number">56</span><br><span class="hljs-attribute">tag</span>: java web<br><span class="hljs-attribute">categories</span>: java web<br></code></pre></td></tr></table></figure>
-
-<h1 id="第八章-微头条项目开发"><a href="#第八章-微头条项目开发" class="headerlink" title="第八章 微头条项目开发"></a>第八章 微头条项目开发</h1><h1 id="一-项目简介"><a href="#一-项目简介" class="headerlink" title="一 项目简介"></a>一 项目简介</h1><h2 id="1-1-微头条业务简介"><a href="#1-1-微头条业务简介" class="headerlink" title="1.1 微头条业务简介"></a>1.1 微头条业务简介</h2><blockquote>
+                <h1 id="第七章-前端工程化"><a href="#第七章-前端工程化" class="headerlink" title="第七章 前端工程化"></a>第七章 前端工程化</h1><h1 id="第八章-微头条项目开发"><a href="#第八章-微头条项目开发" class="headerlink" title="第八章 微头条项目开发"></a>第八章 微头条项目开发</h1><h1 id="一-项目简介"><a href="#一-项目简介" class="headerlink" title="一 项目简介"></a>一 项目简介</h1><h2 id="1-1-微头条业务简介"><a href="#1-1-微头条业务简介" class="headerlink" title="1.1 微头条业务简介"></a>1.1 微头条业务简介</h2><blockquote>
 <p>微头条新闻发布和浏览平台,主要包含业务如下</p>
 </blockquote>
 <ul>
@@ -1376,6 +1375,34 @@
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/java-web/" class="category-chain-item">java web</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/java-web/" class="print-no-link">#java web</a>
+      
+    </div>
   
 </div>
 
@@ -1385,7 +1412,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div></div>
+      <div>微头条项目开发</div>
       <div>https://glassless.github.io/2024/08/31/JavaWeb/8.微头条项目开发/</div>
     </div>
     <div class="license-meta">
@@ -1440,8 +1467,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/08/31/JavaWeb/7.%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/" title="">
-                        <span class="hidden-mobile"></span>
+                      <a href="/2024/08/31/JavaWeb/7.%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/" title="前端工程化">
+                        <span class="hidden-mobile">前端工程化</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
