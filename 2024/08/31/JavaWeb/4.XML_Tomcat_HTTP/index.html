@@ -1,0 +1,1731 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="glasss">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="1234title: XML_Tomcat10_HTTPdate: 2024&#x2F;8&#x2F;31 15:05:37tag: java webcategories: java web  第四章 XML_Tomcat10_HTTP一 XML     XML是EXtensible Markup Language的缩写，翻译过来就是可扩展标记语言。所以很明显，XML和HTML一样都是标记语言，也就是说它们的基本语法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Glass的博客">
+<meta property="og:url" content="https://glassless.github.io/2024/08/31/JavaWeb/4.XML_Tomcat_HTTP/index.html">
+<meta property="og:site_name" content="Glass的博客">
+<meta property="og:description" content="1234title: XML_Tomcat10_HTTPdate: 2024&#x2F;8&#x2F;31 15:05:37tag: java webcategories: java web  第四章 XML_Tomcat10_HTTP一 XML     XML是EXtensible Markup Language的缩写，翻译过来就是可扩展标记语言。所以很明显，XML和HTML一样都是标记语言，也就是说它们的基本语法">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311503271.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311503247.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311503388.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311503343.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311503304.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311503365.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311503628.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311503077.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311503575.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311503628.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311503920.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504606.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504630.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504128.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504792.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504114.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504578.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504959.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504005.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504039.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504132.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504188.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504471.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504946.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504684.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504945.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504325.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504658.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504832.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504286.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504475.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504628.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504942.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504015.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504198.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504564.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504962.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504316.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504601.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504784.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504096.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504327.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504761.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504067.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504164.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504374.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504674.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504073.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504217.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504739.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504909.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504727.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504972.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504760.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504137.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504545.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504140.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504227.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504911.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311505407.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311505081.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311505151.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311505207.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311505498.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311505981.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311505665.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311505887.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311505215.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311505262.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311505512.png">
+<meta property="article:published_time" content="2024-08-31T07:03:18.059Z">
+<meta property="article:modified_time" content="2024-08-31T07:06:09.134Z">
+<meta property="article:author" content="glasss">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311503271.png">
+  
+  
+  
+  <title>Glass的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"glassless.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"Java"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Glass</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text=""></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-08-31 15:03" pubdate>
+          2024年8月31日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          21 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header"></h1>
+            
+            
+              <div class="markdown-body">
+                
+                <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">title</span>: XML_Tomcat10_HTTP<br><span class="hljs-attribute">date</span>: <span class="hljs-number">2024</span>/<span class="hljs-number">8</span>/<span class="hljs-number">31</span> <span class="hljs-number">15</span>:<span class="hljs-number">05</span>:<span class="hljs-number">37</span><br><span class="hljs-attribute">tag</span>: java web<br><span class="hljs-attribute">categories</span>: java web<br></code></pre></td></tr></table></figure>
+
+<h1 id="第四章-XML-Tomcat10-HTTP"><a href="#第四章-XML-Tomcat10-HTTP" class="headerlink" title="第四章 XML_Tomcat10_HTTP"></a>第四章 XML_Tomcat10_HTTP</h1><h1 id="一-XML"><a href="#一-XML" class="headerlink" title="一 XML"></a>一 XML</h1><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311503271.png" srcset="/img/loading.gif" lazyload alt="1681452257379" style="zoom:50%;" />
+
+
+
+<blockquote>
+<p>XML是EXtensible Markup Language的缩写，翻译过来就是可扩展标记语言。所以很明显，XML和HTML一样都是标记语言，也就是说它们的基本语法都是标签。</p>
+</blockquote>
+<ul>
+<li><p><strong>可扩展</strong> 三个字表面上的意思是XML允许自定义格式。但这不代表你可以随便写。</p>
+</li>
+<li><p>在XML基本语法规范的基础上，你使用的那些第三方应用程序、框架会通过XML约束的方式强制规定配置文件中可以写什么和怎么写</p>
+</li>
+<li><p>XML基本语法这个知识点的定位是：我们不需要从零开始，从头到尾的一行一行编写XML文档，而是在第三方应用程序、框架已提供的配置文件的基础上修改。要改成什么样取决于你的需求，而怎么改取决XML基本语法和具体的XML约束。</p>
+</li>
+</ul>
+<h2 id="1-1-常见配置文件类型"><a href="#1-1-常见配置文件类型" class="headerlink" title="1.1 常见配置文件类型"></a>1.1 常见配置文件类型</h2><ol>
+<li>properties文件,例如druid连接池就是使用properties文件作为配置文件</li>
+<li>XML文件,例如Tomcat就是使用XML文件作为配置文件</li>
+<li>YAML文件,例如SpringBoot就是使用YAML作为配置文件</li>
+<li>json文件,通常用来做文件传输，也可以用来做前端或者移动端的配置文件</li>
+<li>等等…</li>
+</ol>
+<h3 id="1-1-1-properties配置文件"><a href="#1-1-1-properties配置文件" class="headerlink" title="1.1.1 properties配置文件"></a>1.1.1 properties配置文件</h3><blockquote>
+<p>示例</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs .properties">atguigu.jdbc.url=jdbc:mysql://localhost:3306/atguigu<br>atguigu.jdbc.driver=com.mysql.cj.jdbc.Driver<br>atguigu.jdbc.username=root<br>atguigu.jdbc.password=root<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>语法规范</p>
+</blockquote>
+<ul>
+<li>由键值对组成</li>
+<li>键和值之间的符号是等号</li>
+<li>每一行都必须顶格写，前面不能有空格之类的其他符号</li>
+</ul>
+<h3 id="1-1-2-xml配置文件"><a href="#1-1-2-xml配置文件" class="headerlink" title="1.1.2 xml配置文件"></a>1.1.2 xml配置文件</h3><blockquote>
+<p>示例</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;UTF-8&quot;</span>?&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">students</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">student</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>张三<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">age</span>&gt;</span>18<span class="hljs-tag">&lt;/<span class="hljs-name">age</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">student</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">student</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>李四<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">age</span>&gt;</span>20<span class="hljs-tag">&lt;/<span class="hljs-name">age</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">student</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">students</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>XML的基本语法</p>
+</blockquote>
+<ul>
+<li>XML的基本语法和HTML的基本语法简直如出一辙。其实这不是偶然的，XML基本语法+HTML约束&#x3D;HTML语法。在逻辑上HTML确实是XML的子集。</li>
+</ul>
+<ul>
+<li>XML文档声明 这部分基本上就是固定格式，要注意的是文档声明一定要从第一行第一列开始写</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;UTF-8&quot;</span>?&gt;</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>根标签<ul>
+<li>&#x20;根标签有且只能有一个。</li>
+</ul>
+</li>
+<li>标签关闭<ul>
+<li>双标签：开始标签和结束标签必须成对出现。</li>
+<li>单标签：单标签在标签内关闭。</li>
+</ul>
+</li>
+<li>标签嵌套<ul>
+<li>可以嵌套，但是不能交叉嵌套。</li>
+</ul>
+</li>
+<li>注释不能嵌套</li>
+<li>标签名、属性名建议使用小写字母</li>
+<li>属性<ul>
+<li>属性必须有值</li>
+<li>属性值必须加引号，单双都行</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>XML的约束(稍微了解)</p>
+</blockquote>
+<p>将来我们主要就是根据XML约束中的规定来编写XML配置文件，而且会在我们编写XML的时候根据约束来提示我们编写, 而XML约束主要包括DTD和Schema两种。</p>
+<ul>
+<li>DTD</li>
+<li>Schema</li>
+</ul>
+<p>Schema约束要求我们一个XML文档中，所有标签，所有属性都必须在约束中有明确的定义。</p>
+<p>下面我们以web.xml的约束声明为例来做个说明：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">web-app</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;http://xmlns.jcp.org/xml/ns/javaee&quot;</span></span><br><span class="hljs-tag">         <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span><br><span class="hljs-tag">         <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">&quot;http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd&quot;</span></span><br><span class="hljs-tag">         <span class="hljs-attr">version</span>=<span class="hljs-string">&quot;4.0&quot;</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="1-2-DOM4J进行XML解析"><a href="#1-2-DOM4J进行XML解析" class="headerlink" title="1.2 DOM4J进行XML解析"></a>1.2 DOM4J进行XML解析</h2><h3 id="1-2-1-DOM4J的使用步骤"><a href="#1-2-1-DOM4J的使用步骤" class="headerlink" title="1.2.1 DOM4J的使用步骤"></a>1.2.1 DOM4J的使用步骤</h3><ol>
+<li>导入jar包 dom4j.jar</li>
+<li>创建解析器对象(SAXReader)</li>
+<li>解析xml 获得Document对象</li>
+<li>获取根节点RootElement</li>
+<li>获取根节点下的子节点</li>
+</ol>
+<h3 id="1-2-2-DOM4J的API介绍"><a href="#1-2-2-DOM4J的API介绍" class="headerlink" title="1.2.2 DOM4J的API介绍"></a>1.2.2 DOM4J的API介绍</h3><p>1.创建SAXReader对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">SAXReader</span> <span class="hljs-variable">saxReader</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">SAXReader</span>();<br></code></pre></td></tr></table></figure>
+
+<p>&#x20;2. 解析XML获取Document对象: 需要传入要解析的XML文件的字节输入流</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">Document</span> <span class="hljs-variable">document</span> <span class="hljs-operator">=</span> reader.read(inputStream);<br></code></pre></td></tr></table></figure>
+
+<p>&#x20;3. 获取文档的根标签</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">Element</span> <span class="hljs-variable">rootElement</span> <span class="hljs-operator">=</span> documen.getRootElement()<br></code></pre></td></tr></table></figure>
+
+<p>&#x20;4. 获取标签的子标签</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//获取所有子标签</span><br>List&lt;Element&gt; sonElementList = rootElement.elements();<br><span class="hljs-comment">//获取指定标签名的子标签</span><br>List&lt;Element&gt; sonElementList = rootElement.elements(<span class="hljs-string">&quot;标签名&quot;</span>);<br></code></pre></td></tr></table></figure>
+
+<p>&#x20;5. 获取标签体内的文本</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">String</span> <span class="hljs-variable">text</span> <span class="hljs-operator">=</span> element.getText();<br></code></pre></td></tr></table></figure>
+
+<p>&#x20;6. 获取标签的某个属性的值</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">String</span> <span class="hljs-variable">value</span> <span class="hljs-operator">=</span> element.attributeValue(<span class="hljs-string">&quot;属性名&quot;</span>);<br></code></pre></td></tr></table></figure>
+
+<h1 id="二-Tomcat10"><a href="#二-Tomcat10" class="headerlink" title="二 Tomcat10"></a>二 Tomcat10</h1><h2 id="2-1-WEB服务器"><a href="#2-1-WEB服务器" class="headerlink" title="2.1 WEB服务器"></a>2.1 WEB服务器</h2><blockquote>
+<p>Web服务器通常由硬件和软件共同构成。</p>
+</blockquote>
+<ul>
+<li>硬件：电脑，提供服务供其它客户电脑访问</li>
+<li>软件：电脑上安装的服务器软件，安装后能提供服务给网络中的其他计算机，将本地文件映射成一个虚拟的url地址供网络中的其他人访问。</li>
+</ul>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311503247.png" srcset="/img/loading.gif" lazyload alt="1681441674967"></p>
+<blockquote>
+<p>常见的JavaWeb服务器：</p>
+</blockquote>
+<ul>
+<li><strong>Tomcat（Apache）</strong>：当前应用最广的JavaWeb服务器</li>
+<li>Jetty:更轻量级、更灵活的servlet容器</li>
+<li>JBoss（Redhat红帽）：支持JavaEE，应用比较广EJB容器 –&gt; SSH轻量级的框架代替</li>
+<li>GlassFish（Orcale）：Oracle开发JavaWeb服务器，应用不是很广</li>
+<li>Resin（Caucho）：支持JavaEE，应用越来越广</li>
+<li>Weblogic（Orcale）：要钱的！支持JavaEE，适合大型项目</li>
+<li>Websphere（IBM）：要钱的！支持JavaEE，适合大型项目</li>
+</ul>
+<h2 id="2-2-Tomcat服务器"><a href="#2-2-Tomcat服务器" class="headerlink" title="2.2 Tomcat服务器"></a>2.2 Tomcat服务器</h2><h3 id="2-2-1-简介"><a href="#2-2-1-简介" class="headerlink" title="2.2.1 简介"></a>2.2.1 简介</h3><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311503388.png" srcset="/img/loading.gif" lazyload alt="1681452377469" style="zoom:50%;" />
+
+<blockquote>
+<p>Tomcat是Apache 软件基金会（Apache Software Foundation）的Jakarta 项目中的一个核心项目，由Apache、Sun 和其他一些公司及个人共同开发而成。最新的Servlet 和JSP 规范总是能在Tomcat 中得到体现，因为Tomcat 技术先进、性能稳定，而且免费，因而深受Java 爱好者的喜爱并得到了部分软件开发商的认可，成为目前比较流行的Web 应用服务器。</p>
+</blockquote>
+<h3 id="2-2-2-安装"><a href="#2-2-2-安装" class="headerlink" title="2.2.2 安装"></a>2.2.2 安装</h3><blockquote>
+<p>版本</p>
+</blockquote>
+<ul>
+<li>版本：企业用的比较广泛的是8.0和9.0,目前比较新正式发布版本是Tomcat10.0, Tomcat11仍然处于测试阶段。</li>
+<li>JAVAEE 版本和Servlet版本号对应关系 <a target="_blank" rel="noopener" href="https://jakarta.ee/release/">Jakarta EE Releases</a></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Servlet</strong> Version</th>
+<th>EE Version</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">6.1</td>
+<td>Jakarta EE ?</td>
+</tr>
+<tr>
+<td align="left">6.0</td>
+<td>Jakarta EE 10</td>
+</tr>
+<tr>
+<td align="left">5.0</td>
+<td>Jakarta EE 9&#x2F;9.1</td>
+</tr>
+<tr>
+<td align="left">4.0</td>
+<td>JAVA EE 8</td>
+</tr>
+<tr>
+<td align="left">3.1</td>
+<td>JAVA EE 7</td>
+</tr>
+<tr>
+<td align="left">3.1</td>
+<td>JAVA EE 7</td>
+</tr>
+<tr>
+<td align="left">3.0</td>
+<td>JAVAEE 6</td>
+</tr>
+</tbody></table>
+<ul>
+<li>Tomcat 版本和Servlet版本之间的对应关系</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Servlet</strong> Version</th>
+<th align="left">**Tomcat ** Version</th>
+<th align="left"><strong>JDK</strong> Version</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">6.1</td>
+<td align="left">11.0.x</td>
+<td align="left">17 and later</td>
+</tr>
+<tr>
+<td align="left">6.0</td>
+<td align="left">10.1.x</td>
+<td align="left">11 and later</td>
+</tr>
+<tr>
+<td align="left">5.0</td>
+<td align="left">10.0.x (superseded)</td>
+<td align="left">8 and later</td>
+</tr>
+<tr>
+<td align="left">4.0</td>
+<td align="left">9.0.x</td>
+<td align="left">8 and later</td>
+</tr>
+<tr>
+<td align="left">3.1</td>
+<td align="left">8.5.x</td>
+<td align="left">7 and later</td>
+</tr>
+<tr>
+<td align="left">3.1</td>
+<td align="left">8.0.x (superseded)</td>
+<td align="left">7 and later</td>
+</tr>
+<tr>
+<td align="left">3.0</td>
+<td align="left">7.0.x (archived)</td>
+<td align="left">6 and later (7 and later for WebSocket)</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>下载</p>
+</blockquote>
+<ul>
+<li>Tomcat官方网站：<a target="_blank" rel="noopener" href="http://tomcat.apache.org/" title="http://tomcat.apache.org/">http://tomcat.apache.org/</a></li>
+<li>安装版：需要安装，一般不考虑使用。</li>
+<li>解压版: 直接解压缩使用，我们使用的版本。</li>
+</ul>
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311503343.png" srcset="/img/loading.gif" lazyload alt="1681442513261" style="zoom:67%;" />
+
+<blockquote>
+<p>安装</p>
+</blockquote>
+<ol>
+<li>正确安装JDK并配置JAVA_HOME(以JDK17为例 <a target="_blank" rel="noopener" href="https://injdk.cn中可以下载各种版本的jdk/">https://injdk.cn中可以下载各种版本的JDK</a>)</li>
+</ol>
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311503304.png" srcset="/img/loading.gif" lazyload alt="1681442778503" style="zoom:67%;" />
+
+<ol start="2">
+<li>解压tomcat到非中文无空格目录</li>
+</ol>
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311503365.png" srcset="/img/loading.gif" lazyload alt="1681442849940" style="zoom: 80%;" />
+
+<ol start="3">
+<li>点击bin&#x2F;startup.bat启动</li>
+</ol>
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311503628.png" srcset="/img/loading.gif" lazyload alt="1681442946756" style="zoom: 80%;" />
+
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311503077.png" srcset="/img/loading.gif" lazyload alt="1681442998407" style="zoom: 60%;" />
+
+<ol start="4">
+<li>打开浏览器输入 <a href="http://localhost:8080访问测试">http://localhost:8080访问测试</a></li>
+</ol>
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311503575.png" srcset="/img/loading.gif" lazyload alt="1681443038911"  />
+
+<ol start="5">
+<li>直接关闭窗口或者运行 bin&#x2F;shutdown.bat关闭tomcat</li>
+</ol>
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311503628.png" srcset="/img/loading.gif" lazyload alt="1681442946756" style="zoom: 80%;" />
+
+<ol start="6">
+<li>处理dos窗口日志中文乱码问题: 修改conf&#x2F;logging.properties,将所有的UTF-8修改为GBK</li>
+</ol>
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311503920.png" srcset="/img/loading.gif" lazyload alt="1681443124315" style="zoom: 80%;" />
+
+<ul>
+<li>修改前</li>
+</ul>
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504606.png" srcset="/img/loading.gif" lazyload alt="1681443202115" style="zoom:50%;" />
+
+<ul>
+<li>修改后</li>
+</ul>
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504630.png" srcset="/img/loading.gif" lazyload alt="1681443273573" style="zoom:50%;" />
+
+<ul>
+<li>重启测试</li>
+</ul>
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504128.png" srcset="/img/loading.gif" lazyload alt="1681443314432"  />
+
+<h2 id="2-3-Tomcat目录及测试"><a href="#2-3-Tomcat目录及测试" class="headerlink" title="2.3 Tomcat目录及测试"></a>2.3 Tomcat目录及测试</h2><blockquote>
+<p>C:\Program4java\apache-tomcat-10.1.7 这个目录下直接包含Tomcat的bin目录，conf目录等，我们称之为<strong>Tomcat的安装目录或根目录</strong>。</p>
+</blockquote>
+<ul>
+<li><p>bin：该目录下存放的是二进制可执行文件，如果是安装版，那么这个目录下会有两个exe文件：tomcat10.exe、tomcat10w.exe，前者是在控制台下启动Tomcat，后者是弹出GUI窗口启动Tomcat；如果是解压版，那么会有startup.bat和shutdown.bat文件，startup.bat用来启动Tomcat，但需要先配置JAVA_HOME环境变量才能启动，shutdawn.bat用来停止Tomcat；</p>
+</li>
+<li><p>conf：这是一个非常非常重要的目录，这个目录下有四个最为重要的文件：</p>
+<ul>
+<li><p><strong>server.xml：配置整个服务器信息。例如修改端口号。默认HTTP请求的端口号是：8080</strong></p>
+</li>
+<li><p>tomcat-users.xml：存储tomcat用户的文件，这里保存的是tomcat的用户名及密码，以及用户的角色信息。可以按着该文件中的注释信息添加tomcat用户，然后就可以在Tomcat主页中进入Tomcat Manager页面了；</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">tomcat-users</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;http://tomcat.apache.org/xml&quot;</span></span><br><span class="hljs-tag">              <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span><br><span class="hljs-tag">              <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">&quot;http://tomcat.apache.org/xml tomcat-users.xsd&quot;</span></span><br><span class="hljs-tag">              <span class="hljs-attr">version</span>=<span class="hljs-string">&quot;1.0&quot;</span>&gt;</span>	<br>	<span class="hljs-tag">&lt;<span class="hljs-name">role</span> <span class="hljs-attr">rolename</span>=<span class="hljs-string">&quot;admin-gui&quot;</span>/&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">role</span> <span class="hljs-attr">rolename</span>=<span class="hljs-string">&quot;admin-script&quot;</span>/&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">role</span> <span class="hljs-attr">rolename</span>=<span class="hljs-string">&quot;manager-gui&quot;</span>/&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">role</span> <span class="hljs-attr">rolename</span>=<span class="hljs-string">&quot;manager-script&quot;</span>/&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">role</span> <span class="hljs-attr">rolename</span>=<span class="hljs-string">&quot;manager-jmx&quot;</span>/&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">role</span> <span class="hljs-attr">rolename</span>=<span class="hljs-string">&quot;manager-status&quot;</span>/&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">user</span> 	<span class="hljs-attr">username</span>=<span class="hljs-string">&quot;admin&quot;</span> </span><br><span class="hljs-tag">			<span class="hljs-attr">password</span>=<span class="hljs-string">&quot;admin&quot;</span> </span><br><span class="hljs-tag">			<span class="hljs-attr">roles</span>=<span class="hljs-string">&quot;admin-gui,admin-script,manager-gui,manager-script,manager-jmx,manager-status&quot;</span></span><br><span class="hljs-tag">	/&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">tomcat-users</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>web.xml：部署描述符文件，这个文件中注册了很多MIME类型，即文档类型。这些MIME类型是客户端与服务器之间说明文档类型的，如用户请求一个html网页，那么服务器还会告诉客户端浏览器响应的文档是text&#x2F;html类型的，这就是一个MIME类型。客户端浏览器通过这个MIME类型就知道如何处理它了。当然是在浏览器中显示这个html文件了。但如果服务器响应的是一个exe文件，那么浏览器就不可能显示它，而是应该弹出下载窗口才对。MIME就是用来说明文档的内容是什么类型的！</p>
+</li>
+<li><p>context.xml：对所有应用的统一配置，通常我们不会去配置它。</p>
+</li>
+</ul>
+</li>
+<li><p>lib：Tomcat的类库，里面是一大堆jar文件。如果需要添加Tomcat依赖的jar文件，可以把它放到这个目录中，当然也可以把应用依赖的jar文件放到这个目录中，这个目录中的jar所有项目都可以共享之，但这样你的应用放到其他Tomcat下时就不能再共享这个目录下的jar包了，所以建议只把Tomcat需要的jar包放到这个目录下；</p>
+</li>
+<li><p>logs：这个目录中都是日志文件，记录了Tomcat启动和关闭的信息，如果启动Tomcat时有错误，那么异常也会记录在日志文件中。</p>
+</li>
+<li><p>temp：存放Tomcat的临时文件，这个目录下的东西可以在停止Tomcat后删除！</p>
+</li>
+<li><p><strong>webapps：存放web项目的目录，其中每个文件夹都是一个项目</strong>；如果这个目录下已经存在了目录，那么都是tomcat自带的项目。其中ROOT是一个特殊的项目，在地址栏中访问：<a href="http://127.0.0.1:8080，没有给出项目目录时，对应的就是ROOT项目.http://localhost:8080/examples，进入示例项目。其中examples"就是项目名，即文件夹的名字。">http://127.0.0.1:8080，没有给出项目目录时，对应的就是ROOT项目.http://localhost:8080/examples，进入示例项目。其中examples&quot;就是项目名，即文件夹的名字。</a></p>
+</li>
+<li><p>work：运行时生成的文件，最终运行的文件都在这里。通过webapps中的项目生成的！可以把这个目录下的内容删除，再次运行时会生再次生成work目录。当客户端用户访问一个JSP文件时，Tomcat会通过JSP生成Java文件，然后再编译Java文件生成class文件，生成的java和class文件都会存放到这个目录下。</p>
+</li>
+<li><p>LICENSE：许可证。</p>
+</li>
+<li><p>NOTICE：说明文件。</p>
+</li>
+</ul>
+<h2 id="2-4-WEB项目的标准结构"><a href="#2-4-WEB项目的标准结构" class="headerlink" title="2.4 WEB项目的标准结构"></a>2.4 WEB项目的标准结构</h2><blockquote>
+<p>一个标准的可以用于发布的WEB项目标准结构如下</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504792.png" srcset="/img/loading.gif" lazyload alt="1681453620343"></p>
+<ul>
+<li>app  本应用根目录<ul>
+<li>static 非必要目录,约定俗成的名字,一般在此处放静态资源 ( css  js  img)</li>
+<li>WEB-INF  必要目录,必须叫WEB-INF,受保护的资源目录,浏览器通过url不可以直接访问的目录<ul>
+<li>classes     必要目录,src下源代码,配置文件,编译后会在该目录下,web项目中如果没有源码,则该目录不会出现</li>
+<li>lib             必要目录,项目依赖的jar编译后会出现在该目录下,web项目要是没有依赖任何jar,则该目录不会出现</li>
+<li>web.xml   必要文件,web项目的基本配置文件. 较新的版本中可以没有该文件,但是学习过程中还是需要该文件</li>
+</ul>
+</li>
+<li>index.html  非必要文件,index.html&#x2F;index.htm&#x2F;index.jsp为默认的欢迎页</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>url的组成部分和项目中资源的对应关系</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504114.png" srcset="/img/loading.gif" lazyload alt="1681456161723"></p>
+<h2 id="2-5-WEB项目部署的方式"><a href="#2-5-WEB项目部署的方式" class="headerlink" title="2.5 WEB项目部署的方式"></a>2.5 WEB项目部署的方式</h2><blockquote>
+<p>方式1   直接将编译好的项目放在webapps目录下  (已经演示)</p>
+</blockquote>
+<blockquote>
+<p>方式2   将编译好的项目打成war包放在webapps目录下,tomcat启动后会自动解压war包(其实和第一种一样)</p>
+</blockquote>
+<blockquote>
+<p>方式3   可以将项目放在非webapps的其他目录下,在tomcat中通过配置文件指向app的实际磁盘路径</p>
+</blockquote>
+<ul>
+<li>在磁盘的自定义目录上准备一个app</li>
+</ul>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504578.png" srcset="/img/loading.gif" lazyload alt="1681456447284"></p>
+<ul>
+<li>在tomcat的conf下创建Catalina&#x2F;localhost目录,并在该目录下准备一个app.xml文件</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- </span><br><span class="hljs-comment">	path: 项目的访问路径,也是项目的上下文路径,就是在浏览器中,输入的项目名称</span><br><span class="hljs-comment">    docBase: 项目在磁盘中的实际路径</span><br><span class="hljs-comment"> --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">Context</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;/app&quot;</span> <span class="hljs-attr">docBase</span>=<span class="hljs-string">&quot;D:\mywebapps\app&quot;</span> /&gt;</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>启动tomcat访问测试即可</li>
+</ul>
+<h2 id="2-6-IDEA中开发并部署运行WEB项目"><a href="#2-6-IDEA中开发并部署运行WEB项目" class="headerlink" title="2.6 IDEA中开发并部署运行WEB项目"></a>2.6 IDEA中开发并部署运行WEB项目</h2><h3 id="2-6-1-IDEA关联本地Tomcat"><a href="#2-6-1-IDEA关联本地Tomcat" class="headerlink" title="2.6.1 IDEA关联本地Tomcat"></a>2.6.1 IDEA关联本地Tomcat</h3><blockquote>
+<p>可以在创建项目前设置本地tomcat,也可以在打开某个项目的状态下找到settings</p>
+</blockquote>
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504959.png" srcset="/img/loading.gif" lazyload alt="1681457611053" style="zoom: 80%;" />
+
+<blockquote>
+<p>找到 Build,Execution,Eeployment下的Application Servers ,找到+号</p>
+</blockquote>
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504005.png" srcset="/img/loading.gif" lazyload alt="1681457711914"  />
+
+<blockquote>
+<p>选择Tomcat Server</p>
+</blockquote>
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504039.png" srcset="/img/loading.gif" lazyload alt="1681457800708"  />
+
+<blockquote>
+<p>选择tomcat的安装目录</p>
+</blockquote>
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504132.png" srcset="/img/loading.gif" lazyload alt="1681457879937" style="zoom:50%;" />
+
+<blockquote>
+<p>点击ok</p>
+</blockquote>
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504188.png" srcset="/img/loading.gif" lazyload alt="1681457921094"  />
+
+<blockquote>
+<p>关联完毕</p>
+</blockquote>
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504471.png" srcset="/img/loading.gif" lazyload alt="1681458031957" style="zoom:65%;" />
+
+<h3 id="2-6-2-IDEA创建web工程"><a href="#2-6-2-IDEA创建web工程" class="headerlink" title="2.6.2 IDEA创建web工程"></a>2.6.2 IDEA创建web工程</h3><blockquote>
+<p>推荐先创建一个空项目,这样可以在一个空项目下同时存在多个modules,不用后续来回切换之前的项目,当然也可以忽略此步直接创建web项目</p>
+</blockquote>
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504946.png" srcset="/img/loading.gif" lazyload alt="1681458194939" style="zoom: 60%;" />
+
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504684.png" srcset="/img/loading.gif" lazyload alt="1681458273381" style="zoom: 60%;" />
+
+<blockquote>
+<p>检查项目的SDK,语法版本,以及项目编译后的输出目录</p>
+</blockquote>
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504945.png" srcset="/img/loading.gif" lazyload alt="1681458343921" style="zoom:50%;" />
+
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504325.png" srcset="/img/loading.gif" lazyload alt="1681458393871" style="zoom: 55%;" />
+
+<blockquote>
+<p>先创建一个普通的JAVA项目</p>
+</blockquote>
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504658.png" srcset="/img/loading.gif" lazyload alt="1681458485837" style="zoom:63%;" />
+
+<blockquote>
+<p>检查各项信息是否填写有误</p>
+</blockquote>
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504832.png" srcset="/img/loading.gif" lazyload alt="1681458599545" style="zoom:60%;" />
+
+<blockquote>
+<p>创建完毕后,为项目添加Tomcat依赖</p>
+</blockquote>
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504286.png" srcset="/img/loading.gif" lazyload alt="1681458857830" style="zoom: 67%;" />
+
+
+
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504475.png" srcset="/img/loading.gif" lazyload alt="1681458897017" style="zoom: 95%;" />
+
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504628.png" srcset="/img/loading.gif" lazyload alt="1681458939400" style="zoom:70%;" />
+
+<blockquote>
+<p>选择modules,添加  framework support</p>
+</blockquote>
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504942.png" srcset="/img/loading.gif" lazyload alt="1681458672258" style="zoom: 80%;" />
+
+<blockquote>
+<p>选择Web Application 注意Version,勾选  Create web.xml</p>
+</blockquote>
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504015.png" srcset="/img/loading.gif" lazyload alt="1681459007273" style="zoom:80%;" />
+
+<blockquote>
+<p>删除index.jsp ,替换为 index.html</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504198.png" srcset="/img/loading.gif" lazyload alt="1681459080873"></p>
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504564.png" srcset="/img/loading.gif" lazyload alt="1681459147133" style="zoom: 67%;" />
+
+<blockquote>
+<p>处理配置文件</p>
+</blockquote>
+<ul>
+<li>在工程下创建resources目录,专门用于存放配置文件(都放在src下也行,单独存放可以尽量避免文件集中存放造成的混乱)</li>
+<li>标记目录为资源目录,不标记的话则该目录不参与编译</li>
+</ul>
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504962.png" srcset="/img/loading.gif" lazyload alt="1681461443278" style="zoom:67%;" />
+
+<ul>
+<li>标记完成后,显示效果如下</li>
+</ul>
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504316.png" srcset="/img/loading.gif" lazyload alt="1681461513406"  />
+
+<blockquote>
+<p>处理依赖jar包问题</p>
+</blockquote>
+<ul>
+<li>在WEB-INF下创建lib目录</li>
+<li>必须在WEB-INF下,且目录名必须叫lib!!!</li>
+<li>复制jar文件进入lib目录</li>
+</ul>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504601.png" srcset="/img/loading.gif" lazyload alt="1681461788411"></p>
+<ul>
+<li>将lib目录添加为当前项目的依赖,后续可以用maven统一解决</li>
+</ul>
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504784.png" srcset="/img/loading.gif" lazyload alt="1681461846178" style="zoom:67%;" />
+
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504096.png" srcset="/img/loading.gif" lazyload alt="1681461881121"></p>
+<ul>
+<li>环境级别推荐选择module 级别,降低对其他项目的影响,name可以空着不写</li>
+</ul>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504327.png" srcset="/img/loading.gif" lazyload alt="1681461923761"></p>
+<ul>
+<li>查看当前项目有那些环境依赖</li>
+</ul>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504761.png" srcset="/img/loading.gif" lazyload alt="1681463867295"></p>
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504067.png" srcset="/img/loading.gif" lazyload alt="1681462179671" style="zoom:50%;" />
+
+<ul>
+<li>在此位置,可以通过-号解除依赖</li>
+</ul>
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504164.png" srcset="/img/loading.gif" lazyload alt="1681462247973" style="zoom:85%;" />
+
+<h3 id="2-6-3-IDEA部署-运行web项目"><a href="#2-6-3-IDEA部署-运行web项目" class="headerlink" title="2.6.3 IDEA部署-运行web项目"></a>2.6.3 IDEA部署-运行web项目</h3><blockquote>
+<p>检查idea是否识别modules为web项目并存在将项目构建成发布结构的配置</p>
+</blockquote>
+<ul>
+<li>就是检查工程目录下,web目录有没有特殊的识别标记</li>
+</ul>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504374.png" srcset="/img/loading.gif" lazyload alt="1681462523901"></p>
+<ul>
+<li>以及artifacts下,有没有对应 _war_exploded,如果没有,就点击+号添加</li>
+</ul>
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504674.png" srcset="/img/loading.gif" lazyload alt="1681462584524" style="zoom: 50%;" />
+
+<blockquote>
+<p>点击向下箭头,出现 Edit Configurations选项</p>
+</blockquote>
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504073.png" srcset="/img/loading.gif" lazyload alt="1681462645070" style="zoom:100%;" />
+
+<blockquote>
+<p>出现运行配置界面</p>
+</blockquote>
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504217.png" srcset="/img/loading.gif" lazyload alt="1681462710108" style="zoom: 67%;" />
+
+
+
+<blockquote>
+<p>点击+号,添加本地tomcat服务器</p>
+</blockquote>
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504739.png" srcset="/img/loading.gif" lazyload alt="1681462754191" style="zoom:67%;" />
+
+<blockquote>
+<p>因为IDEA 只关联了一个Tomcat,红色部分就只有一个Tomcat可选</p>
+</blockquote>
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504909.png" srcset="/img/loading.gif" lazyload alt="1681462798933" style="zoom: 65%;" />
+
+<blockquote>
+<p>选择Deployment,通过+添加要部署到Tomcat中的artifact</p>
+</blockquote>
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504727.png" srcset="/img/loading.gif" lazyload alt="1681463011546" style="zoom:65%;" />
+
+<blockquote>
+<p>applicationContext中是默认的项目上下文路径,也就是url中需要输入的路径,这里可以自己定义,可以和工程名称不一样,也可以不写,但是要保留&#x2F;,我们这里暂时就用默认的</p>
+</blockquote>
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504972.png" srcset="/img/loading.gif" lazyload alt="1681463049807" style="zoom:80%;" />
+
+<blockquote>
+<p>点击apply 应用后,回到Server部分. After Launch是配置启动成功后,是否默认自动打开浏览器并输入URL中的地址,HTTP port是Http连接器目前占用的端口号</p>
+</blockquote>
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504760.png" srcset="/img/loading.gif" lazyload alt="1681463212587" style="zoom:80%;" />
+
+<blockquote>
+<p>点击OK后,启动项目,访问测试</p>
+</blockquote>
+<ul>
+<li>绿色箭头是正常运行模式</li>
+<li>“小虫子”是debug运行模式</li>
+</ul>
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504137.png" srcset="/img/loading.gif" lazyload alt="1681463386274" style="zoom:80%;" />
+
+<ul>
+<li>点击后,查看日志状态是否有异常</li>
+</ul>
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504545.png" srcset="/img/loading.gif" lazyload alt="1681463361795" style="zoom:100%;" />
+
+<ul>
+<li>浏览器自动打开并自动访问了index.html欢迎页</li>
+</ul>
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504140.png" srcset="/img/loading.gif" lazyload alt="1681520068936" style="zoom:50%;" />
+
+<blockquote>
+<p>工程结构和可以发布的项目结构之间的目录对应关系</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504227.png" srcset="/img/loading.gif" lazyload alt="1681464081226"></p>
+<blockquote>
+<p>IDEA部署并运行项目的原理</p>
+</blockquote>
+<ul>
+<li>idea并没有直接进将编译好的项目放入tomcat的webapps中</li>
+<li>idea根据关联的tomcat,创建了一个tomcat副本,将项目部署到了这个副本中</li>
+<li>idea的tomcat副本在C:\用户\当前用户\AppData\Local\JetBrains\IntelliJIdea2022.2\tomcat\中</li>
+<li>idea的tomcat副本并不是一个完整的tomcat,副本里只是准备了和当前项目相关的配置文件而已</li>
+<li>idea启动tomcat时,是让本地tomcat程序按照tomcat副本里的配置文件运行</li>
+<li>idea的tomcat副本部署项目的模式是通过conf&#x2F;Catalina&#x2F;localhost&#x2F;*.xml配置文件的形式实现项目部署的</li>
+</ul>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311504911.png" srcset="/img/loading.gif" lazyload alt="1681521240438"></p>
+<h1 id="三-HTTP协议"><a href="#三-HTTP协议" class="headerlink" title="三 HTTP协议"></a>三 HTTP协议</h1><h2 id="3-1-HTTP简介"><a href="#3-1-HTTP简介" class="headerlink" title="3.1 HTTP简介"></a>3.1 HTTP简介</h2><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311505407.png" srcset="/img/loading.gif" lazyload alt="1681522638617" style="zoom: 67%;" />
+
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311505081.png" srcset="/img/loading.gif" lazyload alt="1681522600239" style="zoom:67%;" />
+
+
+
+<blockquote>
+<p><strong>HTTP 超文本传输协议</strong> (HTTP-Hyper Text transfer protocol)，是一个属于应用层的面向对象的协议，由于其简捷、快速的方式，适用于分布式超媒体信息系统。它于1990年提出，经过十几年的使用与发展，得到不断地完善和扩展。<strong>它是一种详细规定了浏览器和万维网服务器之间互相通信的规则</strong>，通过因特网传送万维网文档的数据传送协议。客户端与服务端通信时传输的内容我们称之为<strong>报文</strong>。<strong>HTTP协议就是规定报文的格式。</strong>HTTP就是一个通信规则，这个规则规定了客户端发送给服务器的报文格式，也规定了服务器发送给客户端的报文格式。实际我们要学习的就是这两种报文<strong>。客户端发送给服务器的称为”请求报文</strong>“，**服务器发送给客户端的称为”响应报文”**。</p>
+</blockquote>
+<h3 id="3-1-1-发展历程"><a href="#3-1-1-发展历程" class="headerlink" title="3.1.1 发展历程"></a>3.1.1 发展历程</h3><blockquote>
+<p>HTTP&#x2F;0.9 </p>
+</blockquote>
+<ul>
+<li>蒂姆伯纳斯李是一位英国计算机科学家，也是万维网的发明者。他在 1989 年创建了单行 HTTP 协议。它只是返回一个网页。这个协议在 1991 年被命名为 HTTP&#x2F;0.9。</li>
+</ul>
+<blockquote>
+<p> HTTP&#x2F;1.0</p>
+</blockquote>
+<ul>
+<li>1996 年，HTTP&#x2F;1.0 发布。该规范是显著扩大，并且支持三种请求方法：GET，Head，和POST。 </li>
+<li>HTTP&#x2F;1.0 相对于 HTTP&#x2F;0.9 的改进如下：<ul>
+<li>每个请求都附加了 HTTP 版本。</li>
+<li>在响应开始时发送状态代码。</li>
+<li>请求和响应都包含 HTTP 报文头。</li>
+<li>内容类型能够传输 HTML 文件以外的文档。</li>
+</ul>
+</li>
+<li>但是，HTTP&#x2F;1.0 不是官方标准。</li>
+</ul>
+<blockquote>
+<p>HTTP&#x2F;1.1</p>
+</blockquote>
+<ul>
+<li><p>HTTP 的第一个标准化版本 HTTP&#x2F;1.1 ( RFC 2068 ) 于 1997 年初发布，支持七种请求方法：OPTIONS，GET，HEAD，POST，PUT，DELETE，和TRACE </p>
+</li>
+<li><p>HTTP&#x2F;1.1 是 HTTP 1.0 的增强：</p>
+<ul>
+<li><p>虚拟主机允许从单个 IP 地址提供多个域。</p>
+</li>
+<li><p>持久连接和流水线连接允许 Web 浏览器通过单个持久连接发送多个请求。</p>
+</li>
+<li><p>缓存支持节省了带宽并使响应速度更快。</p>
+</li>
+</ul>
+</li>
+<li><p>HTTP&#x2F;1.1 在接下来的 15 年左右将非常稳定。 </p>
+</li>
+<li><p>在此期间，出现了 HTTPS（安全超文本传输协议）。它是使用 SSL&#x2F;TLS 进行安全加密通信的 HTTP 的安全版本。</p>
+</li>
+</ul>
+<blockquote>
+<p>HTTP&#x2F;2</p>
+</blockquote>
+<ul>
+<li>由IETF在2015年发布。HTTP&#x2F;2旨在提高Web性能，减少延迟，增加安全性，使Web应用更加快速、高效和可靠。</li>
+</ul>
+<ul>
+<li>多路复用：HTTP&#x2F;2 允许同时发送多个请求和响应，而不是像 HTTP&#x2F;1.1 一样只能一个一个地处理。这样可以减少延迟，提高效率，提高网络吞吐量。</li>
+<li>二进制传输：HTTP&#x2F;2 使用二进制协议，与 HTTP&#x2F;1.1 使用的文本协议不同。二进制协议可以更快地解析，更有效地传输数据，减少了传输过程中的开销和延迟。</li>
+<li>头部压缩：HTTP&#x2F;2 使用 HPACK 算法对 HTTP 头部进行压缩，减少了头部传输的数据量，从而减少了网络延迟。</li>
+<li>服务器推送：HTTP&#x2F;2 支持服务器推送，允许服务器在客户端请求之前推送资源，以提高性能。</li>
+<li>改进的安全性：HTTP&#x2F;2 默认使用 TLS（Transport Layer Security）加密传输数据，提高了安全性。</li>
+<li>兼容 HTTP&#x2F;1.1：HTTP&#x2F;2 可以与 HTTP&#x2F;1.1 共存，服务器可以同时支持 HTTP&#x2F;1.1 和 HTTP&#x2F;2。如果客户端不支持 HTTP&#x2F;2，服务器可以回退到 HTTP&#x2F;1.1。</li>
+</ul>
+<blockquote>
+<p>HTTP&#x2F;3</p>
+</blockquote>
+<ul>
+<li><p>于 2021 年 5 月 27 日发布 , HTTP&#x2F;3 是一种新的、快速、可靠且安全的协议，适用于所有形式的设备。 HTTP&#x2F;3 没有使用 TCP，而是使用谷歌在 2012 年开发的新协议 QUIC </p>
+</li>
+<li><p>HTTP&#x2F;3 是继 HTTP&#x2F;1.1 和 HTTP&#x2F;2之后的第三次重大修订。 </p>
+</li>
+<li><p>HTTP&#x2F;3 带来了革命性的变化，以提高 Web 性能和安全性。设置 HTTP&#x2F;3 网站需要服务器和浏览器支持。</p>
+</li>
+<li><p>目前，谷歌云、Cloudflare和Fastly支持 HTTP&#x2F;3。Chrome、Firefox、Edge、Opera 和一些移动浏览器支持 HTTP&#x2F;3。</p>
+</li>
+</ul>
+<h3 id="3-1-2-HTTP协议的会话方式"><a href="#3-1-2-HTTP协议的会话方式" class="headerlink" title="3.1.2 HTTP协议的会话方式"></a>3.1.2 HTTP协议的会话方式</h3><blockquote>
+<p>浏览器与服务器之间的通信过程要经历四个步骤</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311505151.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>浏览器与WEB服务器的连接过程是短暂的，每次连接只处理一个请求和响应。对每一个页面的访问，浏览器与WEB服务器都要建立一次单独的连接。</li>
+<li>浏览器到WEB服务器之间的所有通讯都是完全独立分开的请求和响应对。</li>
+</ul>
+<h3 id="3-1-3-HTTP1-0和HTTP1-1的区别"><a href="#3-1-3-HTTP1-0和HTTP1-1的区别" class="headerlink" title="3.1.3 HTTP1.0和HTTP1.1的区别"></a>3.1.3 HTTP1.0和HTTP1.1的区别</h3><blockquote>
+<p>在HTTP1.0版本中，浏览器请求一个带有图片的网页，会由于下载图片而与服务器之间开启一个新的连接；但在HTTP1.1版本中，允许浏览器在拿到当前请求对应的全部资源后再断开连接，提高了效率。</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311505207.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="3-1-4-在浏览器中通过F12工具抓取请求响应报文包"><a href="#3-1-4-在浏览器中通过F12工具抓取请求响应报文包" class="headerlink" title="3.1.4 在浏览器中通过F12工具抓取请求响应报文包"></a>3.1.4 在浏览器中通过F12工具抓取请求响应报文包</h3><blockquote>
+<p>几乎所有的PC端浏览器都支持了F12开发者工具,只不过不同的浏览器工具显示的窗口有差异</p>
+</blockquote>
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311505498.png" srcset="/img/loading.gif" lazyload alt="1681522138051" style="zoom:80%;" />
+
+
+
+<h2 id="3-2-请求和响应报文"><a href="#3-2-请求和响应报文" class="headerlink" title="3.2 请求和响应报文"></a>3.2 请求和响应报文</h2><h3 id="3-2-1-报文的格式"><a href="#3-2-1-报文的格式" class="headerlink" title="3.2.1 报文的格式"></a>3.2.1 报文的格式</h3><blockquote>
+<p>主体上分为报文首部和报文主体,中间空行隔开</p>
+</blockquote>
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311505981.png" srcset="/img/loading.gif" lazyload alt="1681522962846" style="zoom: 62%;" />
+
+
+
+<blockquote>
+<p>报文部首可以继续细分为  “行” 和 “头”</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311505665.png" srcset="/img/loading.gif" lazyload alt="1681522998417"></p>
+<h3 id="3-2-2-请求报文"><a href="#3-2-2-请求报文" class="headerlink" title="3.2.2 请求报文"></a>3.2.2 请求报文</h3><blockquote>
+<p>客户端发给服务端的报文</p>
+</blockquote>
+<ul>
+<li>请求报文格式<ul>
+<li>请求首行（<strong>请求行</strong>）；    GET&#x2F;POST   资源路径?参数   HTTP&#x2F;1.1</li>
+<li>请求头信息（<strong>请求头</strong>）；</li>
+<li>空行；</li>
+<li>请求体；POST请求才有请求体</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>浏览器 f12 网络下查看请求数据包</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311505887.png" srcset="/img/loading.gif" lazyload alt="1681524200024"></p>
+<blockquote>
+<p>form表单发送GET请求特点</p>
+</blockquote>
+<p>1、由于请求参数在请求首行中已经携带了，所以没有请求体，也没有请求空行<br>2、请求参数拼接在url地址中，地址栏可见[url?name1&#x3D;value1&amp;name2&#x3D;value2]，不安全<br>3、由于参数在地址栏中携带，所以由大小限制[地址栏数据大小一般限制为4k]，只能携带纯文本<br>4、get请求参数只能上传文本数据<br>5、没有请求体。所以封装和解析都快，效率高， 浏览器默认提交的请求都是get请求比如：地址栏输入回车,超链接,表单默认的提交方式</p>
+<blockquote>
+<p>查看GET请求行,请求头,请求体</p>
+</blockquote>
+<ul>
+<li>请求行组成部分<ul>
+<li>请求方式  GET</li>
+<li>访问服务器的资源路径?参数1&#x3D;值1&amp;参数2&#x3D;值2 … …</li>
+<li>协议及版本 HTTP&#x2F;1.1</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs http"><span class="hljs-keyword">GET</span> <span class="hljs-string">/05_web_tomcat/login_success.html?username=admin&amp;password=123213</span> <span class="hljs-meta">HTTP/1.1</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>请求头</li>
+</ul>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs http">-主机虚拟地址<br><span class="hljs-attribute">Host</span><span class="hljs-punctuation">: </span>localhost:8080   <br>-长连接<br><span class="hljs-attribute">Connection</span><span class="hljs-punctuation">: </span>keep-alive <br>-请求协议的自动升级[http的请求，服务器却是https的，浏览器自动会将请求协议升级为https的]<br><span class="hljs-attribute">Upgrade-Insecure-Requests</span><span class="hljs-punctuation">: </span>1  <br>- 用户系统信息<br><span class="hljs-attribute">User-Agent</span><span class="hljs-punctuation">: </span>Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.75 Safari/537.36<br>- 浏览器支持的文件类型<br>Accept:text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8<br>- 当前页面的上一个页面的路径[当前页面通过哪个页面跳转过来的]：   可以通过此路径跳转回上一个页面， 广告计费，防止盗链<br><span class="hljs-attribute">Referer</span><span class="hljs-punctuation">: </span>http://localhost:8080/05_web_tomcat/login.html<br>- 浏览器支持的压缩格式<br><span class="hljs-attribute">Accept-Encoding</span><span class="hljs-punctuation">: </span>gzip, deflate, br<br>- 浏览器支持的语言<br><span class="hljs-attribute">Accept-Language</span><span class="hljs-punctuation">: </span>zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p>请求空行</p>
+</li>
+<li><p>请求体</p>
+<ul>
+<li>GET请求数据不放在请求体</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>form表单发送post请求特点</p>
+</blockquote>
+<p>1、POST请求有请求体，而GET请求没有请求体。<br>2、post请求数据在请求体中携带，请求体数据大小没有限制，可以用来上传所有内容[文件、文本]<br>3、只能使用post请求上传文件<br>4、post请求报文多了和请求体相关的配置[请求头]<br>5、地址栏参数不可见，相对安全<br>6、post效率比get低</p>
+<ul>
+<li>POST请求要求将form标签的method的属性设置为post</li>
+</ul>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311505215.png" srcset="/img/loading.gif" lazyload alt="1681525012046"></p>
+<blockquote>
+<p>查看post的请求行 请求头 请求体</p>
+</blockquote>
+<ul>
+<li>请求行组成部分<ul>
+<li>请求方式 POST</li>
+<li>访问服务器的资源路径?参数1&#x3D;值1&amp;参数2&#x3D;值2 … …</li>
+<li>协议及版本 HTTP&#x2F;1.1</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs http"><span class="hljs-keyword">POST</span> <span class="hljs-string">/05_web_tomcat/login_success.html</span> <span class="hljs-meta">HTTP/1.1</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>请求头</li>
+</ul>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs http"><span class="hljs-attribute">Host</span><span class="hljs-punctuation">: </span>localhost:8080<br><span class="hljs-attribute">Connection</span><span class="hljs-punctuation">: </span>keep-alive<br><span class="hljs-attribute">Content-Length</span><span class="hljs-punctuation">: </span>31     -请求体内容的长度<br><span class="hljs-attribute">Cache-Control</span><span class="hljs-punctuation">: </span>max-age=0  -无缓存<br><span class="hljs-attribute">Origin</span><span class="hljs-punctuation">: </span>http://localhost:8080<br><span class="hljs-attribute">Upgrade-Insecure-Requests</span><span class="hljs-punctuation">: </span>1  -协议的自动升级<br><span class="hljs-attribute">Content-Type</span><span class="hljs-punctuation">: </span>application/x-www-form-urlencoded   -请求体内容类型[服务器根据类型解析请求体参数]<br><span class="hljs-attribute">User-Agent</span><span class="hljs-punctuation">: </span>Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.75 Safari/537.36<br>Accept:text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8<br><span class="hljs-attribute">Referer</span><span class="hljs-punctuation">: </span>http://localhost:8080/05_web_tomcat/login.html<br><span class="hljs-attribute">Accept-Encoding</span><span class="hljs-punctuation">: </span>gzip, deflate, br<br><span class="hljs-attribute">Accept-Language</span><span class="hljs-punctuation">: </span>zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7<br>Cookie:JSESSIONID-<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p>请求空行</p>
+</li>
+<li><p>请求体:浏览器提交给服务器的数据</p>
+</li>
+</ul>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs http">username=admin&amp;password=1232131<br></code></pre></td></tr></table></figure>
+
+<h3 id="3-2-3-响应报文"><a href="#3-2-3-响应报文" class="headerlink" title="3.2.3 响应报文"></a>3.2.3 响应报文</h3><blockquote>
+<p>响应报文格式</p>
+</blockquote>
+<ul>
+<li>响应首行（<strong>响应行</strong>）； 协议&#x2F;版本  状态码    状态码描述</li>
+<li>响应头信息（<strong>响应头</strong>）；</li>
+<li>空行；</li>
+<li>响应体；</li>
+</ul>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311505262.png" srcset="/img/loading.gif" lazyload alt="1681525347456"></p>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311505512.png" srcset="/img/loading.gif" lazyload alt="1681525384347"></p>
+<ul>
+<li>响应行组成部分<ul>
+<li>协议及版本 HTTP&#x2F;1.1</li>
+<li>响应状态码 200</li>
+<li>状态描述   OK  (缺省)</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs http"><span class="hljs-meta">HTTP/1.1</span> <span class="hljs-number">200</span> OK<br>说明：响应协议为HTTP1.1，响应状态码为200，表示请求成功； <br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>响应头</li>
+</ul>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs http"><span class="hljs-attribute">Server</span><span class="hljs-punctuation">: </span>Apache-Coyote/1.1   服务器的版本信息<br><span class="hljs-attribute">Accept-Ranges</span><span class="hljs-punctuation">: </span>bytes<br><span class="hljs-attribute">ETag</span><span class="hljs-punctuation">: </span>W/&quot;157-1534126125811&quot;<br><span class="hljs-attribute">Last-Modified</span><span class="hljs-punctuation">: </span>Mon, 13 Aug 2018 02:08:45 GMT<br><span class="hljs-attribute">Content-Type</span><span class="hljs-punctuation">: </span>text/html    响应体数据的类型[浏览器根据类型解析响应体数据]<br><span class="hljs-attribute">Content-Length</span><span class="hljs-punctuation">: </span>157   响应体内容的字节数<br><span class="hljs-attribute">Date</span><span class="hljs-punctuation">: </span>Mon, 13 Aug 2018 02:47:57 GMT  响应的时间，这可能会有8小时的时区差<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>响应体</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-comment">&lt;!--需要浏览器解析使用的内容[如果响应的是html页面，最终响应体内容会被浏览器显示到页面中]--&gt;</span><br><br><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Insert title here<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>    恭喜你，登录成功了...<br>  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>响应状态码:响应码对浏览器来说很重要，它告诉浏览器响应的结果。比较有代表性的响应码如下：</p>
+</blockquote>
+<ul>
+<li><strong>200：</strong> 请求成功，浏览器会把响应体内容（通常是html）显示在浏览器中；</li>
+<li><strong>302：</strong> 重定向，当响应码为302时，表示服务器要求浏览器重新再发一个请求，服务器会发送一个响应头Location指定新请求的URL地址；</li>
+<li><strong>304：</strong> 使用了本地缓存</li>
+<li><strong>404：</strong> 请求的资源没有找到，说明客户端错误的请求了不存在的资源；</li>
+<li><strong>405：</strong> 请求的方式不允许</li>
+<li><strong>500：</strong> 请求资源找到了，但服务器内部出现了错误；</li>
+</ul>
+<blockquote>
+<p>更多的响应状态码</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="left">状态码</th>
+<th align="left">状态码英文描述</th>
+<th align="left">中文含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1**</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">100</td>
+<td align="left">Continue</td>
+<td align="left">继续。客户端应继续其请求</td>
+</tr>
+<tr>
+<td align="left">101</td>
+<td align="left">Switching Protocols</td>
+<td align="left">切换协议。服务器根据客户端的请求切换协议。只能切换到更高级的协议，例如，切换到HTTP的新版本协议</td>
+</tr>
+<tr>
+<td align="left">2**</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">200</td>
+<td align="left">OK</td>
+<td align="left">请求成功。一般用于GET与POST请求</td>
+</tr>
+<tr>
+<td align="left">201</td>
+<td align="left">Created</td>
+<td align="left">已创建。成功请求并创建了新的资源</td>
+</tr>
+<tr>
+<td align="left">202</td>
+<td align="left">Accepted</td>
+<td align="left">已接受。已经接受请求，但未处理完成</td>
+</tr>
+<tr>
+<td align="left">203</td>
+<td align="left">Non-Authoritative Information</td>
+<td align="left">非授权信息。请求成功。但返回的meta信息不在原始的服务器，而是一个副本</td>
+</tr>
+<tr>
+<td align="left">204</td>
+<td align="left">No Content</td>
+<td align="left">无内容。服务器成功处理，但未返回内容。在未更新网页的情况下，可确保浏览器继续显示当前文档</td>
+</tr>
+<tr>
+<td align="left">205</td>
+<td align="left">Reset Content</td>
+<td align="left">重置内容。服务器处理成功，用户终端（例如：浏览器）应重置文档视图。可通过此返回码清除浏览器的表单域</td>
+</tr>
+<tr>
+<td align="left">206</td>
+<td align="left">Partial Content</td>
+<td align="left">部分内容。服务器成功处理了部分GET请求</td>
+</tr>
+<tr>
+<td align="left">3**</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">300</td>
+<td align="left">Multiple Choices</td>
+<td align="left">多种选择。请求的资源可包括多个位置，相应可返回一个资源特征与地址的列表用于用户终端（例如：浏览器）选择</td>
+</tr>
+<tr>
+<td align="left">301</td>
+<td align="left">Moved Permanently</td>
+<td align="left">永久移动。请求的资源已被永久的移动到新URI，返回信息会包括新的URI，浏览器会自动定向到新URI。今后任何新的请求都应使用新的URI代替</td>
+</tr>
+<tr>
+<td align="left">302</td>
+<td align="left">Found</td>
+<td align="left">临时移动。与301类似。但资源只是临时被移动。客户端应继续使用原有URI</td>
+</tr>
+<tr>
+<td align="left">303</td>
+<td align="left">See Other</td>
+<td align="left">查看其它地址。与301类似。使用GET和POST请求查看</td>
+</tr>
+<tr>
+<td align="left">304</td>
+<td align="left">Not Modified</td>
+<td align="left">未修改。所请求的资源未修改，服务器返回此状态码时，不会返回任何资源。客户端通常会缓存访问过的资源，通过提供一个头信息指出客户端希望只返回在指定日期之后修改的资源</td>
+</tr>
+<tr>
+<td align="left">305</td>
+<td align="left">Use Proxy</td>
+<td align="left">使用代理。所请求的资源必须通过代理访问</td>
+</tr>
+<tr>
+<td align="left">306</td>
+<td align="left">Unused</td>
+<td align="left">已经被废弃的HTTP状态码</td>
+</tr>
+<tr>
+<td align="left">307</td>
+<td align="left">Temporary Redirect</td>
+<td align="left">临时重定向。与302类似。使用GET请求重定向</td>
+</tr>
+<tr>
+<td align="left">4**</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">400</td>
+<td align="left">Bad Request</td>
+<td align="left">客户端请求的语法错误，服务器无法理解</td>
+</tr>
+<tr>
+<td align="left">401</td>
+<td align="left">Unauthorized</td>
+<td align="left">请求要求用户的身份认证</td>
+</tr>
+<tr>
+<td align="left">402</td>
+<td align="left">Payment Required</td>
+<td align="left">保留，将来使用</td>
+</tr>
+<tr>
+<td align="left">403</td>
+<td align="left">Forbidden</td>
+<td align="left">服务器理解请求客户端的请求，但是拒绝执行此请求</td>
+</tr>
+<tr>
+<td align="left">404</td>
+<td align="left">Not Found</td>
+<td align="left">服务器无法根据客户端的请求找到资源（网页）。通过此代码，网站设计人员可设置”您所请求的资源无法找到”的个性页面</td>
+</tr>
+<tr>
+<td align="left">405</td>
+<td align="left">Method Not Allowed</td>
+<td align="left">客户端请求中的方法被禁止</td>
+</tr>
+<tr>
+<td align="left">406</td>
+<td align="left">Not Acceptable</td>
+<td align="left">服务器无法根据客户端请求的内容特性完成请求</td>
+</tr>
+<tr>
+<td align="left">407</td>
+<td align="left">Proxy Authentication Required</td>
+<td align="left">请求要求代理的身份认证，与401类似，但请求者应当使用代理进行授权</td>
+</tr>
+<tr>
+<td align="left">408</td>
+<td align="left">Request Time-out</td>
+<td align="left">服务器等待客户端发送的请求时间过长，超时</td>
+</tr>
+<tr>
+<td align="left">409</td>
+<td align="left">Conflict</td>
+<td align="left">服务器完成客户端的 PUT 请求时可能返回此代码，服务器处理请求时发生了冲突</td>
+</tr>
+<tr>
+<td align="left">410</td>
+<td align="left">Gone</td>
+<td align="left">客户端请求的资源已经不存在。410不同于404，如果资源以前有现在被永久删除了可使用410代码，网站设计人员可通过301代码指定资源的新位置</td>
+</tr>
+<tr>
+<td align="left">411</td>
+<td align="left">Length Required</td>
+<td align="left">服务器无法处理客户端发送的不带Content-Length的请求信息</td>
+</tr>
+<tr>
+<td align="left">412</td>
+<td align="left">Precondition Failed</td>
+<td align="left">客户端请求信息的先决条件错误</td>
+</tr>
+<tr>
+<td align="left">413</td>
+<td align="left">Request Entity Too Large</td>
+<td align="left">由于请求的实体过大，服务器无法处理，因此拒绝请求。为防止客户端的连续请求，服务器可能会关闭连接。如果只是服务器暂时无法处理，则会包含一个Retry-After的响应信息</td>
+</tr>
+<tr>
+<td align="left">414</td>
+<td align="left">Request-URI Too Large</td>
+<td align="left">请求的URI过长（URI通常为网址），服务器无法处理</td>
+</tr>
+<tr>
+<td align="left">415</td>
+<td align="left">Unsupported Media Type</td>
+<td align="left">服务器无法处理请求附带的媒体格式</td>
+</tr>
+<tr>
+<td align="left">416</td>
+<td align="left">Requested range not satisfiable</td>
+<td align="left">客户端请求的范围无效</td>
+</tr>
+<tr>
+<td align="left">417</td>
+<td align="left">Expectation Failed</td>
+<td align="left">服务器无法满足Expect的请求头信息</td>
+</tr>
+<tr>
+<td align="left">5**</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">500</td>
+<td align="left">Internal Server Error</td>
+<td align="left">服务器内部错误，无法完成请求</td>
+</tr>
+<tr>
+<td align="left">501</td>
+<td align="left">Not Implemented</td>
+<td align="left">服务器不支持请求的功能，无法完成请求</td>
+</tr>
+<tr>
+<td align="left">502</td>
+<td align="left">Bad Gateway</td>
+<td align="left">作为网关或者代理工作的服务器尝试执行请求时，从远程服务器接收到了一个无效的响应</td>
+</tr>
+<tr>
+<td align="left">503</td>
+<td align="left">Service Unavailable</td>
+<td align="left">由于超载或系统维护，服务器暂时的无法处理客户端的请求。延时的长度可包含在服务器的Retry-After头信息中</td>
+</tr>
+<tr>
+<td align="left">504</td>
+<td align="left">Gateway Time-out</td>
+<td align="left">充当网关或代理的服务器，未及时从远端服务器获取请求</td>
+</tr>
+<tr>
+<td align="left">505</td>
+<td align="left">HTTP Version not supported</td>
+<td align="left">服务器不支持请求的HTTP协议的版本，无法完成处理</td>
+</tr>
+</tbody></table>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div></div>
+      <div>https://glassless.github.io/2024/08/31/JavaWeb/4.XML_Tomcat_HTTP/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>glasss</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年8月31日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/08/31/JavaWeb/5.Servlet/" title="">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/08/31/JavaWeb/2.HTML&amp;CSS/" title="HTML&amp;CSS">
+                        <span class="hidden-mobile">HTML&amp;CSS</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

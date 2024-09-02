@@ -16,22 +16,37 @@
   <meta name="author" content="glasss">
   <meta name="keywords" content="">
   
-    <meta name="description" content="1、什么是微服务​	微服务架构是一种架构模式，它提倡将单一应用程序划分成一组小的服务，服务之间互相协调、互相配合，为用户提供最终价值。每个服务运行在其独立的进程中，服务与服务间采用轻量级的通信机制互相协作(通常是基于HTTP协议的RESTful API)。每个服务都围绕着具本业务进行构建，并且能够被独立的部署到生产环境、类生产环境等。另外，应当尽量避免统一的、集中式的服务管理机制，对具体的一个服务">
+    <meta name="description" content="第一章 WEB概述1.1 JAVAWEB简介 用Java技术来解决相关web互联网领域的技术栈.使用JAVAEE技术体系开发企业级互联网项目. 项目规模和架构模式与JAVASE阶段有着很大的差别. 在互联网项目下,首先需要明白客户端和服务器的概念   客户端 :与用户进行交互，用于接收用户的输入(操作)、展示服务器端的数据以及向服务器传递数据   手机APP     微信小程序     PC端程序">
 <meta property="og:type" content="article">
-<meta property="og:title" content="spring cloud alibaba">
-<meta property="og:url" content="https://glassless.github.io/2024/02/02/JavaWeb/1.%E6%A6%82%E8%BF%B0/index.html">
+<meta property="og:title" content="web概述">
+<meta property="og:url" content="https://glassless.github.io/2024/08/31/JavaWeb/1.%E6%A6%82%E8%BF%B0/index.html">
 <meta property="og:site_name" content="Glass的博客">
-<meta property="og:description" content="1、什么是微服务​	微服务架构是一种架构模式，它提倡将单一应用程序划分成一组小的服务，服务之间互相协调、互相配合，为用户提供最终价值。每个服务运行在其独立的进程中，服务与服务间采用轻量级的通信机制互相协作(通常是基于HTTP协议的RESTful API)。每个服务都围绕着具本业务进行构建，并且能够被独立的部署到生产环境、类生产环境等。另外，应当尽量避免统一的、集中式的服务管理机制，对具体的一个服务">
+<meta property="og:description" content="第一章 WEB概述1.1 JAVAWEB简介 用Java技术来解决相关web互联网领域的技术栈.使用JAVAEE技术体系开发企业级互联网项目. 项目规模和架构模式与JAVASE阶段有着很大的差别. 在互联网项目下,首先需要明白客户端和服务器的概念   客户端 :与用户进行交互，用于接收用户的输入(操作)、展示服务器端的数据以及向服务器传递数据   手机APP     微信小程序     PC端程序">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-02-01T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-08-29T07:59:10.568Z">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311455255.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311455214.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311455276.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311455236.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311455321.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311455375.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311455148.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311455211.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311455048.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311455238.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311455825.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311455762.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311455967.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311455656.png">
+<meta property="article:published_time" content="2024-08-31T06:55:51.000Z">
+<meta property="article:modified_time" content="2024-08-31T06:56:09.894Z">
 <meta property="article:author" content="glasss">
-<meta property="article:tag" content="spring cloud">
+<meta property="article:tag" content="java web">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311455255.png">
   
   
   
-  <title>spring cloud alibaba - Glass的博客</title>
+  <title>web概述 - Glass的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -197,7 +212,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="spring cloud alibaba"></span>
+            <span id="subtitle" data-typed-text="web概述"></span>
           
         </div>
 
@@ -208,8 +223,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-02-02 00:00" pubdate>
-          2024年2月2日 凌晨
+        <time datetime="2024-08-31 14:55" pubdate>
+          2024年8月31日 下午
         </time>
       </span>
     
@@ -220,7 +235,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          193 字
+          1.3k 字
         
       </span>
     
@@ -231,7 +246,7 @@
         
         
         
-          2 分钟
+          11 分钟
         
       </span>
     
@@ -268,12 +283,136 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">spring cloud alibaba</h1>
+            <h1 id="seo-header">web概述</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="1、什么是微服务"><a href="#1、什么是微服务" class="headerlink" title="1、什么是微服务"></a>1、什么是微服务</h2><p>​	微服务架构是一种架构模式，它提倡将单一应用程序划分成一组小的服务，服务之间互相协调、互相配合，为用户提供最终价值。每个<br>服务运行在其独立的进程中，服务与服务间采用轻量级的通信机制互相协作(通常是基于HTTP协议的RESTful API)。每个服务都围绕着具<br>本业务进行构建，并且能够被独立的部署到生产环境、类生产环境等。另外，应当尽量避免统一的、集中式的服务管理机制，对具体的<br>一个服务而言，应根据业务上下文，选择合适的语言、工具对其进行构建</p>
+                <h1 id="第一章-WEB概述"><a href="#第一章-WEB概述" class="headerlink" title="第一章 WEB概述"></a>第一章 WEB概述</h1><h2 id="1-1-JAVAWEB简介"><a href="#1-1-JAVAWEB简介" class="headerlink" title="1.1 JAVAWEB简介"></a>1.1 JAVAWEB简介</h2><blockquote>
+<p>用Java技术来解决相关web互联网领域的技术栈.使用JAVAEE技术体系开发企业级互联网项目. 项目规模和架构模式与JAVASE阶段有着很大的差别. 在互联网项目下,首先需要明白客户端和服务器的概念</p>
+</blockquote>
+<blockquote>
+<p>客户端 :与用户进行交互，用于接收用户的输入(操作)、展示服务器端的数据以及向服务器传递数据</p>
+</blockquote>
+<ul>
+<li>手机APP</li>
+</ul>
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311455255.png" srcset="/img/loading.gif" lazyload alt="1681181342911" style="zoom: 67%;" />
+
+<ul>
+<li>微信小程序</li>
+</ul>
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311455214.png" srcset="/img/loading.gif" lazyload alt="1681181399123" style="zoom: 50%;" />
+
+<ul>
+<li>PC端程序</li>
+</ul>
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311455276.png" srcset="/img/loading.gif" lazyload alt="1681181558166" style="zoom:33%;" />
+
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311455236.png" srcset="/img/loading.gif" lazyload alt="1681181668235" style="zoom:33%;" />
+
+<ul>
+<li>PC浏览器</li>
+</ul>
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311455321.png" srcset="/img/loading.gif" lazyload alt="1681181764764" style="zoom: 33%;" />
+
+<ul>
+<li>其他设备</li>
+</ul>
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311455375.png" srcset="/img/loading.gif" lazyload alt="1681181829641" style="zoom: 50%;" />
+
+
+
+
+
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311455148.png" srcset="/img/loading.gif" lazyload alt="1681181884366" style="zoom: 50%;" />
+
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311455211.png" srcset="/img/loading.gif" lazyload alt="1681181975807" style="zoom: 80%;" />
+
+<blockquote>
+<p>服务端:与客户端进行交互，接收客户端的数据、处理具体的业务逻辑、传递给客户端其需要的数据</p>
+</blockquote>
+<ul>
+<li>“服务器”是一个非常宽泛的概念，<strong>从硬件而言:</strong> 服务器是计算机的一种，它比普通计算机运行更快、负载更高、价格更贵。服务器在网络中为其它客户机（如PC机、智能手机、ATM等终端甚至是火车系统等大型设备）提供计算或者应用服务。<strong>从软件而言:</strong> 服务器其实就是安装在计算机上的一个软件，根据其作用的不同又可以分为各种不同的服务器，例如应用服务器、数据库服务器、Redis服务器、DNS服务器、ftp服务器等等</li>
+</ul>
+<p><strong>综上所述:</strong> 用我们自己的话来总结的话，服务器其实就是一台(或者一个集群)安装了服务器软件的高性能计算机</p>
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311455048.png" srcset="/img/loading.gif" lazyload alt="1681182451912" style="zoom: 33%;" />
+
+
+
+<h2 id="1-2-JAVAWEB技术栈"><a href="#1-2-JAVAWEB技术栈" class="headerlink" title="1.2 JAVAWEB技术栈"></a>1.2 JAVAWEB技术栈</h2><blockquote>
+<p>前端部分</p>
+</blockquote>
+<p>HTML CSS  JavaScript ES6 Nodejs npm vite vue3 router pinia  axios  element-plus …</p>
+<blockquote>
+<p>后端部分</p>
+</blockquote>
+<p>HTTP xml Tomcat  Servlet   Request   Response  Cookie  Sesssion  Filter Listener MySQL JDBC  Druid  Jackson lombok jwt …</p>
+<blockquote>
+<p>图解</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311455238.png" srcset="/img/loading.gif" lazyload alt="1681177316138"></p>
+<h2 id="1-3-JAVAWEB交互模式"><a href="#1-3-JAVAWEB交互模式" class="headerlink" title="1.3  JAVAWEB交互模式"></a>1.3  JAVAWEB交互模式</h2><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311455825.png" srcset="/img/loading.gif" lazyload alt="1681182819066" style="zoom:50%;" />
+
+<blockquote>
+<p>请求</p>
+</blockquote>
+<p>客户端向服务端传递数据的主要方式之一,客户端主动向服务端发送请求,可以携带数据,交给服务端处理. 请求只能是客户端向服务端</p>
+<blockquote>
+<p>响应</p>
+</blockquote>
+<p>服务端向客户端传递数据的主要方式之一,在接收请求后开始对数据进行处理,将结果反馈给客户端使用.响应只能是服务端向客户端</p>
+<h2 id="1-4-JAVAWEB的CS和BS模式"><a href="#1-4-JAVAWEB的CS和BS模式" class="headerlink" title="1.4 JAVAWEB的CS和BS模式"></a>1.4 JAVAWEB的CS和BS模式</h2><p>根据客户端的不同,我们可以将JAVA的互联网项目运行模式分为CS模式和BS模式</p>
+<blockquote>
+<p>CS模式  Client-Server模式   客户端-服务端模式, 该模式特点如下</p>
+</blockquote>
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311455762.png" srcset="/img/loading.gif" lazyload alt="1681192888853" style="zoom:50%;" />
+
+<p>1 程序分两部分,一部分是客户端需要安装的程序,一部分是要部署在服务器上的程序</p>
+<p>2 用户需要在硬件设备或者操作系统中,下载安装特定的客户端程序才可以使用</p>
+<p>3 程序运行的压力由客户端和服务端共同承担</p>
+<p>4 可以借助客户端运算资源,对数据继续处理,一般可以有较好的画质和展现效果</p>
+<p>5 程序更新时,往往需要同时更新客户端和服务端两部分</p>
+<p>6 跨平台性能一般,不同的平台未必都有对应的客户端程序</p>
+<p>7 开发成本较高,要为不同的客户端开发不同客户端程序</p>
+<blockquote>
+<p>BS模式 Browser-Server模式</p>
+</blockquote>
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311455967.png" srcset="/img/loading.gif" lazyload alt="1681192907280" style="zoom:50%;" />
+
+<p>1 程序就一部分,只要部署在服务器上即可</p>
+<p>2 无论用户使用什么设备和操作系统,只要有一个安装任意一款浏览器即可</p>
+<p>3 程序运行的压力主要由服务端承担</p>
+<p>4 客户端承担的计算压力小,可以对数据进行简单的继续处理,但是不像CS模式那些可以获得较好的画质和展现效果</p>
+<p>5 程序更新时,只需要同时服务端部分</p>
+<p>6 跨平台性能优秀,只要有一个浏览器,到处都可以使用</p>
+<p>7 开发成本略低,不必为不同的客户端开发不同客户端程序</p>
+<blockquote>
+<p>模式选择</p>
+</blockquote>
+<ul>
+<li>对于我们JAVA程序员来说,我们开发的是服务端代码,所有无论前端是何种类型的服务端,我们只要按照接口文档要求开发后端功能即可,尤其是在当前前后端分离模式开发为主的时代背景下,我们可以在几乎不接触前端的状态下完成开发</li>
+</ul>
+<h2 id="1-5-JAVAWEB实现前后端分离"><a href="#1-5-JAVAWEB实现前后端分离" class="headerlink" title="1.5 JAVAWEB实现前后端分离"></a>1.5 JAVAWEB实现前后端分离</h2><blockquote>
+<p>非前后端分离</p>
+</blockquote>
+<ul>
+<li>1 开发不分离: 程序员既要编写后端代码,又要去修改甚至编写前端代码,程序员的工作压力较大</li>
+<li>2 部署不分离: 使用了后端动态页面技术(JSP,Thymeleaf等),前端代码不能脱离后端服务器环境,必须部署在一起</li>
+</ul>
+<blockquote>
+<p>前后端分离</p>
+</blockquote>
+<ul>
+<li>1 开发分离:后端程序员只要按照接口文档去编写后端代码,无需编写或者关系前端代码,前后端程序员压力都降低</li>
+<li>2 部署分离:前端使用前端的页面动态技术,通过VUE等框架,工程化项目,前端项目可以部署到独立的服务器上</li>
+</ul>
+<img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/javaWeb/202408311455656.png" srcset="/img/loading.gif" lazyload alt="1681193247981" style="zoom: 80%;" />
+
+
+
+
+
 
                 
               </div>
@@ -292,7 +431,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/spring-cloud/" class="category-chain-item">spring cloud</a>
+  <a href="/categories/java-web/" class="category-chain-item">java web</a>
   
   
 
@@ -307,7 +446,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/spring-cloud/" class="print-no-link">#spring cloud</a>
+        <a href="/tags/java-web/" class="print-no-link">#java web</a>
       
     </div>
   
@@ -319,8 +458,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>spring cloud alibaba</div>
-      <div>https://glassless.github.io/2024/02/02/JavaWeb/1.概述/</div>
+      <div>web概述</div>
+      <div>https://glassless.github.io/2024/08/31/JavaWeb/1.概述/</div>
     </div>
     <div class="license-meta">
       
@@ -332,7 +471,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年2月2日</div>
+          <div>2024年8月31日</div>
         </div>
       
       
@@ -364,15 +503,21 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/02/02/spring%20cloud/" title="spring cloud alibaba">
+                      <a href="/2024/08/31/JavaWeb/3.JavaScript/" title="">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">spring cloud alibaba</span>
+                        <span class="hidden-mobile"></span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2024/08/30/ssm/springMVC/" title="springMVC">
+                        <span class="hidden-mobile">springMVC</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>
