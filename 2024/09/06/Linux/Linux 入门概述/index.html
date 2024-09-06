@@ -1,0 +1,747 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="glasss">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="第一节 Linux是什么 Linux，全称GNU&#x2F;Linux，其内核由林纳斯·本纳第克特·托瓦兹在赫尔辛基大学上学时出于个人爱好而编写的操作系统内核,于1991年10月5日首次发布,它主要受到Minix和Unix思想的启发，是一套免费使用和自由传播的类Unix操作系统,它是一个基于POSIX的多用户、多任务、支持多线程和多CPU的操作系统。它能运行主要的Unix工具软件、应用程序和网络协">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux 入门概述">
+<meta property="og:url" content="https://glassless.github.io/2024/09/06/Linux/Linux%20%E5%85%A5%E9%97%A8%E6%A6%82%E8%BF%B0/index.html">
+<meta property="og:site_name" content="Glass的博客">
+<meta property="og:description" content="第一节 Linux是什么 Linux，全称GNU&#x2F;Linux，其内核由林纳斯·本纳第克特·托瓦兹在赫尔辛基大学上学时出于个人爱好而编写的操作系统内核,于1991年10月5日首次发布,它主要受到Minix和Unix思想的启发，是一套免费使用和自由传播的类Unix操作系统,它是一个基于POSIX的多用户、多任务、支持多线程和多CPU的操作系统。它能运行主要的Unix工具软件、应用程序和网络协">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061002531.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061002587.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061002511.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061002564.png">
+<meta property="article:published_time" content="2024-09-06T02:00:05.000Z">
+<meta property="article:modified_time" content="2024-09-06T02:02:59.569Z">
+<meta property="article:author" content="glasss">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061002531.png">
+  
+  
+  
+  <title>Linux 入门概述 - Glass的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"glassless.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"Java"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Glass</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Linux 入门概述"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-09-06 10:00" pubdate>
+          2024年9月6日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          14 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Linux 入门概述</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="第一节-Linux是什么"><a href="#第一节-Linux是什么" class="headerlink" title="第一节 Linux是什么"></a>第一节 Linux是什么</h1><p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061002531.png" srcset="/img/loading.gif" lazyload></p>
+<p>Linux，全称GNU&#x2F;Linux，其内核由林纳斯·本纳第克特·托瓦兹在赫尔辛基大学上学时出于个人爱好而编写的操作系统内核,于1991年10月5日首次发布,它主要受到Minix和Unix思想的启发，是一套免费使用和自由传播的类Unix操作系统,它是一个基于POSIX的多用户、多任务、支持多线程和多CPU的操作系统。它能运行主要的Unix工具软件、应用程序和网络协议。它支持32位和64位硬件。Linux继承了Unix以网络为核心的设计思想，是一个性能稳定的多用户网络操作系统。</p>
+<h1 id="第二节-Linux的历史"><a href="#第二节-Linux的历史" class="headerlink" title="第二节 Linux的历史"></a>第二节 Linux的历史</h1><ul>
+<li>1946年2月14日在美国宾夕法尼亚大学诞生人类第一台计算机，用了18000个电子管，占地170平方米，重达30吨，耗电功率约150千瓦，每秒钟可进行高达5000次运算！！美国国防部用它来进行弹道计算！！</li>
+</ul>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061002587.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li><p>1969 年，Ken Thompson（C语言之父）利用汇编语言（B语言）开发了 File Server System（Unics，即 UNIX 的原型）。</p>
+</li>
+<li><p>1973 年，Dennis Ritchie 和 Ken Thompson 发明了 C 语言，随后二人使用C语言重写 UNIX 的内核。</p>
+</li>
+<li><p>1983年11月10日，为向IBM公司研发的计算机提供图形用户界面和多任务环境的操作系统，微软公司在纽约广场酒店宣布开发Microsoft Windows；同月，微软公司CEO比尔·盖茨向IBM展示了Windows的测试版本，命名为“界面管理器”（后经过营销专家罗兰·汉森的建议改为现名）</p>
+</li>
+<li><p>1985年11月20日，在宣布开发Windows两年后，微软公司正式发布Windows 1.0，硬件要求极高！！！最低256KB内存、两个双面软盘驱动器和一个图形适配卡。</p>
+</li>
+<li><p>1990年5月22日，Windows 3.0正式发布，改善了系统外观，增加了虚拟内存和VxD功能及程序管理器、文件管理器和打印管理器，在首销的六个月中便卖出了200多万份。</p>
+</li>
+<li><p>1991 年，芬兰赫尔辛基大学的研究生 Linus Torvalds 基于 gcc、bash 开发了针对 386 机器的 Linux 内核</p>
+</li>
+<li><p>1994 年，Torvalds 发布 Linux-v1.0。</p>
+</li>
+<li><p>1996 年，Torvalds 发布 Linux-v2.0，确定了 Linux 的吉祥物：企鹅</p>
+</li>
+<li><p>1997年经过许多失败的项目后，苹果于释出新操作系统——Mac OS的测试版，而后推出的正式版取得了巨大的成功。</p>
+</li>
+</ul>
+<h1 id="第三节-Linux的特点"><a href="#第三节-Linux的特点" class="headerlink" title="第三节 Linux的特点"></a>第三节 Linux的特点</h1><blockquote>
+<p>一 、一切皆文件</p>
+</blockquote>
+<p>系统中的所有都归结为一个文件，包括命令、硬件和软件设备、操作系统、进程等等对于操作系统内核而言，都被视为拥有各自特性或类型的文件,每个文件都有确定的用途</p>
+<blockquote>
+<p>二、 开源免费</p>
+</blockquote>
+<p>用户可以通过网络或其他途径免费获得，并可以任意修改其源代码。正是由于这一点，来自全世界的无数程序员参与了Linux的修改、编写工作，程序员可以根据自己的兴趣和灵感对其进行改变，这让Linux吸收了无数程序员的精华，不断壮大。</p>
+<blockquote>
+<p>三 、兼容POSIX.0标准</p>
+</blockquote>
+<p>许多用户在考虑使用Linux时，就想到以前在Windows下常见的程序是否能正常运行，完全兼容POSIX.0标准使得可以在Linux下通过相应的模拟器运行常见的DOS、Windows的程序。这为用户从Windows转到Linux奠定了基础。</p>
+<blockquote>
+<p>四、良好的图形用户界面</p>
+</blockquote>
+<p>Linux同时具有字符界面和图形界面。在字符界面通过指令来进行操作。它同时也提供了类似Windows图形界面，用户可以使用鼠标对其进行操作。</p>
+<blockquote>
+<p>五、多用户和多任务</p>
+</blockquote>
+<p>Linux支持多用户，各个用户对于自己的文件设备有自己特殊的权利，保证了各用户之间互不影响。多任务则是现代电脑最主要的一个特点，Linux可以使多个程序同时并独立地运行。</p>
+<blockquote>
+<p>六、支持多平台</p>
+</blockquote>
+<p>Linux可以运行在多种硬件平台上，如具有x86、680x0、SPARC、Alpha等处理器的平台。此外Linux还是一种嵌入式操作系统，可以运行在掌上电脑、机顶盒或游戏机上。2001年1月份发布的Linux 2.4版内核已经能够完全支持Intel64位芯片架构。同时Linux也支持多处理器技术。多个处理器同时工作，使系统性能大大提高。</p>
+<h1 id="第四节-Linux的应用场景"><a href="#第四节-Linux的应用场景" class="headerlink" title="第四节 Linux的应用场景"></a>第四节 Linux的应用场景</h1><p>Linux是一款开源、高效、稳定、安全漏洞少的操作系统，对程序员来说，其主要应用领域为服务端，是一款非常优秀的服务端操作系统。今天各种场合都有使用各种Linux发行版，从嵌入式设备到超级计算机，并且在服务器领域确定了地位，通常服务器使用组合：LAMP（Linux + Apache + MySQL + PHP）；LNMP（ Linux + Nginx+ MySQL + PHP  ）</p>
+<blockquote>
+<p>PC端Windows和服务端Linux对比</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061002511.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="第五节-Linux的常见版本"><a href="#第五节-Linux的常见版本" class="headerlink" title="第五节 Linux的常见版本"></a>第五节 Linux的常见版本</h1><blockquote>
+<p>严格来讲，Linux这个词本身只表示Linux内核，但实际上人们已经习惯了用Linux来形容整个基于Linux内核。各不同版本Linux，都是基于相同的内核版本，只是用的内核版本可能有高有低，同时各厂家自己加了自己有特点的工具，还有某些文件位置不一样，不同版本的Linux相同度可以达90%</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061002564.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>RedHat家族</p>
+</blockquote>
+<ul>
+<li>Redhat企业版：  这个需要授权费，主要用在高要求的服务器商用系统</li>
+<li>CentOS：CentOS全名为“社区企业操作系统”，CentOS社区将Red hat的网站上的所有源代码下载下来，进行重新编译。</li>
+<li>Fedara：被红帽公司定位为新技术的实验场地，许多新的技术都会在 FC 中检验</li>
+<li>其他 ：Scientific Linux  、Oracle Linux</li>
+</ul>
+<blockquote>
+<p>Debian 家族</p>
+</blockquote>
+<ul>
+<li>Debian：运行起来极其稳定，这使得它非常适合用于服务器，Debian这款操作系统无疑并不适合新手用户，而是适合系统管理员和高级用户。</li>
+<li>Ubuntu：Debian的一款衍生版，也是当今最受欢迎的免费操作系统,是一个以桌面应用为主的Linux操作系统</li>
+<li>其他基于Debian的版本有：Linux Mint、Knoppix、MEPIS、sidux、CrunchBang Linux、Chromium OS、Google Chrome OS</li>
+</ul>
+<blockquote>
+<p>SUSE家族</p>
+</blockquote>
+<ul>
+<li>SUSE：是欧洲大陆最流行的LINUX起源于德国，于2003年末被Novell收购</li>
+<li>SUSE Linux ：针对个人用户，可以免费下载</li>
+<li>SUSE Linux Enterprise Server&#x20;</li>
+<li>SUSE Linux Enterprise Desktop</li>
+<li>SUSE Manager</li>
+<li>SUSE Studio</li>
+</ul>
+<blockquote>
+<p>Gentoo家族</p>
+</blockquote>
+<ul>
+<li>Gentoo：是Linux世界最年轻的发行版本，正因为年轻，所以能吸取在她之前的所有发行版本的优点</li>
+<li>Gentoo Linux</li>
+<li>Sabayon Linux</li>
+<li>Calculate Linux</li>
+<li>Funtoo Linux</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Linux/" class="category-chain-item">Linux</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Linux/" class="print-no-link">#Linux</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Linux 入门概述</div>
+      <div>https://glassless.github.io/2024/09/06/Linux/Linux 入门概述/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>glasss</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年9月6日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/09/06/Linux/Linux%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%9A%84%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/" title="Linux虚拟机的安装部署">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Linux虚拟机的安装部署</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/09/03/ssm/MyBatisPlus(Spring)/" title="MyBatisPlus(Spring)">
+                        <span class="hidden-mobile">MyBatisPlus(Spring)</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

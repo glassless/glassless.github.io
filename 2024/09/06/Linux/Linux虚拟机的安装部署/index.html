@@ -1,0 +1,1385 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="glasss">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="第一节 VMware的作用 VMware软件的作用    第一步，在Windows上安装VMware软件 第二步，使用VM软件创建虚拟的计算机 第三步，在虚拟的计算机上安装Linux操作系统  第二节 VMware的安装 安装前，先检查BIOS中是否开启了虚拟化支持   打开任务管理器，查看性能，CPU部分，虚拟化处于“已启用”状态    如果没有开启，则需要进入BIOS系统，将 Virtuali">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux虚拟机的安装部署">
+<meta property="og:url" content="https://glassless.github.io/2024/09/06/Linux/Linux%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%9A%84%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/index.html">
+<meta property="og:site_name" content="Glass的博客">
+<meta property="og:description" content="第一节 VMware的作用 VMware软件的作用    第一步，在Windows上安装VMware软件 第二步，使用VM软件创建虚拟的计算机 第三步，在虚拟的计算机上安装Linux操作系统  第二节 VMware的安装 安装前，先检查BIOS中是否开启了虚拟化支持   打开任务管理器，查看性能，CPU部分，虚拟化处于“已启用”状态    如果没有开启，则需要进入BIOS系统，将 Virtuali">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061004877.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061004908.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061004012.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061004933.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061004954.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061004997.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061004450.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061004531.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061004643.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061004421.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061004575.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061004935.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061005812.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061005220.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061005307.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061005449.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061005664.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061005951.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061005121.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061005492.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061005471.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061005790.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061005950.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061005095.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061005148.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061005275.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061005564.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061005657.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061005218.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061005406.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061005549.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061005425.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061005763.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061005253.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061005768.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061005135.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061005320.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061005938.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061005053.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061005170.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061005451.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061005784.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061006969.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061006256.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061006658.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061006672.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061006906.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061006421.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061006527.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061006808.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061006000.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061006507.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061006755.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061006329.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061006760.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061006500.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061006032.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061007402.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061007597.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061007624.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061007894.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061007297.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061007902.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061007835.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061007916.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061007680.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061007739.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061007105.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061007032.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061007715.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061007357.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061007693.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061007353.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061007617.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061007412.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061007307.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061007292.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061007134.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008531.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008065.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008501.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008027.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008813.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008790.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008638.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008115.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008234.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061007307.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061007292.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008461.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008683.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008798.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008116.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008401.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008669.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008003.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008206.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008696.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008045.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008245.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008083.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008946.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008772.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008033.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008372.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008827.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008081.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008277.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008424.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008568.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008003.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008355.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008693.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008140.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008356.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008520.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061009685.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061009892.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061009126.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061009372.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061009595.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061009254.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061009773.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061009139.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061009673.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061009111.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061009708.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061009050.png">
+<meta property="og:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061009620.png">
+<meta property="article:published_time" content="2024-09-06T02:03:51.000Z">
+<meta property="article:modified_time" content="2024-09-06T02:09:32.037Z">
+<meta property="article:author" content="glasss">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061004877.png">
+  
+  
+  
+  <title>Linux虚拟机的安装部署 - Glass的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"glassless.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"Java"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Glass</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Linux虚拟机的安装部署"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-09-06 10:03" pubdate>
+          2024年9月6日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          32 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Linux虚拟机的安装部署</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="第一节-VMware的作用"><a href="#第一节-VMware的作用" class="headerlink" title="第一节 VMware的作用"></a>第一节 VMware的作用</h2><blockquote>
+<p>VMware软件的作用</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061004877.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>第一步，在Windows上安装VMware软件</li>
+<li>第二步，使用VM软件创建虚拟的计算机</li>
+<li>第三步，在虚拟的计算机上安装Linux操作系统</li>
+</ul>
+<h2 id="第二节-VMware的安装"><a href="#第二节-VMware的安装" class="headerlink" title="第二节 VMware的安装"></a>第二节 VMware的安装</h2><blockquote>
+<p>安装前，先检查BIOS中是否开启了虚拟化支持</p>
+</blockquote>
+<ul>
+<li>打开任务管理器，查看性能，CPU部分，虚拟化处于“已启用”状态</li>
+</ul>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061004908.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>如果没有开启，则需要进入BIOS系统，将 Virtualization Technology 改为Enalble，不同品牌的电脑进入BIOS的方式都不同，可以根据电脑品牌型号搜索对应的进入方式</li>
+</ul>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061004012.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>第一步：下载VMware安装包(<a target="_blank" rel="noopener" href="https://www.vmware.com/cn/products/workstation-pro/workstation-pro-evaluation.html" title="https://www.vmware.com/cn/products/workstation-pro/workstation-pro-evaluation.html">https://www.vmware.com/cn/products/workstation-pro/workstation-pro-evaluation.html</a>)，双击开始安装（注意：<strong>建议管理员身份运行</strong>）</p>
+</blockquote>
+<blockquote>
+<p>第二步：点击下一步</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061004933.png" srcset="/img/loading.gif" lazyload></p>
+<p>第三步：同意协议，然后下一步</p>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061004954.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>第四步：修改安装位置 勾选“添加到系统PATH”</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061004997.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>第五步: 不检查更新，不参与客户体验提升计划</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061004450.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>第六步：勾选“桌面”和“开始菜单程序文件夹”</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061004531.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>第七步：开始安装</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061004643.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>第八步：安装完成</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061004421.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>第九步：点击桌面图标启动程序</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061004575.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>第十步：购买软件后，获取许可证密钥，输入密钥即可正常使用。不购买可以试用30天。</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061004935.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061005812.png" srcset="/img/loading.gif" lazyload></p>
+<p>第三节 VMware 创建虚拟机</p>
+<blockquote>
+<p>第一步：选择创建新的虚拟计算机</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061005220.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>第二步：选择自定义</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061005307.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>第三步： 硬件兼容选择 Workstation 17.x。</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061005449.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>第四步：选择稍后安装操作系统</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061005664.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>第五步：预选将来要安装的操作系统和版本</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061005951.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>第六步：自定义虚拟机名称和虚拟机的存储位置</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061005121.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>第七步：设置虚拟计算机的CPU 数量，不要高于宿主机的实际</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061005492.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>第八步：设置虚拟计算机内存，2G即可</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061005471.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>第九步：设置虚拟计算机初始网络连接方式，建议使用NAT模式</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061005790.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>第十步：选择I&#x2F;O控制器类型，默认推荐即可</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061005950.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>第十一步：选择磁盘类型，默认推荐即可</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061005095.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>第十二步：选择创建新的虚拟磁盘</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061005148.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>第十三步：设定虚拟磁盘大小，并拆分成多个文件</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061005275.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>第十四步：检查虚拟磁盘文件名，默认即可</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061005564.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>第十五步：检查虚拟计算机设置的信息，然后点击完成</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061005657.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>第十六步： 安装完成</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061005218.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="第三节-VMware安装Linux"><a href="#第三节-VMware安装Linux" class="headerlink" title="第三节 VMware安装Linux"></a>第三节 VMware安装Linux</h2><blockquote>
+<p>第一步：下载Linux的ISO镜像文件，这里选择的版本是Centos7 64位</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs 纯文本">阿里镜像源网站：<br>https://developer.aliyun.com/mirror/<br>清华大学镜像源网站:<br>https://mirrors.tuna.tsinghua.edu.cn/<br></code></pre></td></tr></table></figure>
+
+<p>下载好的镜像文件存于一个比较稳妥的目录下</p>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061005406.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>第二步：选中对应的虚拟机然后点击虚拟机选项，找到设置</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061005549.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>第二步：找到CD、DVD选项&gt;使用IOS 镜像文件&gt;浏览&gt;选择的IOS镜像文件</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061005425.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>第三步：开启虚拟机，开始对虚拟机特征进行设置</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061005763.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>第四步：选择 Install Centos 7</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061005253.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>第五步：选择安装过程中使用的提示语言</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061005768.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>第六步：设置时区，时间和日期，与计算机日期一致即可</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061005135.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061005320.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>第七步：软件选择GNOME，带有图形界面模式的Linux 然后点击完成</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061005938.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061005053.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>第八步：等待安装源和软件选择的支持检查</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061005170.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>第九步： 设置安装位置，核对信息，然后点击完成即可</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061005451.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061005784.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>第十步： 设置网络和主机名，开启以太网，注意主机名和当前主机IP信息</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061006969.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061006256.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>第十一步： KDUMP崩溃存储机制，可以关闭</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061006658.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>第十二步：开始安装</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061006672.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>第十三步：设置超级管理员root用户的密码，配置完成，点击重启</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061006906.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061006421.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>第十四步：重启后，选择第一项，开启虚拟机</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061006527.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>第十五步：第一次进入虚拟机，需要接受许可</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061006808.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061006000.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>第十六步： 选择汉语，然后前进</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061006507.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>第十七步：选择输入，汉语，然后前进</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061006755.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>第十八步：位置服务，可以关闭，然后前进</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061006329.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>第十九步：选择时区，已经设置过，然后前进</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061006760.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>第二十步：在线账号创建，选择跳过</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061006500.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>第二十一步：创建用于第一次登陆系统的普通用户账号，这里绝对不可以使用root作为用户名</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061006032.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>第二十二步： 设置普通账户密码</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061007402.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>第二十三步：进入系统后，点击关机按钮，找到用户，选择注销</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061007597.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061007624.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>第二十四步：点击未列出，输入超级管理员的账号密码，以超级管理员身份登录，前面的用户设置重复一遍后，即可进入系统</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061007894.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061007297.png" srcset="/img/loading.gif" lazyload></p>
+<p>输入root用户登录：</p>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061007902.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061007835.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>第二十五步：如果需要关机，一定要先将虚拟机关机或者挂起后，再关闭VMware，然后关闭windows</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061007916.png" srcset="/img/loading.gif" lazyload></p>
+<p>要想让鼠标从VMware的 虚拟中脱离出来，需要按快捷键 ctrl+alt</p>
+<h2 id="第四节-VMware常见问题"><a href="#第四节-VMware常见问题" class="headerlink" title="第四节 VMware常见问题"></a>第四节 VMware常见问题</h2><blockquote>
+<p>问题1 启动VM报0xc0000005，这是与windows Hyper-V服务冲突造成的</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061007680.png" srcset="/img/loading.gif" lazyload></p>
+<p>&#x20;         1 关闭以下服务</p>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061007739.png" srcset="/img/loading.gif" lazyload></p>
+<p>&#x20;         2 以管理员方式运行以下命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs 纯文本">bcdedit /set hypervisorlaunchtype off<br></code></pre></td></tr></table></figure>
+
+<p>&#x20;         3 重启电脑</p>
+<blockquote>
+<p>问题2 启动VMware蓝屏问题</p>
+</blockquote>
+<p>&#x20;         1 打开控制面板，点击卸载程序</p>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061007105.png" srcset="/img/loading.gif" lazyload></p>
+<p>&#x20;        2 点击启用或者关闭Windows功能</p>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061007032.png" srcset="/img/loading.gif" lazyload></p>
+<p>高版本的windows在不同的位置：</p>
+<p>&#x20; <img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061007715.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061007357.png" srcset="/img/loading.gif" lazyload></p>
+<p>3 勾选如下两个选项</p>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061007693.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="part2-Linux的目录结构"><a href="#part2-Linux的目录结构" class="headerlink" title="part2 Linux的目录结构"></a>part2 Linux的目录结构</h1><h2 id="学习目标"><a href="#学习目标" class="headerlink" title="学习目标"></a>学习目标</h2><p>1 熟悉Linux目录的组织习惯</p>
+<p>2 熟悉一些Linux的常见目录及作用</p>
+<h2 id="第一节-Linux中的常见目录"><a href="#第一节-Linux中的常见目录" class="headerlink" title="第一节 Linux中的常见目录"></a>第一节 Linux中的常见目录</h2><blockquote>
+<p>Linux常见的目录结构，不同版本的Linux目录结构可能略有不同</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061007353.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>Centos7的文件目录结构</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061007617.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>Linux根目录下的常见目录及作用</p>
+</blockquote>
+<p>1. &#x2F;bin：★(&#x2F;usr&#x2F;bin,&#x2F;usr&#x2F;local&#x2F;bin)</p>
+<p>是Binary的缩写, 这个目录存放着最经常使用的命令,Linux默认的环境变量已经包含该路径,所以可以直接使用该路径下的指令如 cd指令&#x20;</p>
+<p>可以通过echo $PATH查看系统环境变量来看是否包含了该目录</p>
+<p>2. &#x2F;sbin：(&#x2F;usr&#x2F;sbin, &#x2F;usr&#x2F;local&#x2F;sbin)</p>
+<p>s就是Super User的意思，这里存放的是系统管理员使用的系统管理程序。</p>
+<p>以上6个目录，任何命令在任意目录下都可执行命令</p>
+<p>3. &#x2F;home：★</p>
+<p>存放普通用户的主目录，在Linux中每个用户都有一个自己的目录，一般该目录名是以用户的账号命名的。</p>
+<p>4. &#x2F;root：★</p>
+<p>该目录为系统管理员，也称作超级权限者的用户主目录。</p>
+<p>5. &#x2F;lib：</p>
+<p>系统开机所需要最基本的动态连接共享库，其作用类似于Windows里的DLL文件。几乎所有的应用程序都需要用到这些共享库。</p>
+<p>6. &#x2F;lost+found：</p>
+<p>这个目录一般情况下是空的，当系统非法关机后，这里就存放了一些文件。</p>
+<p>7. &#x2F;etc：★</p>
+<p>所有的系统管理所需要的配置文件和子目录。my.cnf</p>
+<p>8. &#x2F;usr：★&#x20;</p>
+<p>这是一个非常重要的目录，用户的很多应用程序和文件都放在这个目录下，类似与windows下的program files目录。</p>
+<p>9. &#x2F;boot：★</p>
+<p>这里存放的是启动Linux时使用的一些核心文件，包括一些连接文件以及镜像文件，自己的安装别放这里&#x20;</p>
+<p>10. &#x2F;proc：</p>
+<p>这个目录是一个虚拟的目录，它是系统内存的映射，我们可以通过直接访问这个目录来获取系统信息。</p>
+<p>11. &#x2F;srv：</p>
+<p>service缩写，该目录存放一些服务启动之后需要提取的数据。</p>
+<p>12.    &#x2F;sys：&#x20;</p>
+<p>这是linux2.6内核的一个很大的变化。该目录下安装了2.6内核中新出现的一个文件系统 sysfs 。（内核）</p>
+<p>13.    &#x2F;tmp：</p>
+<p>这个目录是用来存放一些临时文件的。</p>
+<p>14.    &#x2F;dev：★</p>
+<p>Device(设备)的缩写,类似windows的设备管理器，把所有的硬件用文件的形式存储。&#x20;</p>
+<p>15.    &#x2F;media：★</p>
+<p>linux系统会自动识别一些设备，例如U盘、光驱等等，当识别后，linux会把识别的设备挂载到这个目录下。CentOS6 就在&#x2F;media下,CentOS7换目录了&#x2F;</p>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061007412.png" srcset="/img/loading.gif" lazyload></p>
+<p>16.    &#x2F;mnt：★</p>
+<p>系统提供该目录是为了让用户临时挂载别的文件系统的，我们可以将光驱挂载在&#x2F;mnt&#x2F;上，然后进入该目录就可以查看光驱里的内容了。</p>
+<p>17.    &#x2F;opt：★</p>
+<p>这是给主机额外安装软件所摆放的目录。</p>
+<p>比如你安装JDK、Tomcat则就可以放到这个目录下。默认是空的。</p>
+<p>18.    &#x2F;usr&#x2F;local: ★</p>
+<p>这是另一个给主机额外安装软件所摆放的目录.一般是通过编译源码方式安装的程序。</p>
+<p>19.    &#x2F;var：★</p>
+<p>这个目录中存放着在不断扩充着的东西，我们习惯将那些经常被修改的目录放在这个目录下。包括各种日志文件。</p>
+<h1 id="part3-虚拟机网络配置"><a href="#part3-虚拟机网络配置" class="headerlink" title="part3 虚拟机网络配置"></a>part3 虚拟机网络配置</h1><h2 id="学习目标-1"><a href="#学习目标-1" class="headerlink" title="学习目标"></a>学习目标</h2><p>1 熟练查看虚拟机网络配置信息</p>
+<p>2 熟悉WMware的联网模式及特点</p>
+<p>3 熟练在NAT模式下,将虚拟机IP设置为固定IP</p>
+<h2 id="第一节-查看网络信息"><a href="#第一节-查看网络信息" class="headerlink" title="第一节 查看网络信息"></a>第一节 查看网络信息</h2><blockquote>
+<p>在VMware中查看当前虚拟机的联网模式</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061007307.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061007292.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>模式1  仅主机模式特点<ul>
+<li>特点&#x20;<ul>
+<li>虚拟机只能和宿主机之间实现通信</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>只有宿主机和虚拟机之前能通信,虚拟机联网需要做更多的配置</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061007134.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>模式2 桥接模式特点<ul>
+<li>特点<ul>
+<li>宿主机和虚拟机,都是由局域网路由(DHCP)进行IP的分配</li>
+<li>宿主机和本地的虚拟机之间可以进行通信</li>
+<li>局域网内其他机器也可以与虚拟机进行通信</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>虚拟机会占用大量的IP,局域网内如果机器太多,或者虚拟机太多,那么会出现大量的IP冲突</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008531.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008065.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>模式3 NAT模式特点<ul>
+<li>特点<ul>
+<li>宿主机和其他机器的IP由局域网路由进行IP的分配,虚拟机的IP通过VMnet8虚拟交换机进行分配</li>
+<li>宿主机和本地的虚拟机之间可以进行通信</li>
+<li>不会占用宿主机所在路由IP,不会造成IP冲突</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>局域网内的机器无法与其他机器上的虚拟机进行通信</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008501.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008027.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>关于模式的选择<ul>
+<li>什么时候选择NAT模式?<ul>
+<li>在教室内,因为大量同学使用同一个路由,避免大量的IP冲突</li>
+<li>我们在学习阶段,主要满足我们自己的计算机(宿主机)和本地虚拟机之间的通信以及虚拟机的联网</li>
+</ul>
+</li>
+<li>什么时候选择桥接模式?<ul>
+<li>自己独立的路由,想在局域网内实现虚拟机和其他计算机之间的通信</li>
+</ul>
+</li>
+<li>未来如何选择<ul>
+<li>未来这些问题会由运维人员来处理</li>
+<li>未来我们使用的服务器不会在本地,使用远程服务器,自然也不需要我们来处理这种问题</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="第二节-修改网络配置信息"><a href="#第二节-修改网络配置信息" class="headerlink" title="第二节 修改网络配置信息"></a>第二节 修改网络配置信息</h2><blockquote>
+<p>第一步:  打开VMware,打开虚拟网络编辑器</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008813.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>第二步: 选择NAT模式,对网段进行调整</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008790.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>第三步: 设置NAT模式的网关</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008638.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008115.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>第四步: 检查是否有漏选的选项</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008234.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>第五步: 修改虚拟机自己的网络模式选用模式为NAT</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061007307.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061007292.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>第六步: 修改虚拟机ens33网卡的网络配置信息</p>
+</blockquote>
+<h1 id="part4-虚拟机管理操作"><a href="#part4-虚拟机管理操作" class="headerlink" title="part4 虚拟机管理操作"></a>part4 虚拟机管理操作</h1><h2 id="学习目标-2"><a href="#学习目标-2" class="headerlink" title="学习目标"></a>学习目标</h2><p>1 熟练掌握虚拟机快照的使用和管理</p>
+<p>2 熟练掌握通过克隆方式创建虚拟机</p>
+<h2 id="第一节-VMware为虚拟机拍摄快照"><a href="#第一节-VMware为虚拟机拍摄快照" class="headerlink" title="第一节 VMware为虚拟机拍摄快照"></a>第一节 VMware为虚拟机拍摄快照</h2><blockquote>
+<p>通过快照可快速保存虚拟机当前的状态,后续可以使用快照,将虚拟机还原到某个快照的状态. 如某个软件安装失败,可以通过快照快速还原回指定的某个状态</p>
+</blockquote>
+<ul>
+<li>选择指定的虚拟机拍摄快照</li>
+</ul>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008461.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>输入快照名称,添加快照描述</li>
+</ul>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008683.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>通过快照恢复虚拟机状态</li>
+</ul>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008798.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>管理和废弃快照</li>
+</ul>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008116.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008401.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="第二节-VMware为虚拟机执行克隆"><a href="#第二节-VMware为虚拟机执行克隆" class="headerlink" title="第二节 VMware为虚拟机执行克隆"></a>第二节 VMware为虚拟机执行克隆</h2><blockquote>
+<p>第一步: 关闭要克隆的虚拟机</p>
+</blockquote>
+<blockquote>
+<p>第二步: 选中虚拟机,右击&gt;管理&gt;克隆</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008669.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>第三步: 可以选择虚拟当前状态和某个快照状态进行克隆</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008003.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>第四步: 创建完整克隆</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008206.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>第五步: 注意修改克隆之后的虚拟机的名称和存放路径</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008696.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>第六步: 克隆完成,关闭即可</p>
+</blockquote>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008045.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>第七步: 修改克隆出来的虚拟机的主机名和IP配置,然后重启</p>
+</blockquote>
+<h1 id="part5-远程工具的使用"><a href="#part5-远程工具的使用" class="headerlink" title="part5 远程工具的使用"></a>part5 远程工具的使用</h1><h2 id="学习目标-3"><a href="#学习目标-3" class="headerlink" title="学习目标"></a>学习目标</h2><p>1 熟练安装和使用Xhsell</p>
+<p>2 熟练安装和使用Xftp</p>
+<p>3 熟练安装和使用 finalshell</p>
+<h2 id="第一节-Xshell的安装和使用"><a href="#第一节-Xshell的安装和使用" class="headerlink" title="第一节 Xshell的安装和使用"></a>第一节 Xshell的安装和使用</h2><blockquote>
+<p>Linux一般作为服务器使用,服务器一般都放在机房,不可能是你身边的Linux服务器,这时候我们需要一些工具来连接远程的Linux服务器来进行操作,xshell就是一种远程连接工具,其他Windows上常见的远程登录客户端有 SecureCRT, Putty,SSHSecure Shell,等</p>
+</blockquote>
+<blockquote>
+<p>Linux系统中是通过SSH服务 实现的远程登录功能,默认ssh服务的端口号是22</p>
+</blockquote>
+<ul>
+<li>双击安装程序,进行安装</li>
+</ul>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008245.png" srcset="/img/loading.gif" lazyload alt="1"></p>
+<ul>
+<li>开始安装</li>
+</ul>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008083.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>选择商业</li>
+</ul>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008946.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>接收许可协议</li>
+</ul>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008772.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>购买软件后输入密钥</li>
+</ul>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008033.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>选择合适的安装位置</li>
+</ul>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008372.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>选择程序文件夹,直接下一步</li>
+</ul>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008827.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>选择语言</li>
+</ul>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008081.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>安装进度</li>
+</ul>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008277.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>安装完成</li>
+</ul>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008424.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>重启windows计算机</li>
+</ul>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008568.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>启动Xshell,建立和服务器连接</li>
+</ul>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008003.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>输入虚拟机IP和连接名称</li>
+</ul>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008355.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>点击连接远程Linux</li>
+</ul>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008693.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>接受主机密钥并保存</li>
+</ul>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008140.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>输入并记住用户名</li>
+</ul>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008356.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>输入并记住密码</li>
+</ul>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061008520.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>连接成功</li>
+</ul>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061009685.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>设置字体大小</li>
+</ul>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061009892.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>断开连接</li>
+</ul>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061009126.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>查看已经创建好的连接</li>
+</ul>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061009372.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>点击连接即可自动连接对应的服务器</li>
+</ul>
+<h2 id="第二节-Xftp的安装和使用"><a href="#第二节-Xftp的安装和使用" class="headerlink" title="第二节 Xftp的安装和使用"></a>第二节 Xftp的安装和使用</h2><blockquote>
+<p>通过Xshell可以连接远程Linux服务器,并通过命令操作远程虚拟机,但是Xshell无法完成较大的文件上传和下载,此时需要Xftp来完成</p>
+</blockquote>
+<ul>
+<li>安装过程和Xshell基本一致</li>
+<li>安装完成后,可以通过XShell来开启Xftp,然后执行文件上传下载操作</li>
+</ul>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061009595.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061009254.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>xshell连接虚拟机如果比较慢<ul>
+<li>修改&#x2F;etc&#x2F;ssh 目录下的配置文件 sshd_config 命令 vim&#x2F;etc&#x2F;ssh&#x2F;sshd_config</li>
+</ul>
+</li>
+<li>在sshd_config 115行,将 UseDNS前面的#去掉,然后将值改为no<ul>
+<li>重启虚拟机,应该就能很快连接上</li>
+</ul>
+</li>
+</ul>
+<h2 id="第三节-finalShell的安装和使用"><a href="#第三节-finalShell的安装和使用" class="headerlink" title="第三节 finalShell的安装和使用"></a>第三节 finalShell的安装和使用</h2><blockquote>
+<p>finalShell是一款国产的服务器远程连接工具,集成了命令操作和文件上传功能,基础功能基本免费</p>
+</blockquote>
+<ul>
+<li>双击安装包,开始安装</li>
+</ul>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061009773.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>选择合适的安装位置</li>
+</ul>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061009139.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>点击确定继续安装</li>
+</ul>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061009673.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>安装完成启动程序创建连接</li>
+</ul>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061009111.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061009708.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>连接成功,查看已创建的连接列表</li>
+</ul>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061009050.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>查看服务器目前的状态信息</li>
+</ul>
+<p><img src="https://note-1304926383.cos.ap-beijing.myqcloud.com/2024/linux/202409061009620.png" srcset="/img/loading.gif" lazyload></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Linux/" class="category-chain-item">Linux</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Linux/" class="print-no-link">#Linux</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Linux虚拟机的安装部署</div>
+      <div>https://glassless.github.io/2024/09/06/Linux/Linux虚拟机的安装部署/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>glasss</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年9月6日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/09/06/Linux/Linux%E9%98%BF%E9%87%8C%E4%BA%91ECS%E7%9A%84%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/" title="Linux阿里云ECS的安装部署">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Linux阿里云ECS的安装部署</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/09/06/Linux/Linux%20%E5%85%A5%E9%97%A8%E6%A6%82%E8%BF%B0/" title="Linux 入门概述">
+                        <span class="hidden-mobile">Linux 入门概述</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
