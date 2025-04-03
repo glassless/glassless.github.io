@@ -1,0 +1,1529 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="glasss">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="1. js1.1 闭包概念（什么是闭包）： 能够在函数内部访问另一个函数内部的变量叫做闭包 使用场景  创建私有变量 vue2中的data保证唯一性，防止多次使用组件时造成共享  延长变量的生命周期 一般函数在执行结束后就会被销毁回收，但是闭包会保存该函数的作用域，达到延长变量生命周期的目的   应用 应用：柯里化函数 应用：防抖节流 应用：react中的hooks，每一次数据的改变都会让组件重新">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端面经">
+<meta property="og:url" content="https://glassless.github.io/2025/04/03/%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Glass的博客">
+<meta property="og:description" content="1. js1.1 闭包概念（什么是闭包）： 能够在函数内部访问另一个函数内部的变量叫做闭包 使用场景  创建私有变量 vue2中的data保证唯一性，防止多次使用组件时造成共享  延长变量的生命周期 一般函数在执行结束后就会被销毁回收，但是闭包会保存该函数的作用域，达到延长变量生命周期的目的   应用 应用：柯里化函数 应用：防抖节流 应用：react中的hooks，每一次数据的改变都会让组件重新">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-04-02T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-04-03T02:44:16.338Z">
+<meta property="article:author" content="glasss">
+<meta property="article:tag" content="前端面经">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>前端面经 - Glass的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"glassless.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"Java"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Glass</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="前端面经"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-04-03 00:00" pubdate>
+          2025年4月3日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          22k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          180 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">前端面经</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="1-js"><a href="#1-js" class="headerlink" title="1. js"></a><strong>1</strong>. js</h1><h2 id="1-1-闭包"><a href="#1-1-闭包" class="headerlink" title="1.1 闭包"></a>1.1 闭包</h2><p><strong>概念（什么是闭包）：</strong></p>
+<p>能够在函数内部访问另一个函数内部的变量叫做闭包</p>
+<p><strong>使用场景</strong></p>
+<ol>
+<li><p>创建私有变量</p>
+<p>vue2中的data保证唯一性，防止多次使用组件时造成共享</p>
+</li>
+<li><p>延长变量的生命周期</p>
+<p>一般函数在执行结束后就会被销毁回收，但是闭包会保存该函数的作用域，达到延长变量生命周期的目的</p>
+</li>
+</ol>
+<p><strong>应用</strong></p>
+<p>应用：柯里化函数</p>
+<p>应用：防抖节流</p>
+<p>应用：react中的hooks，每一次数据的改变都会让组件重新渲染，有些情况下数据一直使用的是第一次渲染的值</p>
+<p><strong>优缺点</strong></p>
+<p>缺点：闭包会保留函数的作用域，过渡的使用闭包会导致内存泄漏</p>
+<p>优点：延长变量的生命周期、定义私有变量（vue中的data函数）、让代码变得更加灵活</p>
+<h2 id="1-2-事件循环"><a href="#1-2-事件循环" class="headerlink" title="1.2 事件循环"></a>1.2 事件循环</h2><p><strong>事件循环</strong></p>
+<p>浏览器事件循环：<br>JavaScript的代码主要跑在主线程中，代码执行过程中，创建执行上下文，并将其压入执行栈中。<br>如果遇到异步任务，则交给浏览器其他线程执行或者加入到异步任务队列中。<br>当主线程的代码执行完毕之后，浏览器会查看异步任务队列中是否还存在任务需要执行，如果有，则取出任务，将其压入到主线程执行栈中，继续执行。<br>主线程从任务队列中读取任务是不断循环的，这个就叫任务循环，每一个任务都是一个事件，所以也叫事件循环。</p>
+<p><strong>宏任务与微任务的区分是为了做什么？优先级？</strong></p>
+<p>宏任务需要浏览器的其他线程支持执行，比如，定时器线程需要执行定时器任务，而微任务并不需要浏览器其他线程执行。当主线成的任务执行完成之后，会优先清空微任务队列中的任务，而后才会执行宏任务队列中的任务</p>
+<h2 id="1-3-原型-原型链"><a href="#1-3-原型-原型链" class="headerlink" title="1.3 原型&#x2F;原型链"></a>1.3 原型&#x2F;原型链</h2><p><strong>原型的本质</strong></p>
+<p>本质就是一个对象，称之为prototype</p>
+<p><strong>原型的意义</strong></p>
+<p>在于通过构造函数实例化出来的对象能够共享方法和属性，避免造成空间浪费</p>
+<p><strong>原型与构造函数</strong></p>
+<p>一般来说，每一个函数身上都存在一个对象prototype，该对象就是原型对象；而原型对象中存在一个construct属性指向构造函数，所以构造函数与原型对象存在循环引用</p>
+<p><strong>原型对象与实例</strong></p>
+<p>实例对象本身存在一个属性__proto__指向原型对象 ，当访问实例的属性或者方法时，如果找不到该属性或方法时，则会通过__proto__向原型对象身上查询，如果还找不到，则继续通过__proto__查询，直到找到null为止，Object.prototype原型对象就为null</p>
+<p><strong>原型链</strong></p>
+<p>通过原型一层层相互关联的结构就称为原型链</p>
+<h2 id="1-4-this指向问题"><a href="#1-4-this指向问题" class="headerlink" title="1.4 this指向问题"></a>1.4 this指向问题</h2><p>绝大多数情况下，函数调用的方式决定了this的指向（运行时决定this指向）。</p>
+<ol>
+<li>非严格模式下，全局的this指向了window，严格模式下，全局this指向undefined</li>
+<li>对象的属性方法中，this指向了对象本身</li>
+<li>call、apply、bind能够改变this的指向</li>
+<li>箭头函数没有自己的this，它的this指向的是该箭头函数声明的父级作用域</li>
+</ol>
+<h2 id="1-5-js中，数据在堆和栈中的存储方式"><a href="#1-5-js中，数据在堆和栈中的存储方式" class="headerlink" title="1.5 js中，数据在堆和栈中的存储方式"></a>1.5 js中，数据在堆和栈中的存储方式</h2><ol>
+<li>基本数据类型大小固定，并且操作简单，这些数据会被放在栈中</li>
+<li>引用数据类型大小并不固定，这些数据会被存储在堆中 。</li>
+<li>这样做的好处是使内存占用小。栈的使用效率高。</li>
+<li>栈中的数据当执行环境结束后，会立即回收。堆中的引用数据类型只有当所有的引用结束后才会被回收。</li>
+</ol>
+<h2 id="1-6-js语法基本"><a href="#1-6-js语法基本" class="headerlink" title="1.6 js语法基本"></a>1.6 js语法基本</h2><p><strong>判断数据类型的方式</strong></p>
+<ol>
+<li>typeof [value] ，无法判断对象还是数组，并且 type null &#x3D;&#x3D;&#x3D; ‘object’</li>
+<li>instanceof 通过构造函数判断数据类型</li>
+<li><a target="_blank" rel="noopener" href="http://object.prototype.tostring.call/">Object.prototype.toString.call</a>() 判断基本数据类型，返回形式 “[Object “ + tag + “]”</li>
+<li>contruct ，默认情况下，所有的对象都存在一个原型对象 prototype，而原型对象身上存在construct属性指向构造函数。</li>
+</ol>
+<p><strong>ES6新特性</strong></p>
+<ul>
+<li>let、const</li>
+<li>模板字符串</li>
+<li>箭头函数、rest函数参数</li>
+<li>对象扩展字符</li>
+<li>for…of</li>
+<li>Set、Map</li>
+<li>…</li>
+</ul>
+<p><strong>箭头函数与普通函数的区别</strong></p>
+<ol>
+<li>箭头函数没有原型对象，没有this，它的this指向的是父级作用域</li>
+<li>箭头函数没有arguments对象</li>
+<li>call、apply、bind也无法改变箭头函数的指向</li>
+<li>箭头函数不能作为构造函数使用</li>
+</ol>
+<p><strong>async和await的原理</strong></p>
+<p>async关键字：async是用来声明异步函数的关键字，当函数被声明为async时，它的返回值会被包裹为一个Promsie对象。<br>await关键字：await只能在async函数中使用，它用于等待一个Promsie解决。当await后面跟一个Promsie时，async函数会被暂停执行，直到Promise被解决。</p>
+<p>原理：</p>
+<ol>
+<li>事件循环和宏任务：JavaScript是运行在单线程上的，利用事件循环来处理异步操作。async&#x2F;await并不会改变单线程模型，而是利用事件循环和微任务来实现异步的操作。</li>
+<li>生成器函数：async&#x2F;await实际上是建立在es6 引入的生成器函数(Generators)之上的语法糖。一个async函数可以被看做一个返回Promsie的生成器函数，而await则是暂停和恢复生成器函数的执行。</li>
+<li>执行上下文：当await被执行时，它会保存当前的执行上下文，然后释放控制权给事件循环。当Promsie被解决，事件循环会恢复执行上下文，然后继续执行await之后的代码.</li>
+<li>错误传播：如果await后面的Promsie被拒绝，错误会被传播到async函数的调用栈中，除非被try…catch捕获。</li>
+</ol>
+<p><strong>new关键字做了什么</strong></p>
+<ol>
+<li>在内存中创建一个空对象</li>
+<li>空对象的指针__proto__指向构造函数的原型对象prototype</li>
+<li>在空对象的作用域下执行构造函数。（给对象身上挂在构造函数的属性和方法）</li>
+<li>返回这个对象</li>
+</ol>
+<p>`&#96;&#96;js<br>function myNew (fn, …args) {<br> &#x2F;&#x2F; 创建一个空对象<br> let o &#x3D; {}<br> &#x2F;&#x2F; 这个对象的“指针”指向构造函数的原型对象，意在将构造函数的原型对象挂载到目标对象上<br> o.__proto__ &#x3D; fn.prototype<br> &#x2F;&#x2F; 在目标对象的作用域内执行构造函数，意在将构造函数内this的属性挂载到目标对象(this指向目标对象)<br> fn.apply(o, args)<br> &#x2F;&#x2F; 返回目标对象<br> return o<br>}<br>`&#96;&#96;</p>
+<p><strong>Promise</strong></p>
+<h1 id="2-ts"><a href="#2-ts" class="headerlink" title="2. ts"></a>2. ts</h1><p><strong>type与interface的区别</strong></p>
+<ol>
+<li>type需要通过等号进行赋值</li>
+<li>interface可以继承，而type不行，type只能实现交叉类型</li>
+<li>interface可以重复声明，而type不行</li>
+</ol>
+<p><strong>any、unknow、null的区别</strong></p>
+<p>any和unknown是所有类型中的顶级类型，所有的类型都是他俩的子类型，而null则相反，它是所有类型的子类型</p>
+<p><strong>interface和class的属性能覆盖吗</strong></p>
+<p>interface和class是ts中两种不同的概念。<br>interface是一种抽象，而class则是JavaScript构造函数，能够实例化对象。<br>interface可以描述一个class的形状。</p>
+<p><strong>type与interface的区别</strong></p>
+<ol>
+<li>type需要通过等号进行赋值</li>
+<li>interface可以继承，而type不行，type只能实现交叉类型</li>
+<li>interface可以重复声明，而type不行</li>
+</ol>
+<p><strong>any、unknow、null的区别</strong></p>
+<p>any和unknown是所有类型中的顶级类型，所有的类型都是他俩的子类型，而null则相反，它是所有类型的子类型</p>
+<p><strong>interface和class的属性能覆盖吗</strong></p>
+<p>interface和class是ts中两种不同的概念。<br>interface是一种抽象，而class则是JavaScript构造函数，能够实例化对象。<br>interface可以描述一个class的形状。</p>
+<h1 id="3-css"><a href="#3-css" class="headerlink" title="3. css"></a>3. css</h1><p><strong>BFC</strong></p>
+<p>Block Formatting Context 块级格式化上下文，指一块独立的渲染区域或者说一个隔离的独立容器。</p>
+<p>形成BFC条件：</p>
+<ul>
+<li>html</li>
+<li>浮动元素：float</li>
+<li>定位元素：position: absolute&#x2F;fixed</li>
+<li>display : flex&#x2F;inline-block&#x2F;tabel-cell</li>
+<li>overflow: hidden&#x2F;scroll&#x2F;auto</li>
+</ul>
+<p>BFC特性：</p>
+<ul>
+<li>同一个BFC容器中，相邻的两个标签外边距会重叠</li>
+<li>BFC是页面上的一个独立容器，内部元素不会影响到外部元素，外部元素也不会影响到内部元素</li>
+<li>计算BFC高度时，浮动元素也会参与计算</li>
+<li>BFC容器不会与float浮动元素区域重叠</li>
+</ul>
+<p>BFC解决的问题：</p>
+<ul>
+<li>外边距重叠问题。将容器设置为BFC容器，就不会发生重叠</li>
+<li>实现两栏、三栏布局</li>
+<li>清除元素浮动：overflow: hidden</li>
+<li>解决文字环绕问题: float: left</li>
+</ul>
+<h1 id="4-html"><a href="#4-html" class="headerlink" title="4. html"></a>4. html</h1><p><strong>defer和async的区别</strong></p>
+<p>defer和async都是异步加载远端脚本资源。<br>defer：</p>
+<ul>
+<li>异步加载资源，不会阻塞文档的渲染，当文档渲染完成之后执行defer脚本</li>
+<li>如果存在多个defer脚本，则按照顺序执行</li>
+</ul>
+<p>async：</p>
+<ul>
+<li>异步加载脚本资源，当资源加载完成，会立即执行脚本，此时如果文档还没有渲染完成则会阻塞文档的渲染</li>
+<li>async脚本资源的执行是无法预料的</li>
+</ul>
+<h1 id="5-浏览器"><a href="#5-浏览器" class="headerlink" title="5. 浏览器"></a>5. 浏览器</h1><p><strong>history模式与hash模式的区别</strong></p>
+<p>history模式和hash模式是用来管理浏览器的历史纪录和页面导航。<br>hash：</p>
+<ul>
+<li>URL结构：hash模式的URL结构通过包含一个#号，后面跟着片段标识符。</li>
+<li>浏览器历史：hash的变化不会触发页面的刷新，浏览器将#后面的部分视为片段标识符，不会认为它是路径的一部分，所以浏览器不会向服务器发送请求。</li>
+<li>兼容性：hash的兼容性好。</li>
+<li>实现简单：hash模式不需要向服务器配置信息，因为它不依赖于服务器来解析url</li>
+<li>页面滚动：当使用hash模式时，浏览器会自动滚动到锚点位置，可能并不是我们想要的位置。</li>
+</ul>
+<p>history：</p>
+<ul>
+<li>URL结构：history模式的URL结构看起来更像是传统的多页应用</li>
+<li>浏览器历史：history模式通过pushState和replaceState来操作浏览器历史纪录，所以并不会导致页面刷新</li>
+<li>服务器配置：history需要服务器配置，以变所有的路由都指向同一个入口（html文件），然后由前端路由来处理不同的路径</li>
+</ul>
+<p><strong>从浏览器输入url发生了什么</strong></p>
+<ol>
+<li>浏览器首先解析URL，确定要访问的协议、域名、端口、路径</li>
+<li>DNS解析，如果浏览器没有命中缓存中域名对应的IP地址，它会向DNS服务发起请求，将域名转化为对应的IP地址</li>
+<li>建立连接，如果时HTTPS，浏览器会通过TLS协议与服务器建立安全连接。</li>
+<li>发送HTTP&#x2F;HTTPS请求</li>
+<li>服务器处理请求并响应</li>
+<li>浏览器接收响应，解析状态码和响应头，然后浏览器会解析响应体中的内容</li>
+<li>内容渲染，<ol>
+<li>解析HTML文档，创建DOM树</li>
+<li>解析CSS样式表，创建CSSOM树</li>
+<li>将DOM树和CSSOM树合并，创建渲染树</li>
+<li>布局和绘制</li>
+</ol>
+</li>
+<li>执行Javascript，浏览器解析并执行JavaScript代码，这个过程中可以改变页面内容、样式、行为</li>
+<li>加载外部资源、页面交互、页面加载完成</li>
+<li>浏览器缓存</li>
+</ol>
+<p><strong>cookie的作用</strong></p>
+<ol>
+<li>会话管理。Cookie用于识别和跟踪用户会话。当你访问一个网站，服务器会传递Cookie给浏览器，浏览器拿到Cookie后会保存这个Cookie，并且每次向服务器发送请求时，都会携带这个Cookie，这样服务器就能识别出你的会话。</li>
+<li>个性化设置。网站可以使用Cookie存储用户的设置，如语言选择、主题设置等，以便用户在下次访问时提供个性化体验。</li>
+<li>购物车功能。Cookie用来存储用户添加到购物车的信息，即使用户关闭浏览器，下次打开时，购物车信息依旧存在。</li>
+<li>追踪用户行为。网站和广告商可以通过Cookie来追踪用户的浏览习惯和行为模式，一边提供更相关的广告和内容。</li>
+<li>安全和认证。Cookie可以用于安全目的，比如存储用户的认证令牌，这样可以避免用户重复登陆。</li>
+<li>防止CSRF攻击。某些类型的Cookie可以防止跨站请求伪造（CSRF）攻击，因为他们不能被JavaScript访问，从而减少了恶意网站通过用户浏览器发送恶意请求的风险。</li>
+<li>会话恢复。在某些应用中，比如在线游戏或者文档编译，Cookie可以保存用户当前的状态，以便新访问时恢复会话。</li>
+<li>负载均衡。在服务器集群中，Cookie可以用来将用户会话固定到特定的服务器，以保持会话的一致性。</li>
+<li>广告追踪。第三方Cookie用于追踪用户在不同网站上的行为，以构建用户画像，提供更精准的广告定位。</li>
+</ol>
+<p><strong>事件</strong></p>
+<p><strong>事件触发的过程是怎么样的？了解事件代理吗？</strong></p>
+<p>事件流是按照特定的数据结构传播的过程。冒泡和捕获是事件流在DOM树中不同的传播方法。<br>事件流有三个阶段：</p>
+<ol>
+<li>捕获阶段</li>
+<li>处于目标阶段</li>
+<li>冒泡阶段</li>
+</ol>
+<p>事件捕获：简单来讲，当鼠标点击了一个标签或者触发了一个DOM事件，浏览器由根节点，由外向内进行事件传播，直到处于该目标元素。如果给该元素的父节点绑定了事件捕获，那么它的父节点最先触发。<br>事件冒泡：事件冒泡与事件捕获是相反的，它是由内向外进行事件传播。</p>
+<p>事件委托：也叫事件代理。一般指利用事件冒泡，将一个或者一组元素的DOM事件处理程序委托给其父元素或者更上层元素。</p>
+<p>事件委托的好处：如，给列表项添加事件代理，整组列表项是在处理同一件事，如果给所有的元素都添加事件处理程序，会造成空间浪费，委托给其父元素，避免造成空间浪费。</p>
+<p><strong>addEventListener</strong></p>
+<p><strong>e.target和e.currentTarget的区别</strong></p>
+<p><strong>DNS协议</strong></p>
+<p>DNS域名系统，提供一种主机名到IP地址的转换服务。</p>
+<p>作用：将域名解析为IP地址，客户端向DNS服务发送查询请求，DNS服务器告知客户机Web服务器IP地址</p>
+<p><strong>同源策略和跨域</strong></p>
+<p>浏览器同源策略：处于安全考虑，一个网站在访问服务器时，必须满足 相同的协议、相同的域名、相同的端口。</p>
+<p>当协议、域名、端口存在一个不一致时，浏览器就认定该资源请求存在跨域。</p>
+<p>解决跨域：</p>
+<ol>
+<li>CORS （跨来源资源共享），允许服务器设定特定的响应头来放宽同源策略。</li>
+<li>配置Nginx反向代理，将一个域名转发到另一个域名，从而避免直接的跨域请求。</li>
+<li>正向代理。浏览器存在同源策略，但是服务器并不存在，可以利用服务器进行请求。</li>
+<li>script标签并不存在同源策略的影响，但是它只支持get请求资源</li>
+</ol>
+<p><strong>正向代理和反向代理的区别</strong></p>
+<p>正向代理：从客户端进行代理，向代理服务发送请求，由代理服务帮助客户端发送请求。能够隐藏客户端信息。</p>
+<p>反向代理：是服务器代理，位于服务器端，对外隐藏了服务器的真实IP地址，客户端与反向代理服务通信，而不知道后端服务的存在。可做负载均衡，将请求分发到多个服务器，提高响应速度。</p>
+<p><strong>浏览器的事件循环</strong></p>
+<p>JavaScript是在主线程执行，当遇到异步任务则交给浏览器其他线程执行或者直接加入到任务队列中。<br>当主线程的任务执行完成后，此时会从异步任务队列中读取异步任务，将其压入主线程执行栈中。<br>主线程从任务队列中读取异步任务是一个循环往复的过程，因此称为任务循环，而每一个任务又是一个事件，所以也叫事件循环。<br>任务队列又分为微任务和宏任务。每次执行宏任务之前会清空微任务队列中的任务。<br>常见的微任务有：Promsie.then Promsie.catch MutationObserver process.nextTick<br>常见的宏任务有：setTimeout setInterval setImmediate I&#x2F;O操作 浏览器事件 UI渲染</p>
+<p><strong>js线程与浏览器线程问题</strong></p>
+<p>在浏览器事件循环中，当JavaScript主线程的执行栈遇到异步任务会将其交给浏览器其他线程执行。<br>对于JavaScript来说，它只是运行在单线程上，但是浏览器是多线运行的。<br>I&#x2F;O操作、定时器任务、事件监听等都是浏览器其他线程完成的。</p>
+<p><strong>dom树是怎么生成的</strong></p>
+<p>浏览器是一个多进程的架构，网络进程通过Content-Type创建渲染进程，渲染进程负责执行js脚本和渲染页面，它通过类似于stream流的方式接收字节流，然后通过html解析器转换为dom。</p>
+<p>一般解析的过程分为 词法分析、语法分析、parse、transform、generate</p>
+<p><strong>浏览器渲染进程下的线程</strong></p>
+<p>渲染进程主要负责执行js脚本和渲染页面。<br>其中包含：主线程、UI渲染线程、定时器线程、事件监听线程、http线程；其中主线程和UI渲染线程是互斥的，这也就是为什么js的执行时间过长会导致页面卡顿的原因。</p>
+<p><strong>session与cookie的区别</strong></p>
+<p>定义： </p>
+<p> session：由服务器生成并存储在服务器的会话信息，用于跟踪用户状态。 session id 通常通过cookie或者URL传参的方式传递给客户端。<br>cookie：由服务器生成，存储在客户端的一小段数据。通常用于在客户端和服务端传递少量信息。每次请求时客户端都会携带cookie信息给服务端。</p>
+<p>安全性：  </p>
+<p>Cookie并不是很安全，通过XSS、CSRF攻击会获取cookie信息。  </p>
+<p>session 较为安全，会保留在数据库中。 </p>
+<p>生命周期：  </p>
+<p>Cokkie 一般会在本地持久化缓存或者会话级别。  </p>
+<p>Session 一般在会话周期内，也就是浏览器关闭或者会话超时才会过期。</p>
+<p>工作机制：  </p>
+<p>cookie：服务器通过Set-Cookie 将cookie作为响应头发送给客户端，客户端保存cookie信息，后续所有的请求都携带Cookie请求头。  </p>
+<p>session：服务器创建一个会话id并存储会话信息，通过Cookie或url参数的方式发送客户端，服务器通过session id识别用户并加载会话信息。</p>
+<p>使用场景：  </p>
+<p>cookie：一般用来存储非敏感信息，比如用户偏好、主题设置等信息。  </p>
+<p>session：一般存储敏感信息的，比如购物车、用户登录状态之类的。一般session会通过cookie或者url来使用。</p>
+<p><strong>介绍一下navigator.sendBeacon</strong></p>
+<p>navigator.sendBeacon 是浏览器提供的一种轻量级的网络请求方法，专门设计用于发送少量数据到服务器，通常在页面即将卸载或关闭时使用。它是一种异步的、非阻塞的方式，可以在不影响页面卸载流程的情况下可靠地发送数据。</p>
+<p>navigator.sendBeacon(url, data);</p>
+<p>​	返回一个布尔值：</p>
+<ul>
+<li>true：数据成功放入发送队列，但不保证服务器一定接收到。</li>
+<li>false：数据未能放入发送队列（例如内存不足或无效的 URL）。</li>
+</ul>
+<p>特点：</p>
+<p>​	•	异步非阻塞：不会阻塞主线程，也不会延迟页面卸载。</p>
+<p>​	•	适合临时数据传输：如用户行为日志、会话数据等。</p>
+<p>​	•	限制数据大小：数据量通常不应超过 64KB（包括头部）。</p>
+<p>​	•	自动处理状态：与 fetch 或 XMLHttpRequest 不同，sendBeacon 不需要手动监听状态回调。</p>
+<h1 id="6-UI框架"><a href="#6-UI框架" class="headerlink" title="6. UI框架"></a>6. UI框架</h1><h2 id="6-1-Vue"><a href="#6-1-Vue" class="headerlink" title="6.1 Vue"></a>6.1 Vue</h2><p><strong>vue2中为什么只能有一个根组件</strong></p>
+<p>为了确保组件的唯一性和可重用性。<br>vue会根据template创建虚拟DOM树，为了简化编译时的复杂度，保持了唯一的根元素。<br>vue组件应该具有高度的封装性，每一个组件只负责一个独立的UI部分。一个根元素的组件是vue鼓励开发者能够设计可复用的独立单元。<br>在vue3中引入了Fragment节点，也就允许组件存在多个根元素。</p>
+<p><strong>vuex与localStorage</strong></p>
+<p>vuex是状态管理工具，会将状态存储在内存中，如果浏览器刷新，数据会被清除的。如果需要保留数据，则需要配合localStorage。</p>
+<p>为什么不使用localStorage呢？<br>vuex是vue官方推出的状态管理工具，是具备响应式的，通过提交mutation来保存数据，如果使用localStorage，数据管理会非常繁琐并且不具备响应式的。</p>
+<p><strong>vue渲染列表为什么要加key</strong></p>
+<p>key值在vue渲染列表时非常重要，是作用diff比对的标识符。<br>举一个简单的例子，如果在diff比对时不存在key值，现在有三个节点 [p1, p2, p3] ，此时列表更新，三个节点的顺序改变，[p3, p1, p2], 在没有key值的情况下，没有标识符去判断节点是否发生了改变。那如果说标签的type类型不一样，但是仅仅时顺序发生了改变，却需要6次卸载、挂载的操作，造成了性能浪费。<br>所以key值非常重要。</p>
+<p><strong>diff算法</strong></p>
+<p>Vue2采用的双端diff算法：<br>双端diff算法的核心在于新旧节点列表中都存在两个指针，也就是index索引值，通过头部节点、尾部节点之间的相互比较来确定是否需要复用或者更新节点。比如，在新旧列表中的头部节点之间相互比较，如果key相等则直接改变指针位置，节点可复用，如果是首尾节点比较，如果key值相等则更新节点位置，然后移动指针到下一个元素。<br>对比简单算法来说，双端diff算法不仅仅在节点复用上节省步骤，在删除节点上也比简单diff算法优势更大。简单diff算发在删除无效节点时需要便利所有的旧节点，查询是否有不存在的节点需要处理；而双端diff算由于是指针进行移动处理元素，当新节点处理完成后，如果旧节点列表还没有处理完，则直接移除剩余的节点即可。</p>
+<p>Vue3采用的快速diff算法：<br>快速diff算法中新增了一个预处理的步骤。对新旧节点列表，处理头部节点，创建一个索引 j ，从0开始处理，找到所有可以复用的节点(key相等的)，直到不可复用为止；处理尾部节点，由于新旧节点列表长度可能不一致，所以新旧节点列表在预处理尾部节点时需要对两个列表都创建索引值，直到不可复用为止。<br>理想情况下来说，旧节点列表处理完后，新节点列表没有处理完，那么剩余的就是新增节点；或者新节点列表处理完了，旧节点列表没有处理完，那么就是要移除的节点。<br>非理想情况下，两个节点列表都没有处理完，那么会创建一个数值列表，列表内容存储的是 新的一组子节点中的节点在旧的一组子节点中的位置索引。将用它来创建一个最长递增子序列，用来辅助DOM的移动。</p>
+<p><strong>双向绑定原理</strong></p>
+<p>vue中双向绑定其实就是 value + input 的语法糖，一般可以通过model的 prop 属性和 event 事件 实现。</p>
+<p><strong>vue2响应式原理，vue3的响应式有什么不同？</strong></p>
+<p>Vue2中，使用 Object.defineProperty 将data中的所有数据进行递归劫持，当数据发生变化时，会通知相关的依赖进行更新的操作，这也就是常见的发布订阅模式。</p>
+<p>Vue3 中通过 Proxy 代理对象，优势是能够直接监听对象和数组的变化，并且包含了多种场景，有13种拦截方法。并且Proxy只代理对象的第一层，当读取到内层对象时，会再次代理该对象，也就是做到了增量式的代理，比递归代理性能更好。</p>
+<p>使用Proxy代理对象也可以动态的删除和新增属性，而使用Object.defineProperty 劫持对象时，不能随意的新增和删除属性。</p>
+<p><strong>keep-alive原理</strong></p>
+<p>keep-alive是vue提供的一个内置组件。<br>主要的作用是：用来缓存组件，它会保留组件的实例对象，组件本身并不会被销毁，而是被隐藏起来，保存在内存当中，当需要重新渲染时，会直接使用被保留的组件实例，此时组件本身的状态也被保留了下来，达到缓存的目的。<br>keep-alive 内部使用LRU缓存算法，也就是不能保留过多的组件，当缓存的组件过多时，会优先移除过期组件，也就是最不被经常使用的组件。</p>
+<p>应用场景：一般会和路由一起使用，动态渲染组件也通常会使用。</p>
+<p><strong>computed和watch的区别</strong></p>
+<ul>
+<li>watch和computed都会观测数据是否发生变化</li>
+<li>watch是监听一个数据，执行某个逻辑；而computed是监听多个值，获取一个最终计算的结果；也就是watch只有一个值是副作用，而computed存在多个副作用值，并且会有一个返回值。</li>
+<li>watch中允许使用异步方法，会解决竞争问题。computed不能使用异步方法。</li>
+<li>computed中有缓存逻辑，computed经过处理后，存在一个dirty属性，只有当依赖值发生变化时，dirty属性会变为true，此时computed才会被重新计算。</li>
+</ul>
+<p><strong>vue2与vue3的区别</strong></p>
+<ul>
+<li>从源码看：Vue3使用Ts重写了；</li>
+<li>支持 Composition API ，比起Option API ，代码组织更整洁，也更灵活。</li>
+<li>响应式系统的提升：Vue3采用Proxy代理对象，可以动态的新增、删除属性，并且能够监听数组的变化。</li>
+<li>编译优化：vue2通过标记静态根节点达到优化的目的，而Vue3中标记和提升所有的静态节点，这样，在diff比对时，可以不用再比对静态节点。</li>
+<li>生命周期的变化，setup函数取代了beforeCreate、created生命周期函数</li>
+<li>Vue3的template模板支持多个根标签</li>
+<li>Vue3取消了使用this获取实例，避免this指向不明</li>
+</ul>
+<p><strong>组合式API和选项式API的区别</strong></p>
+<ul>
+<li>组合式API有着更好的代码复用和逻辑组织，使代码更加灵活。而选项式的代码不易复用、逻辑组织性比较差。</li>
+<li>组合式API对复杂组件非常友好，而选项式API在写复杂组件式逻辑会非常混乱，代码可读性差。</li>
+</ul>
+<p><strong>谈一谈你对MVVM的理解</strong></p>
+<p>MVVM 双向驱动，理解起来非常简单，Model代表数据模型层，View代表视图层，ViewModel代表视图模型层，其实就是MVC中的Controller层换成了ViewModel视图模型层，本质上是，数据发生了变化会通知ViewModel改变视图，而视图层面发生了变化，会通知ViewModel改变数据。属于是双向的改变。</p>
+<p><strong>Vue2.x中如何检测数组的改变</strong></p>
+<p>Vue使用函数劫持的方式，重写了数组的方法。当调用数组api时，可以通知依赖更新。如果数组中的元素是对象，那么会递归遍历进行监控，这样就实现了对数组的监听。</p>
+<p><strong>vue组件通信的方式及原理</strong></p>
+<ul>
+<li>父子组件通信：props、emit、$on</li>
+<li>Provide、inject 在组件树内通信</li>
+<li>全局通过 vuex、pinia等状态管理工具进行通信</li>
+</ul>
+<p><strong>Vue的路由实现，hash路由和history路由实现原理</strong></p>
+<p>hash路由和history路由都是管理历史记录和页面导航的</p>
+<p>本质上其实就是hash路由和history路由的区别。</p>
+<ul>
+<li>hash路由URL结构中存在#，其后面跟着的是片段标识符，history的URL结构和传统的多页应用路由一样。</li>
+<li>当路由中的路径发生变化时，对hash路由来说，浏览器并不会向服务器发送请求，浏览器识别的时#后面的片段标识符，路径是否发生变化它并不关心；history路由也不会向服务器请求资源，内部使用的pushState和replaceState API进行控制的</li>
+<li>使用history路由时，需要服务器配置，比如，将所有请求路径指定到入口index.html，而hash路由则不需要。</li>
+</ul>
+<p><strong>v-if与v-show的区别</strong></p>
+<p>v-if 是决定是否需要创建该标签元素；<br>v-show则是使用display:none 隐藏标签，标签会被创建出来。</p>
+<p><strong>v-if与v-for的优先级</strong></p>
+<p>vue2中，v-for的优先级较高，也就是会优先渲染列表元素，然后判断是否需要渲染每一个列表项；<br>vue3中，v-if的优先级较高，会优先判断是否需要渲染。<br>不推荐在同一个元素使用v-if和v-for</p>
+<p><strong>nextTick的作用是什么？它的原理</strong></p>
+<p>nextTick是DOM更新完成之后的延迟回调。<br>但是这么说其实存在一点非议，即，DOM的更新是具有实时性的，从 Render 函数到 DOM 树，才是异步的。<br>Vue内部也会使用 nextTick，他会包裹 Watcher 收集到的副作用函数，也就是说，所有的副作用函数都会通过nextTick执行。<br>这么做的原因是为了实现批处理更新机制。<br>比如，一个开发人员对一个数据进行改动，改动了100次，如果每一次都直接触发Watcher副作用函数，立马将数据写入，肯定是不行的，那么就将Watcher写入到数组中，当主线程任务执行完成之后，这时候再去对监听到依赖变动的副作用函数完成真正写入到DOM中的操作，这样，即使你在任务中修改了100次数据，但最终只会计算1次value、更改一次DOM。<br>vue2中批处理更新机制其实就是将本次事件循环中的所有任务添加到任务队列中，需要批量更新的任务都用 nextTick 进行创建，当主线程的任务执行完成后，开始执行nextTick任务，也就是我们所说的，当DOM更新完成之后的回调。</p>
+<p><strong>Vue SSR实现原理</strong></p>
+<p>SSR是服务端渲染，也就是Vue在客户端把标签渲染成html的工作放在服务端完成，然后直接返回给客户端。<br>SSR有着更好的SEO以及首屏加载更快的优点，但是本身也存在限制，比如，服务端渲染只支持beforeCreate和created两个钩子。服务器也有更大的负载需求。</p>
+<p><strong>Vue组件的data为什么必须是函数</strong></p>
+<p>一个组件存在被复用多次的可能，本质上这些所有的组件都使用的是同一个构造函数，如果data是一个对象，当某个组件更改了data中的数据，会影响到其他组件的数据，所以为了数据不在组件之间互相影响，就使用函数的方式，创建新的数据。</p>
+<p><strong>Vue Compiler 实现原理</strong></p>
+<p>在写vue组件时，有两种方式，一种使用vue标准的三段式 template、script、style，一种是使用render函数。使用template时，vue Compiler 会将 template 编译成 render函数。</p>
+<p>Compiler 主要分为三块：</p>
+<ol>
+<li>parse：接受一个template模板，将其解析为 ast </li>
+<li>optimize：遍历ast节点，标记静态节点，减少diff比对，提升性能；</li>
+<li>generate：根据前两步完善ast，然后生成对应的render字符串，根据new Function 生成函数</li>
+</ol>
+<p><strong>你知道哪些vue修饰符</strong></p>
+<p>修饰符：<br>事件修饰符：</p>
+<ul>
+<li>.stop 阻止冒泡</li>
+<li>.prevent 阻止默认事件</li>
+<li>.capture 使用事件捕获模式</li>
+<li>.once 只触发一次事件</li>
+</ul>
+<p>按键修饰符：</p>
+<ul>
+<li>.left 左键</li>
+<li>.right 右键</li>
+<li>.enter 回车</li>
+</ul>
+<p>表单修饰符</p>
+<ul>
+<li>.number 文本转换为number类型</li>
+<li>.trim 自动过滤首尾空格</li>
+</ul>
+<p><strong>如何对vue项目做性能优化</strong></p>
+<p>编码阶段：</p>
+<ul>
+<li>使用keep-alive 缓存组件</li>
+<li>列表渲染key值保证唯一</li>
+<li>路由使用懒加载</li>
+<li>图片懒加载、预加载</li>
+<li>长列表滚动动态加载</li>
+</ul>
+<p>打包优化：</p>
+<ul>
+<li>代码压缩</li>
+<li>Tree Shaking</li>
+<li>使用cdn加载第三方模块</li>
+<li>splitChukns拆分</li>
+<li>sourceMap优化</li>
+</ul>
+<p>用户体验：</p>
+<ul>
+<li>使用骨架屏</li>
+</ul>
+<p><strong>vue spa项目如何优化首屏加载速度</strong></p>
+<ul>
+<li>请求优化，使用CDN的方式加载一些资源包，减少打包体积</li>
+<li>http缓存：将长时间不更新的包设置一个强缓存，减轻服务器压力</li>
+<li>开启gzip压缩，有效所有传输资源的大小</li>
+<li>懒加载，使用路由懒加载，通过import动态加载组件，首屏的代码量会大幅度减少，webpack会将文件打包成一个一个的chunk</li>
+<li>预渲染，从浏览器渲染html到一个vue实例渲染完成，这期间存在白屏的时间，可以使用loading的方式减小白屏对用户的影响</li>
+<li>合理的使用第三方库，尽量使用按需加载，减少打包体积</li>
+<li>提高代码使用率，利用代码分割，将脚本中无需立即使用的代码，在代码构建时转化为异步加载的过程</li>
+<li>封装，做好公共封装</li>
+<li>图片懒加载、预加载</li>
+</ul>
+<p><strong>组件中写name的好处</strong></p>
+<p>可以通过名字找到组件<br>可以通过name使用keep-alive</p>
+<p><strong>说一下ref的作用</strong></p>
+<p>ref可以获取DOM元素或者组件实例</p>
+<p><strong>接口请求一般放在哪个生命周期内？为什么这样做？</strong></p>
+<p>接口请求一般可以放在 created、beforMount 、mounted 里面。<br>最好是放在created里面，created生命周期数据已经可以使用了，此时请求是最好的时机，如果放在mounted里面，此时页面已经渲染完成，数据的改变可能会影响闪屏</p>
+<p><strong>vue2与vue3中 v-model的区别</strong></p>
+<ol>
+<li>基础用法的改变，<ul>
+<li>vue2中默认绑定的是value属性，默认触发的是input事件</li>
+<li>vue3中默认绑定的是value属性，默认触发的是 update:modelValue 事件</li>
+</ul>
+</li>
+<li>多个绑定的支持<ul>
+<li>vue2中不支持为同一个组件绑定多个v-model，其余的需要通过props和events实现</li>
+<li>vue3中允许对同一个组件绑定多个v-model，如 v-model:title、emit(‘update:title’); v-model:content、emit(‘update:content’)</li>
+</ul>
+</li>
+<li>事件名称的变化<ul>
+<li>vue2中，v-model的事件固定是input事件</li>
+<li>vue3中，针对不同的v-model的属性，发送的事件也是根据绑定的属性名，如：v-model:title&#x3D;’title’、emit(‘update:title’)</li>
+</ul>
+</li>
+</ol>
+<p><strong>Pinia与vuex的区别</strong></p>
+<h2 id="6-2-React"><a href="#6-2-React" class="headerlink" title="6.2 React"></a>6.2 React</h2><p><strong>React18有哪些更新</strong></p>
+<p><strong>jsx是什么，和js有什么区别</strong></p>
+<p>jsx是JavaScript语法扩展，允许编写类似于html的代码，将其编译为JavaScript函数</p>
+<p><strong>简述React的生命周期</strong></p>
+<p>React中组件的生命周期分为首次挂载和更新。<br>组件首次挂载：componentWillMount -&gt; render -&gt; componentDidMount ;<br>组件更新： componentWillReciveProps（如果是props改变）-&gt; shouldComponentUpdate -&gt; componentWillUpdate -&gt; render -&gt; componentDidUpdate</p>
+<p>卸载 componentWillUnmount</p>
+<p><strong>React事件机制和DOM事件流有什么区别</strong></p>
+<p>React中的合成事件并不是绑定到某个元素上的，而是做事件委托，在React17版本以后都是委托给#root 这个元素的，并且对冒泡事件和捕获事件都做了委托，在React17版本以前，它委托给了document这个对象，并且只做了冒泡事件；React会给标签元素添加onClick或者onClickCapture的属性，当委托事件触发时，他会按照事件传播的路径，找到所有需要执行的合成事件，手动执行。</p>
+<p>原生的事件是绑定到dom元素上的。</p>
+<p>相对于绑定的方式，dom原生绑定的事件会优先于React合成事件执行。</p>
+<p><strong>Redux工作原理</strong></p>
+<p><strong>React-Router工作原理？react-router-dom有哪些组件</strong></p>
+<p><strong>React Hooks 解决了什么问题？函数组件与类组件的区别</strong></p>
+<p>在引入Hooks之前，函数组件只能是一个静态组件，本身并不具备副作用使组件更新，使用Hooks之后，函数组件的能力被大大提升，简便的写法让Hooks函数组件逐渐取代类组件。</p>
+<p><strong>setState是同步还是异步，setState做了什么？</strong></p>
+<p>在React18版本中，setState无论写在何处都是异步的。<br>这么设计的目的是：实现状态的批处理，有效减少更新次数，降低性能消耗，有效管理代码执行的逻辑顺序。<br>原理：利用更新队列机制处理，在当前相同的事件内，遇到setState会立即放入到更新队列中，此时状态&#x2F;视图还没有更新，当所有的代码结束后，会通知更新队列中的的任务执行，把所有放入的setState合并在一起，只触发一次更新。</p>
+<p>React16版本中，setState如果放在合成事件回调中或者生命周期函数中，那么它也是异步的，如果放在其他异步方法中，那么它会是同步执行的。</p>
+<p><strong>什么是fiber？fiber解决了什么问题</strong></p>
+<p>React15及其之前的版本中，React在渲染时采用的是递归的方式，是同步和连续的，如果说diff比对时间较长，页面会产生卡顿的感觉，ui的渲染和js主线程的执行本身就是互斥的。</p>
+<p>React Fiber 是 React 16引进的一种新的协调算法，为了改进React的渲染引擎，让其更加高效灵活和可扩展。</p>
+<ul>
+<li>fiber本质上就是一个对象，代表的是一个react工作单元，包含了组件的信息，比如组件的类型、props、state、子元素、父元素、兄弟元素等信息。</li>
+<li>增量渲染和优先级调度：fiber允许React将更新任务拆分成小的任务单元，并使用优先级调度器来处理这些任务，这能够按照任务的优先级来确定任务的执行顺序，可提高用户的体验。</li>
+<li>中断与恢复：React Fiber 允许渲染的过程中中断任务，然后在适当的时机恢复执行，从而避免页面阻塞的情况。</li>
+<li>数据结构：Fiber类似于一个双向链表的结构，每个节点包含了节点类型、关系和状态等信息。</li>
+</ul>
+<p>解决的问题：Fiber的增量式的渲染、优先级调度和可中断的能力，避免了因为js代码长时间执行导致页面存在卡顿的显现</p>
+<p><strong>React中在哪里捕获错误</strong></p>
+<p>ErrorBoundary 错误边界组件</p>
+<p><strong>react传值</strong></p>
+<p>通过props传值<br>通过context api<br>通过redux等状态管理工具</p>
+<p><strong>react如何做到与vue中keep-alive的缓存效果</strong></p>
+<p><strong>React如何做路由监听</strong></p>
+<p>router.history.listen(() &#x3D;&gt; {})</p>
+<p><strong>React有哪几种方式改变state</strong></p>
+<p>setState 和 forceUpdate()</p>
+<p><strong>react中props和state有什么区别</strong></p>
+<p>props是父组件传递进来的，并且是只读的。<br>state是组件自身维护的。虽然对react来说，存在状态不可变性，但是可以通过setState去维护状态。</p>
+<p><strong>React中keys的作用是什么</strong></p>
+<p>用来追踪列表中元素被修改、被添加或者被移除的辅助标识。<br>本质其实就是在diff比对时的标识符。</p>
+<p><strong>React diff原理</strong></p>
+<p><strong>React中refs的作用</strong></p>
+<p>可以让我访问组件实例或者dom元素</p>
+<p><strong>受控组件和非受控组件有什么区别</strong></p>
+<p>受控组件控制着元素的值，当数据发生变化，React会重新渲染；<br>而某些元素，例如表单元素，它保持着自己的状态，不受React的控制，要获取他们值只能通过元素本身去获取。</p>
+<p><strong>为什么虚拟DOM可以提高性能</strong></p>
+<p>虚拟DOM之所以说性能较好，是因为它相当于在js和真实DOM之间做了缓存，当dom树结构发生变化，通过diff比对，会记录本次变化的元素，然后只针对这些元素进行卸载、新增、移动，而不需要操作所有的元素节点。</p>
+<p><strong>redux</strong></p>
+<p><strong>redux中如何修改公共状态？</strong></p>
+<p>redux中，通过dispatch一个action对象，然后执行reducer函数来修改公共状态。</p>
+<p>这么做的原因是：redux是一个公共状态管理库，一个项目中会包含很多的状态，通过dispatch分发状态，reducer修改状态的方法增强逻辑复用性，更利于维护和管理。不然我在获取一个公共状态，期望得到的值是1，但是实际上得到的是100，可是又不知道在哪里被修改了。</p>
+<p><strong>react利用redux如何更新？</strong></p>
+<p>redux在被创建出一个容器时，存在两部分，一部分是公共状态，一部分是事件池，当公共状态被修改时，会通知事件池中的事件执行，所以只需要将要更新的方法添加到事件池中即可，store.subscribe()</p>
+<p><strong>redux工程化</strong></p>
+<p>一个成熟的大型项目在管理状态时一定是按照模块划分的，因为不可能整个项目就只有一个reducer方法，那么所有的人都会去修改这一个文件，开发效率差。<br>所以一定需要工程化管理redux。</p>
+<p><strong>redux工程化实现</strong></p>
+<ol>
+<li>安装模块，将reducer单独管理，每个模块都有自己的reducer，最后将reducer合并成一个。reducer合并之后，每个模块的状态也会根据reducer的模块名增加一层模块名的。这么做的另一个优点是避免命名冲突，相当于给状态新增了一个模块名。</li>
+<li>派发行为标识宏管理。当dispatch一个action对象时，redux会到每一个reducer中查找找个标识，然后执行对于的逻辑，也就是说如果标识名重复了，可能执行不理想的逻辑。所以派发行为标识要保证唯一性。将所有的派发行为标识保存在一个公共模块文件中，保证唯一性。</li>
+<li>actionCreator的创建。actionCreator对象的创建在使用react-redux是非常有必要的。</li>
+</ol>
+<p><strong>redux存在性能上的问题</strong></p>
+<p>redux是一个成熟的状态管理工具，但是本身也存在一点点缺陷。</p>
+<ol>
+<li>通过 getState 获取状态时，获取到的是数据源state，如果不小心更改数据，则会直接更改源数据，但是并不会存在更新，redux只能通过dispatch一个action对象来更新；</li>
+<li>dispatch一个action对象，会触发reducer的执行，并且会执行所有的reducer，当命中了，也不会停止；</li>
+<li>一个dispatch更改数据，会将事件池中的所有事件都执行。</li>
+</ol>
+<h2 id="6-3-vue-和react的区别"><a href="#6-3-vue-和react的区别" class="headerlink" title="6.3 vue 和react的区别"></a>6.3 vue 和react的区别</h2><p>Vue和React都是采用数据驱动视图的思想，不再直接操作DOM，直接操作数据，以数据驱动视图的改变，构建了一套虚拟DOM-&gt;真实DOM的体系，有效的避免了重排&#x2F;重绘，提升了开发效率，性能也更好。</p>
+<p>数据驱动视图的思想是目前主流前端框架的共同思想，而他们又有着不同的体系，React采用的是MVC体系，Vue采用的是MVVM体系。<br>MVC 是单向驱动，数据层的改变驱动着视图层，视图层改变提交给控制层，由控制层修改数据<br>MVVM是双向驱动，数据驱动视图的渲染（监听数据的更新，让视图重新渲染）；视图驱动数据的更新（监听页面中表单元素的修改，自动修改数据）</p>
+<ul>
+<li>数据可变性<ul>
+<li>react中数据不可变，必须使用setState改变数据</li>
+<li>vue中时数据可变，通过响应式的方式，双向数据改变</li>
+</ul>
+</li>
+<li>写法不同<ul>
+<li>react采用的是jsx</li>
+<li>vue采用的是标准的三段 template、script、style</li>
+</ul>
+</li>
+<li>依赖收集<ul>
+<li>react中的依赖需要手动添加，比如useEffect</li>
+<li>vue中的依赖收集更加智能，会主动设置副作用函数</li>
+</ul>
+</li>
+<li>心智负担<ul>
+<li>react重心智负担，比如，hooks必须顶层使用不能在条件循环中使用，存在闭包陷阱，重复渲染等问题</li>
+<li>vue则更加灵活，不必要考虑依赖等问题</li>
+</ul>
+</li>
+<li>diff算法的区别</li>
+</ul>
+<h1 id="7-编译工具"><a href="#7-编译工具" class="headerlink" title="7. 编译工具"></a>7. 编译工具</h1><h2 id="7-1-编译工具"><a href="#7-1-编译工具" class="headerlink" title="7.1 编译工具"></a>7.1 编译工具</h2><p><strong>热更新原理</strong></p>
+<p>HMR，热模块替换是当修改代码之后，webpack会重新将你修改的代码进行编译，输出的模块会发送给浏览器，浏览器收到新的模块之后会替换老的模块，这样就能在不刷新浏览器的情况下对应用进行更新。<br>需要HMR的原因是：如果刷新浏览器来更新代码，会导致浏览器的状态丢失；HMR编译是差量的，不需要全量的编译。</p>
+<p>HMR执行机制：</p>
+<ol>
+<li>启用devServer时，webpack会监听文件的变化，当文件变化时，会执行编译</li>
+<li>webpack-dev-server 会将打包后的代码保存到内存中</li>
+<li>webpack-dev-server 会通过和浏览器建立的socket长链接将打包后的代码发送到浏览器</li>
+<li>浏览器端收到socket信息后，经过比对等操作，最后通过jsonp的方式加载新的模块</li>
+</ol>
+<p><strong>loader与plugin的区别</strong></p>
+<p>loader是一个函数，它承载的是转换器的身份，webpack本身只会编译JavaScript和json文件，对于其他文件或代码都不识别，通过loader可以对webpack不认识的文件或者代码进行转换输出。</p>
+<p>plugin是webpack的扩展插件，webpack在执行期间会广播各种事件，plugin可以注册这些事件，当webpack进行广播时，插件中注册的事件就可以执行了。</p>
+<p>所以说，loader是一个转化器，而plugin则是贯穿整个webpack的生命周期，具备更强的扩展性。</p>
+<p><strong>loader的类型，loader的执行顺序</strong></p>
+<p>loader是为了处理不同的文件，让webpack能有效的消费这些模块。<br>loader分为：前置(pre)loader、普通(normal)laoder、后置(post)loader，还有inline-loader(行内, 即 import ‘style-loader!.&#x2F;a.css’)。<br>一般情况下，不同类型的loader的执行顺序为：pre-loader -&gt; normal-loader -&gt; inline-loader -&gt; post-loader</p>
+<p>loader可以配置多个，并且存在链式处理，执行顺序从后向前。</p>
+<p> pitch loader，即loader的pitch阶段，一旦loader方法身上挂载了 pitch 方法，那么该loader方法将在pitch阶段执行。pitch阶段的顺序是从前往后执行的，如果pitch存在返回值，则整个loader链会从该loader向前执行。</p>
+<p><strong>loader传递参数的方式</strong></p>
+<ol>
+<li><p>通过上下文传递，loader中context是共享的，可以通过 this 实例共享数据，比如向this身上挂在数据</p>
+</li>
+<li><p>通过data，webpack存在一个默认data数据，通过设置这个数据来共享，当然，在同步loader中使用this.data，如果是异步的loader，则通过 this.async() 异步回调可以返回数据，比如 this.async(null, content, sourceMap, meta); ，其中 meta 就是用来共享的数据，下一个loader 可以使用参数接收：function loader2(source, sourceMap, meta){} </p>
+</li>
+<li><p>pitch 方法可以共享数据：<br>module.exports &#x3D; {<br> pitch(remainingRequest, previousRequest, data) {<br>  data.shared &#x3D; { key: ‘Shared via Pitch’ }; &#x2F;&#x2F; 设置共享参数<br> },<br> loader(source) {<br>  return source;<br> },<br>};<br>​<br>&#x2F;&#x2F; loader2中接收<br>module.exports &#x3D; {<br> pitch(remainingRequest, previousRequest, data) {<br>  console.log(‘Data from First Loader Pitch:’, data.shared);<br> },<br> loader(source) {<br>  return source;<br> },<br>};</p>
+</li>
+<li><p>options传递参数</p>
+</li>
+</ol>
+<p><strong>webpack的配置有哪些</strong></p>
+<ul>
+<li>entry</li>
+<li>output</li>
+<li>resolve</li>
+<li>module</li>
+<li>plugin</li>
+<li>optimization</li>
+<li>devtools</li>
+<li>performance</li>
+</ul>
+<p><strong>常见的loader和plugin</strong></p>
+<p>style-loader 、css-loader、sass-loader、postcss-loader、less-loader、vue-loader、babel-loader</p>
+<p>html-webpack-plugin、VueLoaderPlugin、DefinePlugin、BundleAnalyzerPlugin、MiniCssExtractPlugin</p>
+<p><strong>webpack的构建流程</strong></p>
+<ol>
+<li>初始化参数，初始化Compiler对象</li>
+<li>开始编译，注册插件，执行 compiler 中的 run 方法</li>
+<li>确定入口，根据配置的entry，开始解析文件构建AST语法树，递归执行</li>
+<li>模块编译，递归处理所有的文件时，通过loader处理每一个对应的模块，做文件转换，直到所有的依赖文件都经过处理。</li>
+<li>完成模块编译，通过loader处理完成之后，得到了每一个模块之间的依赖关系以及模块编译后的内容</li>
+<li>输出资源，根据入口和模块之间的依赖关系，组装成一个个包含多个模块的chunk，再把每个chunk转换成单独的文件加入到输出列表，这一步是修改输出内容的最后机会</li>
+<li>输出完成，确定好输出内容后，根据配置确定输出的路径和文件名，将内容写入到文件系统。</li>
+</ol>
+<p><strong>什么是 code splitting</strong></p>
+<p>是一种代码分割技术，将一个大的chunk分割成多个小的chunk，可以提升代码加载速度，达到按需加载的目的，提升性能。</p>
+<p><strong>webpack的source map 是什么？怎么配置</strong></p>
+<p>source map 是一个文件，它建立了构建后代码与原始代码之间的映射关系，通过devtool配置</p>
+<p><strong>webpack的tree shaking原理</strong></p>
+<p>tree-shaking 是利用es6模块静态特性来除去生产环境下不必要代码的优化过程。</p>
+<ol>
+<li>他会标记 es6 模块中的 import 和 export 语句</li>
+<li>当webpack确定某个模块没有被导入时，他会在生成的bundle中排除这个模块的代码</li>
+</ol>
+<p>（可不说：）同时Webpack还会进行递归的标记清理，以确保所有未使用的依赖项都不会出现在最终的bundle中。</p>
+<p><strong>如何提高webpack的打包速度</strong></p>
+<ul>
+<li>利用webpack提供的持久化缓存能力</li>
+<li>部分loader开启多线程编译</li>
+<li>使用 DllPlugin ，避免多次编译不长改变的包</li>
+<li>利用tree-shaking ，减少编译文件</li>
+<li>移除不必要的插件</li>
+</ul>
+<p><strong>如何减少打包后的体积</strong></p>
+<ul>
+<li>开启gzip压缩</li>
+<li>使用CDN加载远端静态资源</li>
+<li>利用 tree-shaking</li>
+<li>使用代码分割，优化打包体积</li>
+<li>部分资源可以使用 DllPlugin</li>
+</ul>
+<p><strong>Babel的概念及原理</strong></p>
+<p>babel是一个可对JavaScript代码进行转换的工具，可以将高版本的语法进行降级。<br>转换的过程注意有三步：</p>
+<ol>
+<li>parse ，将JavaScript代码解析成 AST抽象语法树</li>
+<li>transform ，转换，根据解析的 AST 抽象语法树，对需要转换的节点进行修改</li>
+<li>Generation，生成，最后将修改过后的抽象语法树生成为JavaScript代码。</li>
+</ol>
+<p><strong>手写 webpack plugin 有那些重要 api 与注意的地方？</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br></pre></td><td class="code"><pre><code class="hljs javascript">手写 <span class="hljs-title class_">Webpack</span> 插件需要对 <span class="hljs-title class_">Webpack</span> 的插件系统有所了解。<span class="hljs-title class_">Webpack</span> 的插件是通过 <span class="hljs-title class_">Tapable</span> 提供的钩子机制来实现的，这些钩子允许插件在 <span class="hljs-title class_">Webpack</span> 构建流程的各个阶段插入逻辑。<br><br>以下是手写 <span class="hljs-title class_">Webpack</span> 插件时的重要 <span class="hljs-variable constant_">API</span> 和注意事项：<br><span class="hljs-number">1.</span> 基础结构<br><br><span class="hljs-title class_">Webpack</span> 插件是一个遵循特定接口的 <span class="hljs-title class_">JavaScript</span> 类或函数，必须实现一个 apply 方法。<br>基本模板<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyPlugin</span> &#123;<br>  <span class="hljs-title function_">constructor</span>(<span class="hljs-params">options</span>) &#123;<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">options</span> = options;<br>  &#125;<br><br>  <span class="hljs-title function_">apply</span>(<span class="hljs-params">compiler</span>) &#123;<br>    <span class="hljs-comment">// 插件逻辑在这里</span><br>    compiler.<span class="hljs-property">hooks</span>.<span class="hljs-property">done</span>.<span class="hljs-title function_">tap</span>(<span class="hljs-string">&#x27;MyPlugin&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">stats</span>) =&gt;</span> &#123;<br>      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;构建完成！&#x27;</span>);<br>    &#125;);<br>  &#125;<br>&#125;<br><br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = <span class="hljs-title class_">MyPlugin</span>;<br><br><span class="hljs-number">2.</span> 核心 <span class="hljs-variable constant_">API</span><br><br><span class="hljs-number">2.1</span> compiler 对象<br><br><br>	•	代表 <span class="hljs-title class_">Webpack</span> 的全局编译器实例。<br><br>	•	提供对 <span class="hljs-title class_">Webpack</span> 内部所有配置和生命周期钩子的访问。<br><br>	•	核心属性：<br><br>	•	compiler.<span class="hljs-property">hooks</span>：包含所有生命周期钩子（如 run, emit, done 等）。<br><br>	•	compiler.<span class="hljs-property">options</span>：<span class="hljs-title class_">Webpack</span> 配置对象。<br><br>	•	compiler.<span class="hljs-property">outputPath</span>：输出路径。<br><br><span class="hljs-number">2.2</span> compilation 对象<br><br><br>	•	每次构建时会创建一个新的 compilation 对象，表示当前构建流程的上下文。<br><br>	•	核心属性：<br><br>	•	compilation.<span class="hljs-property">hooks</span>：处理资源的生命周期钩子。<br><br>	•	compilation.<span class="hljs-property">assets</span>：当前构建的资源列表。<br><br>	•	compilation.<span class="hljs-property">errors</span> / compilation.<span class="hljs-property">warnings</span>：存储构建过程中产生的错误或警告。<br><br><span class="hljs-number">2.3</span> <span class="hljs-title class_">Tapable</span> 钩子<br><span class="hljs-title class_">Webpack</span> 的钩子机制由 <span class="hljs-title class_">Tapable</span> 提供。<br>常用钩子类型：<br>	•	<span class="hljs-title class_">SyncHook</span>：同步钩子，无返回值。<br><br>	•	<span class="hljs-title class_">SyncWaterfallHook</span>：同步钩子，上一个回调的返回值会传给下一个。<br><br>	•	<span class="hljs-title class_">AsyncSeriesHook</span>：异步串行钩子。<br><br>	•	<span class="hljs-title class_">AsyncParallelHook</span>：异步并行钩子。<br><br>挂载钩子的方法：<br>	•	.<span class="hljs-property">tap</span>：用于同步任务。<br><br>	•	.<span class="hljs-property">tapAsync</span>：用于异步任务（带回调）。<br><br>	•	.<span class="hljs-property">tapPromise</span>：用于异步任务（返回 <span class="hljs-title class_">Promise</span>）。<br><br><span class="hljs-number">3.</span> 常见钩子<br><br><span class="hljs-number">3.1</span> <span class="hljs-title class_">Compiler</span> 生命周期钩子<br>	•	environment：环境变量初始化。<br><br>	•	run：开始一次新的构建。<br><br>	•	watchRun：监听模式下的构建开始。<br><br>	•	compile：编译器准备构建。<br><br>	•	emit：生成资源到输出目录之前。<br><br>	•	done：构建完成。<br><span class="hljs-title function_">apply</span>(<span class="hljs-params">compiler</span>) &#123;<br>  compiler.<span class="hljs-property">hooks</span>.<span class="hljs-property">emit</span>.<span class="hljs-title function_">tapAsync</span>(<span class="hljs-string">&#x27;MyPlugin&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">compilation, callback</span>) =&gt;</span> &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;emit 钩子触发&#x27;</span>);<br>    <span class="hljs-title function_">callback</span>();<br>  &#125;);<br>&#125;<br><span class="hljs-number">3.2</span> <span class="hljs-title class_">Compilation</span> 生命周期钩子<br>	•	buildModule：构建模块前触发。<br><br>	•	seal：模块封装完成。<br><br>	•	optimizeAssets：优化生成的资源。<br><br>	•	afterOptimizeAssets：资源优化完成。<br><span class="hljs-title function_">apply</span>(<span class="hljs-params">compiler</span>) &#123;<br>  compiler.<span class="hljs-property">hooks</span>.<span class="hljs-property">compilation</span>.<span class="hljs-title function_">tap</span>(<span class="hljs-string">&#x27;MyPlugin&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">compilation</span>) =&gt;</span> &#123;<br>    compilation.<span class="hljs-property">hooks</span>.<span class="hljs-property">optimizeAssets</span>.<span class="hljs-title function_">tapAsync</span>(<span class="hljs-string">&#x27;MyPlugin&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">assets, callback</span>) =&gt;</span> &#123;<br>      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;optimizeAssets 钩子触发&#x27;</span>);<br>      <span class="hljs-title function_">callback</span>();<br>    &#125;);<br>  &#125;);<br>&#125;<br><span class="hljs-number">4.</span> 实现常见功能的示例<br><br><span class="hljs-number">4.1</span> 插件生成文件<br><br>向输出目录添加一个文件：<br><span class="hljs-title function_">apply</span>(<span class="hljs-params">compiler</span>) &#123;<br>  compiler.<span class="hljs-property">hooks</span>.<span class="hljs-property">emit</span>.<span class="hljs-title function_">tapAsync</span>(<span class="hljs-string">&#x27;FileGeneratorPlugin&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">compilation, callback</span>) =&gt;</span> &#123;<br>    <span class="hljs-keyword">const</span> content = <span class="hljs-string">&#x27;This is a generated file.&#x27;</span>;<br>    compilation.<span class="hljs-property">assets</span>[<span class="hljs-string">&#x27;generated-file.txt&#x27;</span>] = &#123;<br>      <span class="hljs-attr">source</span>: <span class="hljs-function">() =&gt;</span> content,<br>      <span class="hljs-attr">size</span>: <span class="hljs-function">() =&gt;</span> content.<span class="hljs-property">length</span>,<br>    &#125;;<br>    <span class="hljs-title function_">callback</span>();<br>  &#125;);<br>&#125;<br><br><span class="hljs-number">4.2</span> 修改输出文件内容<br><br>对生成的资源文件内容添加注释：<br><span class="hljs-title function_">apply</span>(<span class="hljs-params">compiler</span>) &#123;<br>  compiler.<span class="hljs-property">hooks</span>.<span class="hljs-property">emit</span>.<span class="hljs-title function_">tapAsync</span>(<span class="hljs-string">&#x27;ModifyAssetsPlugin&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">compilation, callback</span>) =&gt;</span> &#123;<br>    <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">keys</span>(compilation.<span class="hljs-property">assets</span>).<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">filename</span>) =&gt;</span> &#123;<br>      <span class="hljs-keyword">if</span> (filename.<span class="hljs-title function_">endsWith</span>(<span class="hljs-string">&#x27;.js&#x27;</span>)) &#123;<br>        <span class="hljs-keyword">const</span> originalSource = compilation.<span class="hljs-property">assets</span>[filename].<span class="hljs-title function_">source</span>();<br>        <span class="hljs-keyword">const</span> modifiedSource = <span class="hljs-string">`/* This is a custom comment */\n<span class="hljs-subst">$&#123;originalSource&#125;</span>`</span>;<br>        compilation.<span class="hljs-property">assets</span>[filename] = &#123;<br>          <span class="hljs-attr">source</span>: <span class="hljs-function">() =&gt;</span> modifiedSource,<br>          <span class="hljs-attr">size</span>: <span class="hljs-function">() =&gt;</span> modifiedSource.<span class="hljs-property">length</span>,<br>        &#125;;<br>      &#125;<br>    &#125;);<br>    <span class="hljs-title function_">callback</span>();<br>  &#125;);<br>&#125;<br><br><span class="hljs-number">4.3</span> 构建统计信息输出<br><br>在构建完成时输出构建信息：<br><span class="hljs-title function_">apply</span>(<span class="hljs-params">compiler</span>) &#123;<br>  compiler.<span class="hljs-property">hooks</span>.<span class="hljs-property">done</span>.<span class="hljs-title function_">tap</span>(<span class="hljs-string">&#x27;StatsPlugin&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">stats</span>) =&gt;</span> &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;构建时间：&#x27;</span>, stats.<span class="hljs-property">endTime</span> - stats.<span class="hljs-property">startTime</span>, <span class="hljs-string">&#x27;ms&#x27;</span>);<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;输出文件：&#x27;</span>, <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">keys</span>(stats.<span class="hljs-property">compilation</span>.<span class="hljs-property">assets</span>));<br>  &#125;);<br>&#125;<br><br><span class="hljs-number">5.</span> 注意事项<br><br><br>	<span class="hljs-number">1.</span>	钩子的优先级与性能：<br><br>	•	钩子函数执行的时机很重要，要选对钩子。<br><br>	•	避免在性能敏感的钩子中进行耗时操作，如 emit 和 optimizeAssets。<br><br>	<span class="hljs-number">2.</span>	异步钩子要正确调用回调：<br><br>	•	如果是异步钩子（tapAsync 或 tapPromise），一定要在合适时机调用 <span class="hljs-title function_">callback</span>()，否则会导致 <span class="hljs-title class_">Webpack</span> 卡住。<br><br>	<span class="hljs-number">3.</span>	错误处理：<br><br>	•	在插件中需要捕获异常并正确记录到 compilation.<span class="hljs-property">errors</span> 或 compilation.<span class="hljs-property">warnings</span>，以便开发者定位问题。<br><br>	<span class="hljs-number">4.</span>	插件开发调试：<br><br>	•	使用 <span class="hljs-title class_">Webpack</span> 的 stats 配置，设置 stats.<span class="hljs-property">errorDetails</span>: <span class="hljs-literal">true</span>，可以更清楚地看到插件执行的错误信息。<br><br>	<span class="hljs-number">5.</span>	插件命名：<br><br>	•	每个插件在注册钩子时需要提供唯一名称（字符串），通常与插件类名一致，避免冲突。<br></code></pre></td></tr></table></figure>
+
+<p><strong>手写一个 plugin, 统计源码里面的 console.log 调用数量与调用路径</strong></p>
+<p><strong>webpack中hash的作用（肯斯爪特一面）</strong></p>
+<p>在webpack中，hash是每次构建的唯一标识符，是用于缓存管理和版本控制。他可以帮助浏览器区分不同版本的资源文件，避免缓存问题。</p>
+<p>webpack中的hash分为3种：</p>
+<ol>
+<li>[hash]（构建级别的hash）<ul>
+<li>每次构建都会生成一个新的hash</li>
+<li>缺点是无论构建的内容是否发生改变，只要重新构建，hash都会改变</li>
+</ul>
+</li>
+<li>[chunkhash]（基于chunk的hash）<ul>
+<li>根据每个chunk的内容生成hash</li>
+<li>只有chunk的内容发生变化时，hash值才会改变</li>
+</ul>
+</li>
+<li>[contenthash]（基于文件内容的hash）<ul>
+<li>根据文件内容生成hash值</li>
+<li>文件内容不变，hash值不变，通常用于处理静态资源（css、图片等）</li>
+</ul>
+</li>
+</ol>
+<h2 id="7-2-Rollup"><a href="#7-2-Rollup" class="headerlink" title="7.2 Rollup"></a>7.2 Rollup</h2><h2 id="7-3-Vite"><a href="#7-3-Vite" class="headerlink" title="7.3 Vite"></a>7.3 Vite</h2><p><strong>vite比webpack快在哪里</strong></p>
+<ol>
+<li>webpack在启动服务时，会先编译整个应用再启动服务，而vite是先启动服务，资源按需编译，也就是只有请求某个资源，才会编译。</li>
+<li>vite会对依赖文件预构建处理，并且做强缓存，不会重复的编译</li>
+</ol>
+<p><strong>说一下你对monorepo的理解，你在项目中是怎么做Monorepo？</strong></p>
+<p>monorepo 是一种项目代码管理方式，指单向仓库中管理多个项目，有助于简化代码共享、版本控制、构建和部署等方面的复杂性。</p>
+<p><strong>为什么pnpm比npm快</strong></p>
+<p>原因是pnpm优化了文件存储方式、依赖管理方式和并行下载能力。</p>
+<ul>
+<li>pnpm 采用的是内容寻址的文件系统来存储磁盘上的所有文件。也就是 pnpm 不会重复的下载相同的依赖，这样有效的减少了下载和安装时间</li>
+<li>pnpm在下载时采用并行下载，提高下载速度</li>
+</ul>
+<p><strong>npm install 的执行过程</strong></p>
+<p><strong>对css工程化的理解</strong></p>
+<p>css公共化解决了：</p>
+<ul>
+<li>css宏观设计，css代码如何组织、拆分、模块结构设计</li>
+</ul>
+<p><strong>webpack与rollup有什么区别</strong></p>
+<ul>
+<li>应用场景，webpack适用于存在js、css、图片等包含各种资源文件的大型web项目，因为webpack本身的扩展能力就很强；而rollup则更适用于编译一下sdk库、组件等打包，rollup编译出来的资比较整洁干净，没有过多冗余的代码。</li>
+<li>webpack拥有强大的生态，rollup生态也很完善，但是对比webpack还是略有不如</li>
+<li>rollup仅构建所需模块，构建时间短，而webpack会递归的处理所有的模块。</li>
+</ul>
+<h1 id="8-Node"><a href="#8-Node" class="headerlink" title="8. Node"></a>8. Node</h1><p><strong>事件循环</strong></p>
+<p>Node在启动时就会创建一个类似于 while(true) 的循环，每一次执行循环体就是一次 Tick，每一次Tick 都在检查是否存在事件需要执行，如果有事件需要执行，则取出需要执行的事件和关联的回调函数，如果有回调函数，则执行。然后继续执行循环体，直到没有事件之后，结束循环，关闭进程。</p>
+<p><strong>异步I&#x2F;O模型</strong></p>
+<p>完成整个异步 I&#x2F;O 环节的有 事件循环、观察者、请求对象、线程池。</p>
+<p>事件循环见下。</p>
+<p>观察者：每个事件循环中都有一个或多个观察者，事件循环在查询是否还有事件需要处理时，就是在向观察者询问是否存在事件。<br>观察者类似于餐厅厨房做菜，厨师一轮一轮的做菜，每次做完一轮菜都需要向前台询问是否还有菜需要做，如果没有则打烊了，这里的前台就是观察者。<br>浏览器中也有类似的机制，点击事件等都有自己的观察者。</p>
+<p>事件循环是典型的生产者&#x2F;消费者模型，异步 I&#x2F;O、网络请求等都是事件的生产者，这些事件会被传递到观察者那里，事件循环再取出事件执行。<br>观察者也存在优先级的，idle观察者优先于I&#x2F;O观察者，I&#x2F;O观察者优先于check观察者</p>
+<p>请求对象：在 libuv 执行的过程中，会创建一个请求对象，这个请求对象是异步I&#x2F;O过程中的重要产物，包含了所有的状态，包括送入线程池等待执行以及 I&#x2F;O 操作完毕之后的回调处理。</p>
+<p><strong>libuv</strong></p>
+<p>Node 进行异步 I&#x2F;O 操作时，使用JavaScript调用核心模块，而后核心模块调用 C++ 内建模块，内建模块通过 libuv 调用系统底层。<br>在 libuv 执行的过程中，会创建一个请求对象，这个请求对象是异步I&#x2F;O过程中的重要产物，包含了所有的状态，包括送入线程池等待执行以及 I&#x2F;O 操作完毕之后的回调处理。</p>
+<p>那实际上 libuv 是起到一个多系统适配的作用。</p>
+<h1 id="9-其他逻辑框架"><a href="#9-其他逻辑框架" class="headerlink" title="9. 其他逻辑框架"></a>9. 其他逻辑框架</h1><h2 id="微前端架构"><a href="#微前端架构" class="headerlink" title="微前端架构"></a>微前端架构</h2><h3 id="qiankun"><a href="#qiankun" class="headerlink" title="qiankun"></a>qiankun</h3><p><strong>qiankun和iframe在使用上有什么区别</strong></p>
+<p>iframe的问题：</p>
+<ul>
+<li>应用之间url不同步，浏览器刷新时状态丢失，重新加载，速度慢</li>
+<li>全局上下文完全隔离，内存变量不共享</li>
+<li>UI 不同步 ，DOM不共享</li>
+</ul>
+<h1 id="10-网络安全"><a href="#10-网络安全" class="headerlink" title="10. 网络安全"></a>10. 网络安全</h1><p><strong>浏览器http缓存</strong></p>
+<p>浏览器缓存分为协商缓存和强缓存，一般通过请求头&#x2F;响应头控制。</p>
+<p>协商缓存会向服务器发送一个请求确认是否需要读取本地缓存文件；而强缓存则不会向服务器发送请求，直接使用本地缓存文件。</p>
+<p>协商缓存会携带报文信息：Last-Modified、If-Modified-Since、ETag、If-None-Match</p>
+<p>强缓存会携带报文信息：Cache-Control、Expires</p>
+<p><strong>http版本</strong></p>
+<p><strong>http&#x2F;1.0与http&#x2F;1.1的区别</strong></p>
+<p>http1.0 建立TCP连接，一个TCP连接只能发送一个http请求，并且TCP连接会断开；HTTP 1.1 版本允许TCP建立长连接，并且TCP连接可以并发，也就是说一个域名下允许建立多个TCP连接，http1.1的管道机制允许一个TCP连接可以并行发送多个http请求。</p>
+<p><strong>http&#x2F;1.1 与 http&#x2F;2的区别</strong></p>
+<p>http1.1版本的管道机制允许一个TCP连接发送多个http请求，但是下一个http请求只能等待上一个http请求返回之后才能拿到结果，这是http1.1的队头阻塞问题。<br>http2.0来说，采用了多路复用，允许一个TCP连接发送多个http请求，并且各个请求之间并不存在阻塞问题。</p>
+<p><strong>http&#x2F;2的多路复用与http&#x2F;1.x的长连接的区别</strong></p>
+<p>http1.0的连接是一个TCP连接发送一个http请求，传输完毕之后就断开；<br>http1.1建立长连接，管道机制运行发送多个http请求，但是存在队头阻塞问题，是单线程传输，如果某一个请求超时，后面的请求结果都拿不到；<br>http2.0采用多路复用，真正意义上做到了并行http请求。</p>
+<p><strong>http请求</strong></p>
+<p><strong>请求类型</strong></p>
+<ul>
+<li>GET</li>
+<li>POST</li>
+<li>HEAD</li>
+<li>DELETE</li>
+<li>OPTION</li>
+<li>PUT</li>
+<li>CONNECT</li>
+</ul>
+<p><strong>get和post的区别</strong></p>
+<ul>
+<li>GET请求和HEAD请求类似，请求发送给服务器之后，并不会改变服务器资源；而POST请求一般会修改服务器资源</li>
+<li>GET请求参数会通过 ? 拼接在url之后，参数之间通 &amp; 连接；而 post 会将参数放在请求体中，以数据的方式发送；</li>
+<li>因为浏览器的限制，GET 请求在浏览器传递数据的大小比POST小</li>
+<li>GET请求暴露在浏览器地址栏中，安全性比POST相对较低；</li>
+</ul>
+<p><strong>options预检请求</strong></p>
+<p>http请求可以分为简单请求和非简单请求。<br>简单请求：请求类型为GET、HEAD、POST，并且对请求报文信息有一定的限制，header中只能包含以下信息: Accept 、Accept-Language 、Content-Type: ‘text&#x2F;plain’（文本） | ‘multiparg&#x2F;form-data’（表单数据） | ‘application&#x2F;x-www-form-urlencoded’（表单数据，类似于url查询字符串格式）；<br>除了简单请求，剩余的请求都是非简单请求。</p>
+<p>对于简单请求，当发送一个请求时，如果请求跨域，浏览器都会会直接向服务器发送 cors 请求，并携带 origin ；当服务器返回时，浏览器会拦截，然后确认 Access-Control-Allow-Origin ，确认是否为 true，如果为 true ，则证明该请求资源是共享的，然后返回结果，否则浏览器认为这个请求不被允许，产生报错。</p>
+<p>而对于非简单请求来说，当发送 cors 请求时，浏览器首先会发送一个 OPTIONS 预检请求，该预检请求也是被当做简单请求发送，请求头中会携带Origin ，并且还有 Access-Control-Request-Method 和 Access-Control-Request-Header 。</p>
+<p>发生预检请求的目的是：检验浏览器是否允许跨域以及确认实际请求的安全性，这样能够保证客户端的安全性，防止不受信任的网站利用用户的浏览器向其他网站发送恶意的请求。</p>
+<p><strong>http握手与挥手</strong></p>
+<p><strong>TCP连接的三次握手和四次挥手</strong></p>
+<p>把网络体系按照OSI七层模型：应用层、表示层、会话层、传输层、网络层、数据链路层、物理层。<br>不管从上往下还是从下往上，中间都是传输层。<br>传输层只做一件事，建立端到端的连接。</p>
+<p>TCP 建立连接时，会发送控制位信息包，比如 SYN、ACK、FIN，开启时值为 1 ，关闭 值为 0 。</p>
+<p>SYN : 同步 （同步数据）<br>ACK: 确认<br>FIN: 结束</p>
+<p>SYN + ACK：同步确认</p>
+<p><strong>三次握手</strong> </p>
+<p>客户端与服务端建立连接时，会携带一些信息，比如，SYN、ACK、FIN 这些控制位<br>首先，客户端需要向服务器发送一个 SYN 同步信息，并且会携带 seq 序号；<br>服务器接收到 SYN 信息后，会向客户端发送 SYN + ACK 的信息，确认号为 请求发送过来的 序号 + 1 ，并且携带序号给客户端；<br>客户端收到服务器发送过来的 SYN+ACK 同步确认信息后，会发送一个ACK 确认信息给服务器，确认号为 服务器发送过来的序号 + 1 ；<br>确认号都是根据对方的 序号+1 得到的；</p>
+<p>存在一个问题：如果每一次发送过来的SYN服务器都要记住其序列号，并且新生成自己需要记住的序号，那服务器就要挂起非常多的资源，如果有黑客借此不断地向服务器发送SYN又不进行下一步，服务器就会崩溃，这就是典型的DDoS攻击。</p>
+<p>为此，服务器干脆不保存自己的序号，而是根据服务器的ip地址端口号等私有信息进行算法的运算得到序号。</p>
+<p>从控制位来说也是具备唯一性的，第一次是 SYN ，第二次是 SYN+ACK ，第三次是ACK；<br>两边不仅可以根据序号和确认号，还可以根据控制位来确认进行到哪一步骤了。</p>
+<p><strong>四次挥手</strong></p>
+<p>三次握手建立完成就可以向服务器发送http请求了，然后服务器响应内容。假设内容都发送完毕了，这时候可以发送关闭连接的请求了，也就是我们说的4次挥手。<br>注意：客户端和服务端都能主动发起关闭的请求。<br>假设客户端发送关闭连接的请求。</p>
+<p>客户端会向服务器发送 FIN + ACK 控制位，也就是确认结束会话；<br>服务器拿到客户端发送的 FIN + ACK 后，会用对方的 ACK 作为序号，确认号用对方的 序号+1 ，然后发送 ACK 确认控制位；<br>此时服务端还未正式关闭通道，因为服务端可能还有信息没有处理完或者还有需要发送的数据，等服务端发送完数据之后，会再发送一个 FIN + ACK 来进行最后的确认，此时序号和确认号不需要改变，因为没有一来一回；<br>最后客户端得到最终确认之后，会发送 ACK 来进行确认，此时自己的序号用对方的确认号+1，确认号是用对方的序号+1</p>
+<p><strong>为什么三次握手？两次行吗？</strong></p>
+<p><strong>为什么四次挥手？三次不行吗？</strong></p>
+<p>中间的两步 服务器发送 ACK 和 FIN+ACK ，是因为服务器可能还有信息没有处理完或者还有数据没有发送完成。</p>
+<p><strong>http与https的区别</strong></p>
+<p>https ，在 http 协议的基础上，使用 TLS&#x2F;SSL 进行加密。</p>
+<p>http 是明文发送信息，https 是经过 TLS 加密，密文传输。</p>
+<p>加密：<br>对称加密：发送方和接收方使用同样的规则加密，然后用同一把钥匙解密。只使用私钥加密。问题：如果有第三方知道加密的规则，就很容易破解了。<br>非对称加密：用两个秘钥进行加密和解密，公开秘钥是所有人都知道的秘钥，私有秘钥是持有方才有的秘钥。一般来说，私钥放在服务器里，数据经过公钥加密，只能被私钥解密，数据被公钥加密就只能被公钥解密。也叫公钥加密。<br>TLS 使用 对称和非对称加密。</p>
+<p>服务端需要申请 SSL 证书，证书中包含了特定的公钥和私钥。此时浏览器会将http默认端口80改为 443 端口。</p>
+<p>TCP 三次握手的规则不变，当 TCP 三次握手以后，客户端会发送一个 Client Hello 给服务端，告诉服务端，支持TLS版本和支持的加密套件。<br>服务端收到 Client Hello 后，会发送 Server Hello 给客户端，响应报文中会告诉客户端确认支持的TLS版本以及选择的加密套件。<br>接着服务器会再发送一个响应，出示服务器自己的证书，这样浏览器就可以根据对照自己的证书信任列表来确认这个服务器是否可信。<br>接着会发送公钥给客户端。<br>最后会发送 Server Hello Done ，告诉客户端发送完了。<br>之后客户端会响应客户端，比如告诉服务器商议好的算法和密钥加密。<br>最后两边都发送准备成功的信息。<br>从这里就表示 TLS 握手成功，可以给数据加密进行交换了。</p>
+<p>上面 TLS 握手经历了这么多，总结：</p>
+<ol>
+<li>客户端发送 Client Hello，携带支持的 TLS 版本以及加密套件</li>
+<li>服务器发送 Server Hello，携带 TLS 版本以及选择的加密套件</li>
+<li>服务器发送SSL证书以及公钥给客户端</li>
+<li>服务器发送 Server Hello Done ，表示发送完成</li>
+<li>客户端响应服务端，告诉服务器使用协商好的算法和密钥加密</li>
+<li>两边都准备成功。</li>
+</ol>
+<p>其实TLS握手的过程就是为了让客户端和服务端得到一个会话秘钥，这个过程是一个非对称加密。后面两边可以使用这个会话秘钥加密发送数据了，这里就是对称加密了。</p>
+<p><strong>介绍一下 fetch 请求 keepalive 属性</strong></p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">fetch</span> 的 keepalive 属性是一个相对较新的特性，用于在页面卸载或关闭时发送 HTTP 请求。这与 navigator.sendBeacon 类似，但提供了更多的灵活性。它可以在页面卸载期间保持网络请求的存活性，从而确保关键数据的可靠发送。<br><br>keepalive 是 <span class="hljs-keyword">fetch</span> 的选项之一，设置为 <span class="hljs-keyword">true</span> 时表示允许请求在页面卸载后继续运行。<br><br><span class="hljs-keyword">fetch</span>(url, &#123;<br>  <span class="hljs-keyword">method</span>: <span class="hljs-string">&#x27;POST&#x27;</span>,<br>  body: <span class="hljs-type">JSON</span>.stringify(data),<br>  headers: &#123;<br>    <span class="hljs-string">&#x27;Content-Type&#x27;</span>: <span class="hljs-string">&#x27;application/json&#x27;</span>,<br>  &#125;,<br>  keepalive: <span class="hljs-keyword">true</span>,<br>&#125;);<br><br>使用场景<br>	<span class="hljs-number">1.</span>	页面卸载时发送数据：<br><br>	•	如日志数据、会话数据或统计数据等。<br><br>	•	确保请求在页面关闭时不会被中断。<br><br>	<span class="hljs-number">2.</span>	替代 sendBeacon：<br><br>	•	提供更强大的功能，如支持自定义请求头和响应处理。<br><br>	<span class="hljs-number">3.</span>	关键任务请求：<br><br>	•	需要在页面卸载时确保完成的数据发送。<br></code></pre></td></tr></table></figure>
+
+<p><strong>TCP UDP的最大区别</strong></p>
+<ul>
+<li>TCP是传输控制协议，需要发送方与接收方建立连接；而UDP是一种无连接协议，不需要建立连接</li>
+<li>TCP提供可靠的数据传输，能够保证数据在传输过程中不会丢失、损坏或重复；而UDP传输的数据不保证可靠性</li>
+<li>TCP一般用在邮件发送、文件传输、实时通信等；UDP一般用在音视频通话，UDP的特点就是传输速度快，不需要建立连接。</li>
+</ul>
+<p><strong>常见的网络安全问题有哪些</strong></p>
+<ul>
+<li>XSS 跨站脚本攻击：攻击者注入恶意脚本到web应用程序中，用户执行这些脚本，导致攻击者能够窃取用户信息、会话令牌等</li>
+<li>CSRF 跨站请求伪造：攻击者通过伪造用户请求，达到非法操作的目的。一般是攻击者欺骗用户点击一个恶意的链接。</li>
+<li>SSRF 服务端请求伪造：攻击者通过构造特定的请求，使服务器发起对内部网络或外部服务的请求，从而获取敏感信息</li>
+<li>点击劫持：页面被加入一个透明的 frame 标签，诱使用户点击</li>
+<li>会话劫持：通过恶意的手段获取到用户的会话ID，使用这个ID冒充用户身份进行恶意操作</li>
+</ul>
+<p>XSS跨站脚本攻击类型：</p>
+<ol>
+<li>存储型：攻击者将恶意脚本存储在服务器上，当用户访问包含这个恶意脚本的页面时，脚本被执行</li>
+<li>反射型：恶意脚本通过请求参数发送给服务器，服务器再反射给客户端，然后执行在客户端执行</li>
+<li>DOM型：攻击者通过修改DOM来执行恶意脚本</li>
+</ol>
+<h1 id="11-v8"><a href="#11-v8" class="headerlink" title="11. v8"></a>11. v8</h1><p><strong>垃圾回收机制</strong></p>
+<p>在自动垃圾回收算法的演进中，没有哪一种算法能够适用于任何场景，原因是对象存活的生命周期长短并不一致。<br>现代垃圾回收算法中，利用对象存活周期长度不一将内存中的垃圾分代回收。<br>v8将内存分为新生代和老生代。<br>新生代存放的是生命周期较短的对象，采用 Scavenge 算法，是一种复制算法。他将内存一分为二，一边是使用状态，称为 from 空间，一边是闲置状态，称为 to 空间。当垃圾程序执行时，会遍历from空间的所有对象，将存活的对象复制到to空间内，清除死亡对象， 而后 from 空间和 to 空间交换身份，继续下一次执行。当多次执行垃圾回收程序后，仍然存活的对则晋升到老生代中。<br>晋升的条件有两种，经历过一次垃圾回收程序执行之后仍然存活的对象，或者 to 空间内存占用超过 25% 时，原因是to空间和from空间会交换身份，为了不影响下一次分配内存，则超过占用比时会晋升。<br>老生代不在 Scavenge 算法了，原因是老生代中存活对象比较多，如果还进行复制，则效率比较低，并且还有一半空间处于闲置状态，比较浪费。<br>老生代采用 Mark-Sweep 标记清理 和 Mark-Compact 标记整理。<br>标记-清理，分为标记阶段和清理阶段。标记阶段会遍历空间内的所有对象，标记存活对象，随后在清除阶段，清理掉未被标记的对象，也就是‘死亡’对象。<br>标记-清理存在一个问题，当清理完对象之后，空间会造成不连续，当一个占用内存较大的对象进来时，可能存在放不下而去重新申请空间，造成空间浪费。<br>为了解决这个问题，利用标记-整理，将所有存活的对象移动到堆内存的一边，然后清除边界以外的内存。</p>
+<p>增量标记：在执行这三种垃圾算法时，会暂停应用逻辑执行，这可能会造成卡顿的感觉，js的执行本身就是单线程的。为了解决这个问题，v8 从标记阶段入手，将原本一次性执行完垃圾回收程序改为增量标记，也就是将标记拆分为许多小的步进，每做完一小步进就让应用逻辑执行一会，让垃圾回收程序和应用逻辑交替执行，直到标记完成。<br>还有并发式回收，即回收期间，部分应用逻辑和垃圾回收程序并行执行。</p>
+<p><strong>内存</strong></p>
+<p><strong>内存泄漏与内存溢出有什么区别吗</strong></p>
+<p>内存泄漏是程序在运行期间，没有正确的释放内存导致内存泄漏。<br>内存溢出是在程序在申请内存时，超出最大分配内存，导致内存溢出。</p>
+<p>内存泄漏一般是由于代码中的错误或者不良设计导致的，而内存溢出是由于程序的错误操作或不良设计导致的。</p>
+<p><strong>内存泄漏的原因</strong></p>
+<p>造成内存泄漏的原因：</p>
+<ul>
+<li>变量不及时释放</li>
+<li>缓存（使用缓存一定要设置好过期策略或者淘汰策略）</li>
+<li>队列消费不及时</li>
+</ul>
+<h1 id="12-项目"><a href="#12-项目" class="headerlink" title="12. 项目"></a>12. 项目</h1><h2 id="项目：中农发统一开发平台脚手架项目"><a href="#项目：中农发统一开发平台脚手架项目" class="headerlink" title="项目：中农发统一开发平台脚手架项目"></a>项目：中农发统一开发平台脚手架项目</h2><p><strong>脚手架搭建</strong></p>
+<ol>
+<li>创建项目，指定脚手架执行命令及入口文件，也就是bin字段。同时入口文件需要指定环境</li>
+<li>命令行工具或者交互问答工具。举一个例子，创建vite项目，npm create vite ，实际上做了两步，第一步先查询是否拥有 create-vite 这个包，如果没有则按照，第二步，执行 create-vite 命令</li>
+<li>根据选择不同的模板，创建出模板项目，核心其实就是将一个创建好的模板拷贝到指定的文件下，内部细节涉及到的是路径如何处理，还有一些模板语法动态生成文件等等。</li>
+</ol>
+<p><strong>qiankun微应用模板</strong></p>
+<p>和一般的模板文件一样，但是会多出一些专属于qiankun的文件。</p>
+<ol>
+<li>微应用的配置信息啊、路由匹配配置啊之类的</li>
+</ol>
+<p>webpack的配置：</p>
+<ul>
+<li>配置UMD格式</li>
+<li>配置导出的应用名</li>
+<li>依赖共享使用external的配置</li>
+</ul>
+<p>对 vite 支持并不友好：<br>qiankun子应用之间的作用域是隔离的，每个子应用都会创建一个自己的window，也就是fakeWindow，然后qiankun会用with更改作用域，最后用eval执行子应用的代码，问题就出在eval上。vite中的import 和export并不会被编译，如果使用eval执行会报错。</p>
+<p><strong>web端模板</strong></p>
+<ul>
+<li>x6，绘制流程图，本质上其实就是在操纵xml数据，将xml数据交给后端留存</li>
+<li>x6 的排他网关连线条件，存在手动选择和手动输入的两种配置，由于一个开关一个数据，再加上不同连线有不同的条件，在处理数据和回显数据要格外的注意。</li>
+<li>路由的动态加载以及路劲配置化渲染组件。</li>
+<li>miragejs创建mock管理</li>
+</ul>
+<p><strong>编译</strong></p>
+<p>webpack编译，拆分module生成不同的chunk、开启gzip、使用swc-loader 等优化手段去优化编译。</p>
+<p>会创建一些对项目有帮助的插件或loader，比如说你在写某些loader时，上下文中获取不到webpack的 alias ，可以使用插件，在创建NormalModule时，将alias注入到loader的上下文对象中。<br>再比如向项目中配置一下cdn的路径啊之类的。</p>
+<h2 id="项目：x5"><a href="#项目：x5" class="headerlink" title="项目：x5"></a>项目：x5</h2><p><strong>项目描述</strong></p>
+<p>x5 是一个流程化处理交易的开发工具，有着专属于他自己的交易工程，比如说远程银行之类的。</p>
+<p><strong>编译</strong></p>
+<p>独自承担整个x5的编译，会配合运行时，输出运行时需要的资源文件。<br>整个x5编译的理念是只编译不打包合成，因为交易是一个一个的去做的，这么做的好处是可以不批量的加载所有的交易资源。<br>由于这种理念，我们会创建很多的单例模块，每个模块处理一件事情。比如说：</p>
+<ul>
+<li>缓存模块，主要是对每一个工程单位编译时生成一个json文件，存储的是当前工程的编译信息，当二次编译时，不再重复的去编译未发生改变的交易页面。当然，在做缓存时，一定要控制好空间，需要做过期处理或者淘汰策略。但是对于我们这个项目来说，编译缓存对这些要求并不高。</li>
+<li>依赖信息记录模块，编译整个工程时，会对每一个交易页面做依赖信息记录，这个文件会给运行时使用，运行时会对这个信息做处理，数据也要反转，然后加载一支交易时，获取到所有的依赖，到达按需加载的目的。</li>
+<li>其他还有很多模块，比如说，编译更新列表信息、依赖收集模块、别名处理模块等等</li>
+<li>webpack编译时也会创建一些插件和loader，比如说，处理import动态导入函数的loader，这个需要用我们运行时自己处理加载，因为我们只编译不打包合并处理。再比如说会在生成的chunk里面添加一些交易页面信息、类型之类的，运行时会使用。</li>
+</ul>
+<p><strong>运行时</strong></p>
+<h1 id="13-前端工程化基建与架构设计"><a href="#13-前端工程化基建与架构设计" class="headerlink" title="13. 前端工程化基建与架构设计"></a>13. 前端工程化基建与架构设计</h1><h2 id="工程化管理工具"><a href="#工程化管理工具" class="headerlink" title="工程化管理工具"></a>工程化管理工具</h2><h3 id="依赖管理"><a href="#依赖管理" class="headerlink" title="依赖管理"></a>依赖管理</h3><p><strong>为什么说yarn比npm快呢？</strong></p>
+<p>在早期的版本中，yarn做的确实比npm优秀很多，得益于yarn的并行安装、缓存机制和网络优化等，比如说，yarn安装依赖，会将依赖缓存到本地，当下一次安装时会读取本地缓存。</p>
+<p>但是随着npm的版本升级，也做了并行下载、离线缓存机制，也新增了package-lock依赖锁。所以说他们之间的差距在缩小。</p>
+<p><strong>pnpm、npm、yarn的区别</strong></p>
+<p>npm：在 v5 版本以后具备离线缓存机制和并行安装，依赖包扁平化，package-lock.json依赖锁。<br>yarn：具备优秀的离线缓存机制和并行安装，对比npm来说性能较好，yarn.lock 依赖锁。<br>pnpm：具备离线缓存机制和并行安装，注重性能、磁盘利用率和模块依赖性，依赖管理利用硬连接避免重复安装。</p>
+<p><strong>使用npm安装依赖时，为什么有时候删了node_modules时能够正常安装依赖？</strong></p>
+<p>npm安装失败可能的原因：</p>
+<ol>
+<li>依赖缓存冲突或损坏。</li>
+</ol>
+<ul>
+<li>原因：node_modules文件夹中的某些文件可能由于文件损坏、安装中断或版本不匹配导致无法正确工作</li>
+</ul>
+<ol>
+<li>子依赖冲突</li>
+</ol>
+<ul>
+<li>某些依赖的子依赖版本可能发生冲突，npm无法解析这些冲突。</li>
+</ul>
+<ol>
+<li>文件锁于node_moduels不一致</li>
+</ol>
+<ul>
+<li>原因：当node_modules于package-lock.json文件内容不一致时，npm会根据node_modules的状态而不是package-lock.json重新解析依赖，导致冲突</li>
+</ul>
+<ol>
+<li>脏依赖（旧模块为被清理）</li>
+</ol>
+<ul>
+<li>原因：开发环境中存在旧的依赖未被清理（可能是某些包未被正确卸载或版本更新不完整），可能干扰安装过程。</li>
+</ul>
+<ol>
+<li>网络问题</li>
+<li>文件权限问题</li>
+</ol>
+<ul>
+<li>原因：某些文件可能是因为权限问题无法被覆盖或删除，影响新依赖的安装。</li>
+</ul>
+<ol>
+<li>依赖被锁定</li>
+</ol>
+<ul>
+<li>原因：某些依赖的版本被锁定，但是他的子依赖需要更新，可能导致版本冲突</li>
+</ul>
+<p>这些所有的问题，当node_modules被删除后，清理了旧的、不一致或损坏的依赖状态，重新安装，会从头开始构建依赖树，确保依赖的一致性。</p>
+<p><strong>npm不区分devDependencies行不行</strong></p>
+<p>不区分devDenpendencies是能够正常安装依赖的，这么做对与开发人员来说非常的省事，但是有一些缺点：</p>
+<ol>
+<li>对生产环境来说，依赖过于沉重，生产环境并不需要devDenpendencies的依赖，执行 npm install –production 就行，会增加无用依赖，增加镜像大小和磁盘占用。</li>
+<li>安装时间延长，安装无用依赖，增加安装时长</li>
+<li>潜在的安全性问题，开发环境下的某些调试工具可能会引入安全性问题。</li>
+<li>某些构建工具可能依赖分类，区分dependencies和devDenpendencies。</li>
+<li>不符合团队协作规范。</li>
+</ol>
+<p>使用场景：对与大型项目来说，一定要区分开发依赖和生产依赖，一旦依赖过重会带来很大的负担。</p>
+<p><strong>一个项目中既有使用npm的也有使用yarn的，这会有什么问题？</strong></p>
+<p>会存在一定的风险，主要涉及的是依赖管理、版本锁定和团队协作。</p>
+<ol>
+<li>双重锁文件冲突</li>
+</ol>
+<ul>
+<li>npm生成package-locak.json，yarn生成yarn.lock文件</li>
+<li>如果项目中同时存在这两个文件<ul>
+<li>他们都试图锁定依赖的版本，但是他们的格式和解析方式不同。</li>
+<li>这可能导致依赖版本不一致，甚至重复安装不同版本的依赖。</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>依赖树不一致</li>
+</ol>
+<ul>
+<li>npm和yarn依赖树和解析算法略有不同，某些情况下两者可能解析出不同版本的依赖。</li>
+</ul>
+<ol>
+<li>隐形错误和难以调试，npm和yarn安装的node_modules内容不完全一致时，可能出现一些难以追踪的问题。</li>
+</ol>
+<h1 id="14-情景问题"><a href="#14-情景问题" class="headerlink" title="14. 情景问题"></a>14. 情景问题</h1><p><strong>分页列表，快速点击下一页产生的竞态问题</strong></p>
+<p>分页列表的竞态问题：当快速点击分页列表下一页时，由于数据可能还没有拿到，此时快速的发送了很多的请求，导致拿到的数据存在不确定性。<br>解决方案：</p>
+<ol>
+<li>序列化处理，上一个请求没有结束时，不允许发送下一个请求。</li>
+<li>忽略过期请求，也就是利用Promise链式调用，只获取最后一个请求的结果，如，创建一个id，保留每一次调用的id，最终只获取最后一个id的结果</li>
+<li>取消请求，当下一个请求进来时，取消上一个请求。</li>
+<li>取消和忽略的区别：取消了，请求就没有到服务端，可以减轻服务器压力；忽略则会发送请求，但是通用性更强。</li>
+</ol>
+<p><strong>混动跟随导航（电梯导航）该如何实现</strong></p>
+<p>思路很简单， 利用 scrollIntoView 进行导航滚动、利用 IntersectionObserver 进行可视区判断；</p>
+<ul>
+<li>第一步：点击右边的导航菜单，利用 scrollIntoView 方法使内容区域对应的元素出现在可视区域中。</li>
+<li>第二步：页面容器滚动时，当目标元素出现在检测区域内则联动改变对应导航的样式。</li>
+</ul>
+<p><strong>移动端如何实现下拉滚动</strong></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%89%8D%E7%AB%AF%E9%9D%A2%E7%BB%8F/" class="category-chain-item">前端面经</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%89%8D%E7%AB%AF%E9%9D%A2%E7%BB%8F/" class="print-no-link">#前端面经</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>前端面经</div>
+      <div>https://glassless.github.io/2025/04/03/前端/前端笔记/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>glasss</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年4月3日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/04/01/%E5%89%8D%E7%AB%AF/vue3/Vue3%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/" title="vue3">
+                        <span class="hidden-mobile">vue3</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
